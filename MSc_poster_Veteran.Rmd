@@ -1,0 +1,262 @@
+---
+title: Novel approaches for visualising time to event data
+author:
+  - name: Victor Pacifique RWANDARWACU
+  - name: Shyamsundar
+    affil: 1
+affiliation:
+  - num: 1
+    address: School of Mathematical and Statistical Sciences, University of Galway
+logoleft_name: https&#58;//sport.universityofgalway.ie/assets/img/logo2.png
+
+poster_height: "594mm"
+poster_width: "841mm"
+column_numbers: 4
+column_margins: "0.5in"	
+primary_colour:	"#a80050"	# Secondary colour use for poster design.
+secondary_colour:	"#84003d"	# Main colour used for poster design.
+accent_colour:	"#e6007e"	# A third colour option.
+author_textcol: "white"
+title_textsize: "90pt"
+author_textsize: "60pt"
+body_textsize: "25pt"
+output: 
+  posterdown::posterdown_html:
+    self_contained: true
+    pandoc_args: --mathjax
+    number_sections: false
+knit: pagedown::chrome_print
+
+---
+
+```{css, echo=FALSE}
+div.logo_left{
+  width: 20%;
+}
+div.poster_title{
+  width: 80%;
+}
+.section h4 {
+    break-after: column;
+}
+```
+
+<!-- Don't change anything above, except the title and author names, unless you know what you are doing. -->
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      tidy = FALSE,
+                      message = FALSE,
+                      fig.align = 'center',
+                      out.width = "100%")
+options(knitr.table.format = "html") 
+# Load any additional libraries here
+library(tidyverse)
+library(plotly)
+library(kableExtra)
+library(posterdown)
+# Load required libraries
+library(survival)
+library(ggplot2)
+library(survminer)
+
+# Load the veteran dataset
+veteran
+```
+
+
+
+# Background and Problem
+
+This template has been produced using the `posterdown` package. It generates a standard conference-style poster layout. 
+
+<!-- You can add references by inserting the following ^[reference details here] -->
+
+A common problem in clinical research is messed up data^[Evans 2010, doi: 10.6030/1939-067x-3.1.1]. It can lead to bias or nonsensical results. Appropriate statistical analysis can result in superb findings in such cases, with the right assumptions.
+
+
+## Objectives of Project
+
+1. Explain the statistical issue or research question in health data science to be investigated. 
+2. Explore a method of analysis.
+3. Apply any methods to selected datasets.
+
+
+# Data Sources and Datasets
+
+The syntax in this poster template and the `posterdown` package uses the same workflow approach as the R Markdown you know and love. 
+
+You can even use the bibliography the same way: Our data were taken from a cluster-randomised trial ^[Murphy et al. 2005 doi: 10.1186/1468-6708-6-11], available from the [Irish Social Science Data Archive](https://www.ucd.ie/issda/data/). 
+
+
+<!-- This #### below causes the columns to break -->
+<!-- You can change where you put these breaks, and the "column_numbers: 4" argument in the YAMLS header to change the layout of the poster, with care! -->
+
+####
+
+# Early Results / Descriptive Statistics of Datasets
+
+Usually you want to have a nice table displaying some important results that you have calculated. In `posterdown` this is as easy as using the `kable` table formatting you are probably use to as per typical R Markdown formatting.
+
+You can reference tables like so: Table \@ref(tab:mytable). Some basic summaries of the dataset are below:
+
+```{r mytable, out.width='80%'}
+knitr::kable(veteran[1:10, 1:4], caption = 'Veteran Data ',align = 'c',"html") %>%
+  kable_styling(font_size = 20)
+```
+
+Figure \@ref(fig:standard-plot), and Figure \@ref(fig:morefigs) below show the patterns in our dataset. Make sure that all the details in your plots will be legible when printed (legend text, axis text, and any labels)
+
+```{r standard-plot, out.width='80%', fig.align='center', fig.cap='Great figure!', fig.height=4}
+vet_trt<- veteran|> select(time,status,trt)
+
+fit_tr <- survfit(Surv(time,status)~ trt, data = vet_trt)
+#plot the survival curve 
+ggsurvplot(fit_tr,
+           data = vet_trt,
+           xlab = "Time (days)",
+           ylab = "Survival Probability",
+           conf.int = TRUE,      # Show confidence interval
+           pval = TRUE,           # Show p-value if available
+           risk.table = TRUE,     # Show risk table
+           ggtheme = theme_minimal())
+```
+
+```{r morefigs, out.width='80%', echo=FALSE, fig.cap='Amazing, right?!', fig.height=4}
+
+# Fit Kaplan-Meier curves for both treatments (combined model)
+km_fit <- survfit(Surv(time, status) ~ trt, data = veteran)
+
+# Perform the log-rank test
+log_rank_test <- survdiff(Surv(time, status) ~ trt, data = veteran)
+
+
+
+# Subset Kaplan-Meier fit for trt=1 (Group 1: Standard Treatment)
+km_fit_trt1 <- survfit(Surv(time, status) ~ 1, data = veteran[veteran$trt == 1, ])
+
+# Subset Kaplan-Meier fit for trt=2 (Group 2: Test Treatment)
+km_fit_trt2 <- survfit(Surv(time, status) ~ 1, data = veteran[veteran$trt == 2, ])
+
+####extract survival probabilities 
+
+# Manually define time points (e.g., every 30 days)
+manual_times <- seq(0, max(veteran$time, na.rm = TRUE), by = 30)
+
+# Extract survival probabilities for Group 1 (trt=1)
+group1 <- summary(km_fit_trt1, times = manual_times, extend = TRUE)
+
+# Extract survival probabilities for Group 2 (trt=2)
+group2 <- summary(km_fit_trt2, times = manual_times, extend = TRUE)
+
+
+# Survival ratios and confidence intervals
+survival_ratio <- group2$surv / group1$surv
+lower_ratio <- group2$lower / group1$upper
+upper_ratio <- group2$upper / group1$lower
+
+# Combine into a data frame
+ratio_data <- data.frame(
+  Time = manual_times,
+  Group2surv= group2$surv,
+  Group1surv= group1$surv,
+  Survival_Ratio = survival_ratio,
+  Lower = lower_ratio,
+  Upper = upper_ratio
+)
+
+
+# Survival probabilities for each group (for plotting individual curves)
+group1_curve <- data.frame(Time = group1$time, Survival = group1$surv, Group = "Treatment 1")
+group2_curve <- data.frame(Time = group2$time, Survival = group2$surv, Group = "Treatment 2")
+
+
+# Combine survival curves into a single data frame
+survival_data <- rbind(group1_curve, group2_curve)
+
+library(ggplot2)
+
+# Plot survival ratio and individual survival curves
+ggplot() +
+  # Plot individual survival curves
+  geom_step(data = survival_data, aes(x = Time, y = Survival, color = Group), size = 1) +
+  # Plot survival ratio
+  geom_step(data = ratio_data, aes(x = Time, y = Survival_Ratio), color = "green", size = 1) +
+  geom_ribbon(data = ratio_data, aes(x = Time, ymin = Lower, ymax = Upper), alpha = 0.3, fill = "red") +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "blue") +  # Reference line at ratio = 1
+  labs(
+    title = "Survival Ratio and Kaplan-Meier Curves",
+    x = "Follow-Up Time (Days)",
+    y = "Survival Probability / Ratio",
+    color = "Group"
+  ) +
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 2, label = "Test Treatment Performs Better", hjust = 0) +
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 0.5, label = "Standard Treatment Performs Better", hjust = 0) +
+  theme_minimal() +
+  scale_color_manual(values = c("Treatment 1" = "blue", "Treatment 2" = "red"))
+
+```
+
+You can even make your plots interactive for the HTML version of the poster. You can use the HTML poster for the presentation session, and the PDF poster will be printed - so be sure the static version looks okay.
+```{r interactiveplot, out.width='80%', echo=FALSE, fig.cap='Amazing, right?!', fig.height=4}
+
+####survival difference 
+
+# Survival ratios and confidence intervals
+survival_diff <- group2$surv - group1$surv
+lower_diff <- group2$lower - group1$upper
+upper_diff <- group2$upper - group1$lower
+
+
+# Combine into a data frame
+diff_data <- data.frame(
+  Time = manual_times,
+  Group2surv= group2$surv,
+  Group1surv= group1$surv,
+  Survival_Diff = survival_diff,
+  Lower = lower_diff,
+  Upper = upper_diff
+)
+
+# Plot survival diff and individual survival curves
+ggplot() +
+  # Plot individual survival curves
+  geom_step(data = survival_data, aes(x = Time, y = Survival, color = Group), size = 1) +
+  # Plot survival Diff
+  geom_step(data = diff_data, aes(x = Time, y = Survival_Diff), color = "green", size = 1) +
+  geom_ribbon(data = diff_data, aes(x = Time, ymin = Lower, ymax = Upper), alpha = 0.3, fill = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "blue") +  # Reference line at no difference = 0
+  labs(
+    title = "Survival diff and Kaplan-Meier Curves",
+    x = "Follow-Up Time (Days)",
+    y = "Survival Probability / diff",
+    color = "Group"
+  ) +
+  annotate("text", x = max(diff_data$Time) * 0.3, y = 2, label = "Test Treatment Performs Better", hjust = 0) +
+  annotate("text", x = max(diff_data$Time) * 0.3, y = 0.5, label = "Standard Treatment Performs Better", hjust = 0) +
+  theme_minimal() +
+  scale_color_manual(values = c("Treatment 1" = "blue", "Treatment 2" = "red"))
+
+```
+
+####
+
+# Next Project Steps
+
+We plan to conduct further analysis using:
+
+- Variable discombobulation ^[Massey et al. 2005 doi: 15.36.413]
+- Expand our minds with explosive machine learning ^[Smith et al. 1991 doi: 12.36.486].
+
+We will use the `plasticanalysis` package for this.
+
+# GitHub
+
+The code and data sets for this project can be viewed at our GitHub repository here: https://github.com/ 
+
+
+# References
+
+
