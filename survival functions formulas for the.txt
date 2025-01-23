@@ -1,0 +1,19 @@
+survival functions formulas for the poster 
+
+Relationship between distribution F(t) and survival function S(t) 
+$$
+F(t)=\mathrm{P}(T<t)=\int_0^t f(u) \mathrm{d} u
+$$
+
+
+$$
+S(t)=\mathrm{P}(T \geqslant t)=1-F(t)   
+$$
+
+survival analysis include non parametric (Kaplan Maier estimate ) and parametric functions 
+Life table estimates 
+
+$$S^*(t)=\prod_{i=1}^{j-1}\left(\frac{n_i^{\prime}-d_i}{n_i^{\prime}}\right)$$
+
+Overall survival formula for non parametric method (KM)
+$$\hat{S}(t)=\prod_{j=1}^k\left(\frac{n_j-d_j}{n_j}\right)$$
