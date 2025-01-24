@@ -1,0 +1,181 @@
+---
+title: MSc Health Data Science Project Title
+author:
+  - name: Victor Pacifique RWANDARWACU
+  - name: Shyamsundar
+    affil: 1
+affiliation:
+  - num: 1
+    address: School of Mathematical and Statistical Sciences, University of Galway
+logoleft_name: https&#58;//sport.universityofgalway.ie/assets/img/logo2.png
+
+poster_height: "594mm"
+poster_width: "841mm"
+column_numbers: 4
+column_margins: "0.5in"
+primary_colour: "#a80050" # Secondary colour use for poster design.
+secondary_colour: "#84003d" # Main colour used for poster design.
+accent_colour: "#e6007e" # A third colour option.
+author_textcol: "white"
+title_textsize: "90pt"
+author_textsize: "60pt"
+body_textsize: "25pt"
+output: 
+  posterdown::posterdown_html:
+    self_contained: true
+    pandoc_args: --mathjax
+    number_sections: false
+knit: pagedown::chrome_print
+---
+
+```{css, echo=FALSE}
+div.logo_left{
+  width: 20%;
+}
+div.poster_title{
+  width: 80%;
+}
+.section h4 {
+    break-after: column;
+}
+div.footnotes {
+    font-size: 18pt;
+}
+section{
+    column-count : 4 !important;
+    column-gap : 0.5in !important;
+}
+```
+
+<!-- Don't change anything above, except the title and author names, unless you know what you are doing. -->
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      tidy = FALSE,
+                      message = FALSE,
+                      fig.align = 'center',
+                      out.width = "100%")
+options(knitr.table.format = "html") 
+# Load any additional libraries here
+library(tidyverse)
+library(survival)
+library(survminer)
+library(kableExtra)
+```
+
+# Background and Problem
+
+This template has been produced using the `posterdown` package. It generates a standard conference-style poster layout.
+
+A common problem in clinical research is messed-up data[^1]. It can lead to bias or nonsensical results. Appropriate statistical analysis can result in superb findings in such cases, with the right assumptions.
+
+[^1]: Evans 2010, doi: 10.6030/1939-067x-3.1.1
+
+## Objectives of Project
+
+1.  Explain the statistical issue or research question in health data science to be investigated.
+2.  Explore survival analysis using non-parametric and parametric methods.
+3.  Apply methods to the lung cancer dataset and interpret results.
+
+# Data Sources and Datasets
+
+Our data are taken from the `survival` package in R. Specifically, we will use the `lung` dataset, which contains survival times for lung cancer patients.
+
+#### 
+
+# Survival Analysis and Formulas
+
+## Relationship Between Distribution $F(t)$ and Survival Function $S(t)$:
+
+$$
+F(t)=\mathrm{P}(T<t)=\int_0^t f(u) \mathrm{d} u
+$$
+
+$$
+S(t)=\mathrm{P}(T \geqslant t)=1-F(t)   
+$$
+
+## Life Table Estimate:
+
+$$S^*(t)=\prod_{i=1}^{j-1}\left(\frac{n_i^{\prime}-d_i}{n_i^{\prime}}\right)$$
+
+## Overall Survival Formula for Kaplan-Meier:
+
+$$\hat{S}(t)=\prod_{j=1}^k\left(\frac{n_j-d_j}{n_j}\right)$$
+
+####
+
+# Early Results: Descriptive Statistics of Datasets
+
+Summary statistics of the `lung` dataset are shown in Table \@ref(tab:lung-summary):
+
+```{r lung-summary, out.width='80%'}
+lung_summary <- lung %>%
+  summarise(
+    Total_Patients = n(),
+    Median_Age = median(age, na.rm = TRUE),
+    Male_Percentage = mean(sex == 1, na.rm = TRUE) * 100,
+    Median_Survival_Time = median(time, na.rm = TRUE)
+  )
+knitr::kable(lung_summary, caption = 'Summary of the lung cancer dataset.', align = 'c', "html") %>%
+  kable_styling(font_size = 20)
+```
+
+#### 
+
+# Kaplan-Meier Estimate
+
+The Kaplan-Meier survival curve is shown in Figure \@ref(fig:km-plot):
+
+```{r km-plot, fig.align='center', fig.cap='Kaplan-Meier Survival Curve.', fig.height=5}
+
+fit <- survfit(Surv(time, status) ~ sex, data = lung)
+
+
+ggsurvplot(fit, 
+           conf.int = TRUE,       
+           pval = TRUE,
+           risk.table = TRUE,
+           xlab = "Time (days)", 
+           ylab = "Survival Probability", 
+           legend.title = "Sex",
+           legend.labs = c("Male", "Female"),
+           ggtheme = theme_minimal())
+```
+
+####
+
+# Parametric Survival Analysis
+
+We also fit parametric survival models (e.g., Weibull) to the lung cancer dataset. See Figure \@ref(fig:parametric-plot):
+
+```{r parametric-plot, fig.align='center', fig.cap='Parametric Survival Analysis (Weibull).', fig.height=5}
+weibull_fit <- survreg(Surv(time, status) ~ 1, data = lung, dist = "weibull")
+time_seq <- seq(min(lung$time), max(lung$time), length.out = 100)
+pred_survival <- predict(weibull_fit, newdata = data.frame(time = time_seq), type = "quantile", p = 0.5)
+plot(time_seq, exp(-time_seq/weibull_fit$scale), type = "l", col = "blue", lwd = 2,
+     xlab = "Time (days)", ylab = "Survival Probability", 
+     main = "Weibull Survival Curve")
+```
+
+#### 
+
+# Next Project Steps
+
+We plan to conduct further analysis using:
+
+- Additional non-parametric methods.
+- Validation of parametric models.
+- Incorporation of covariates (e.g., age, sex).
+
+#### 
+
+# GitHub
+
+The code and datasets for this project can be viewed at our GitHub repository here: <https://github.com/>
+
+# References
+
+1. Evans 2010, doi: 10.6030/1939-067x-3.1.1
+2. Murphy et al. 2005 doi: 10.1186/1468-6708-6-11
