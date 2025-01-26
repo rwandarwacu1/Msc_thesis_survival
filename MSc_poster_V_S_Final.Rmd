@@ -1,0 +1,314 @@
+---
+title: Novel Approaches for visualising Time to Event Health Data
+author:
+  - name: Victor Pacifique Rwandarwacu
+  - name: Ranganath Shyamsundar 
+    affil: 1
+affiliation:
+  - num: 1
+    address: School of Mathematical and Statistical Sciences, University of Galway
+logoleft_name: https&#58;//sport.universityofgalway.ie/assets/img/logo2.png
+
+poster_height: "594mm"
+poster_width: "841mm"
+column_numbers: 4
+column_margins: "0.5in"	
+primary_colour:	"#a80050"	# Secondary colour use for poster design.
+secondary_colour:	"#84003d"	# Main colour used for poster design.
+accent_colour:	"#e6007e"	# A third colour option.
+author_textcol: "white"
+title_textsize: "70pt"
+author_textsize: "35pt"
+body_textsize: "24pt"
+output: 
+  posterdown::posterdown_html:
+    self_contained: true
+    pandoc_args: --mathjax
+    number_sections: false
+knit: pagedown::chrome_print
+---
+
+```{css, echo=FALSE}
+div.logo_left{
+  width: 20%;
+}
+div.poster_title{
+  width: 80%;
+}
+.section h4 {
+    break-after: column;
+}
+div.footnotes {
+    font-size: 15pt;
+}
+p.caption {
+ margin-top: 0pt;
+ margin-bottom: 8pt;
+}
+img {
+ margin-top: 8pt;
+ margin-bottom: 0pt;
+}
+```
+
+<!-- Don't change anything above, except the title and author names, unless you know what you are doing. -->
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      tidy = FALSE,
+                      message = FALSE,
+                      fig.align = 'center',
+                      out.width = "100%")
+options(knitr.table.format = "html") 
+# Load any additional libraries here
+library(tidyverse)
+library(plotly)
+library(kableExtra)
+library(posterdown)
+# Load required libraries
+library(survival)
+library(ggplot2)
+library(survminer)
+
+# Load the veteran dataset
+surv_brca_cli<- read.csv("surv_brca_cli.csv")
+```
+
+# Definition and Background
+
+Time-to-event or survival Analysis is the analysis of data in the form of times from a well-defined time origin until the occurrence of some particular event or end point1[^1]. Survival data are generally asymmetric and censored; which imply use of  specific approaches for analysis and visualizations, such as survival function and Kaplan Meier(KM) plot.
+
+[^1]: David Collett, Modelling survival data in medical research , Fourth Ed.
+
+Survival function $S(t)$ is the probability that the survival time is greater than or equal to time $(t)$ which is the observed value of random Variable $T$ with distribution function $F(t)$[^2].
+
+[^2]: Peace, Karl E.. Design and Analysis of Clinical Trials with Time-to-Event Endpoints (Chapman & Hall/CRC Biostatistics Series) (p. 74). CRC Press. Kindle Edition.
+
+$$
+S(t)=\mathrm{P}(T \geqslant t)=1-F(t)   
+$$
+
+$$
+F(t)=\mathrm{P}(T<t)=\int_0^t f(u) \mathrm{d} u
+$$
+
+The life table estimate of the survival function at $J$th interval  is given by:
+
+$$S^*(t)=\prod_{i=1}^{j-1}\left(\frac{n_i^{\prime}-d_i}{n_i^{\prime}}\right)$$
+$\text { for } t_{j-1}^{\prime} \leqslant t<t_j^{\prime}, j=2,3, \ldots, m \text {. }$
+$d_j$ and $c_j$ denote the number of deaths and the number of censored survival times, respectively, in this interval,
+$n_j$ = the number of individuals at risk of death, at the start of the $j$ th interval.
+$n_i^{\prime}$ =number of individuals at least in interval j
+
+Survival Ratio plot is a robust approach for comparing survival distributions ^[J. Newell et.al  https://doi.org/10.1016/j.compbiomed.2005.03.005],
+$$R(t) = \frac{S_1(t)}{S_2(t)}$$
+
+This Project will explore novel  informative visualization  of time to events data specifically comparing survival curves of different covariates or treatment in the trial.
+
+
+
+# Objectives of Project
+
+1.  Explain the statistical standard concept and visualization in time to events data.\
+2.  Propose novel Visualization of survival data in health sector.
+
+# Data Sources and Datasets
+
+
+The dataset is from NIH National Cancer Institute , TCGA Program on a project called "Breast invasive carcinoma (BRCA)", it contains information about: demography, exposure , Family History(regarding cancer), Follow up, Molecular Test, other Clinical Attribute, pathology detail,and Treatment of female Breast cancer patients diagnosed and followed up for different outcomes.For demonstration, our analysis focuses on Survival outcomes by pathologic stages  [^3]
+
+[^3]: <TCGA-BRCA , https://portal.gdc.cancer.gov/projects/TCGA-BRCA>
+
+# Proposed Approach
+
+Table \@ref(tab:mytable) demonstrate the pattern of survival function and the change on the number of people at risk on each time interval exported from a survival model.
+
+```{r mytable, out.width='80%'}
+
+surv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
+fit1 <- survfit(surv_object ~ 1, data = surv_brca_cli)
+
+mortality_summary <- data.frame(
+    Time = summary(fit1)$time,
+    Survival = 1 - summary(fit1)$surv,
+    n.risk= summary(fit1)$n.risk,
+    Std.Error = summary(fit1)$std.err,
+    Lower.95CI = summary(fit1)$lower,
+    Upper.95CI = summary(fit1)$upper
+  )
+
+
+knitr::kable(slice(mortality_summary,100:105), caption = 'BRCA data survival ',align = 'c',"html") %>%kable_styling(font_size = 20)
+```
+
+### 
+
+Figure \@ref(fig:standard-plot),Figure \@ref(fig:standard-plot1), Figure \@ref(fig:morefigs) and Figure \@ref(fig:interactiveplot) highlight different approach of visualizing data from standard KM plot, KM with covariates, survival ratio with confidence interval as well as permutation envelopes  respectively.
+
+```{r standard-plot, out.width='80%', fig.align='center', fig.cap='KM plot_all pathologic stages   ', fig.height=4}
+
+ssurv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
+#fit the kaplan maier model for pathologic stage 
+fit_path_stage <- survfit(surv_object ~ pathologic_stage , data = surv_brca_cli)
+
+ggsurvplot(
+  fit_path_stage,
+  size = 1.2,                  # Line thickness
+  font.x = c(16, "bold"),      # Font size for X-axis
+  font.y = c(16, "bold"),      # Font size for Y-axis
+  font.tickslab = c(10),       # Font size for tick labels
+  legend = "right",             # Legend position
+  conf.int = TRUE,                
+  risk.table = TRUE,             
+  pval = TRUE,                    
+  xlab = "Time(years)",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal() + theme(
+      legend.title = element_text(size = 10),  # Reduce legend title size
+      legend.text = element_text(size = 8),   # Reduce legend text size
+      legend.key.size = unit(0.3, "cm")       # Reduce legend key size
+    ),      
+  legend.title = "pathological stage",     
+  risk.table.height = 0.5,        
+  surv.median.line = "hv",
+   width = 15,              # Width of the graph (in inches)
+  height = 8               # Height of the graph (in inches)
+  
+)
+
+
+```
+
+```{r standard-plot1, out.width='80%', fig.align='center', fig.cap='KM plot Of Pathologic stage II and III ', fig.height=4}
+path_stage2_3_df<- surv_brca_cli|> select(time,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage II" | pathologic_stage == "Stage III")
+
+fit23 <- survfit(Surv(time,vital_status)~pathologic_stage, data = path_stage2_3_df)
+#LogRank23<- survdiff(Surv(time,vital_status)~pathologic_stage, data = path_stage2_3_df)
+
+ggsurvplot(
+  fit23,
+  conf.int = TRUE,                
+  risk.table = TRUE,              
+  xlab = "Time in days",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),
+  pval = TRUE,
+  risk.table.height = 0.3,
+  risk.table.length = 0.5
+)  
+  
+
+```
+
+```{r morefigs, out.width='80%', echo=FALSE, fig.cap='Survival Ratio plot for Path. stage II/ III with C.I', fig.height=4}
+
+plot_data<-read.csv("plot_data.csv")
+
+ggplot(plot_data, aes(x = time)) +
+  # Survival ratio line
+  geom_line(aes(y = ratio, color = "Survival Ratio"), size = 1.2) +
+  
+  # Confidence interval ribbon
+  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
+  
+  # Reference line
+  geom_hline(aes(yintercept = 1, linetype = "No Difference Line"), color = "red", size = 1 ) +
+  
+  
+  # Custom scales for the legend
+  scale_color_manual(
+    name = "Line",
+    values = c("Survival Ratio" = "green")
+  ) +
+  scale_fill_manual(
+    name = "Confidence Bands",
+    values = c(
+      "95% Confidence Interval" = "blue"
+    )
+  ) +
+  scale_linetype_manual(
+    name = "Reference",
+    values = c("No Difference Line" = "dashed")
+  ) +
+  
+  # Labels and theme
+  labs(
+    title = "Survival Ratio Plot with Confidence Intervals and Permutation Envelopes",
+    x = "Time (Days)",
+    y = "Survival Ratio (Pathologic Stage II / Stage III)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",  # Position of the legend
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10)
+  )+ 
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
+
+
+
+
+```
+
+```{r interactiveplot, out.width='80%', echo=FALSE, fig.cap='Survival Ratio plot for Path. stage II/ III with C.I and Permutation envelope', fig.height=4}
+
+ggplot(plot_data, aes(x = time)) +
+  # Survival ratio line
+  geom_line(aes(y = ratio, color = "Survival Ratio"), size = 1.2) +
+  
+  # Permutation envelope ribbon
+  geom_ribbon(aes(ymin = lower_env, ymax = upper_env, fill = "95% Permutation Envelope"), alpha = 0.5) +
+  
+  # Confidence interval ribbon
+  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
+  
+  # Reference line
+  geom_hline(aes(yintercept = 1, linetype = "No Difference Line"), color = "red", size = 1 ) +
+  
+  
+  # Custom scales for the legend
+  scale_color_manual(
+    name = "Line",
+    values = c("Survival Ratio" = "green")
+  ) +
+  scale_fill_manual(
+    name = "Confidence Bands",
+    values = c(
+      "95% Permutation Envelope" = "yellow",
+      "95% Confidence Interval" = "blue"
+    )
+  ) +
+  scale_linetype_manual(
+    name = "Reference",
+    values = c("No Difference Line" = "dashed")
+  ) +
+  
+  # Labels and theme
+  labs(
+    title = "Survival Ratio Plot with Confidence Intervals and Permutation Envelopes",
+    x = "Time (Days)",
+    y = "Survival Ratio (Pathologic Stage II / Stage III)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",  # Position of the legend
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10)
+  )+ 
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
+
+```
+
+# Next Project Steps
+
+- Explore different visualization approaches for parametric non parametric survival Methods. 
+- Extensive literature review and feedback collection on the generated plots.
+
+# GitHub
+
+The code and data sets for this project can be viewed at our GitHub repository here: <https://github.com/rwandarwacu1/Msc_thesis_survival>
+
+# References

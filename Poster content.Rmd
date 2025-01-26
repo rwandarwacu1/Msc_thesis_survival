@@ -1,0 +1,304 @@
+---
+title: "Poster content"
+author: "Victor Rwandarwacu"
+date: "2025-01-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Schema
+
+what is survival analysis with formulas? survival analysis is used when the out come is death ( other terms event history analysis,duration analysis, transition analysis, reliability analysis or failure time modelling)
+
+time origin can be time of diagnosis or time of enrollment in the study
+
+#### why not use statistical statistical methods
+
+-survival data are generally not symetrically distributed (right skewed ) - censoring :when the end point has not been observed for the individual( right , left and admnistrative censoring )
+
+assumption : actual survival time doesn' depend on any mechanism that causes censoring . indipendent or non informative censoring.
+
+what is the difference between survival function and pdf or cdf
+
+concepts : censoring dataand manipulation
+
+-   **Variance Calculation**: For independent samples, the variance of the survival ratio $R(t) = \frac{S_1(t)}{S_2(t)}$ ​ is calculated using the standard errors (SEs) of the survival probabilities for each group:
+
+    $\text{Var}(\log(R(t))) = \frac{\text{Var}(S_1(t))}S_1(t)^2} + \frac{\text{Var}(S_2(t))}{S_2(t)^2}$
+
+    -   S1(t)S_1(t)S1​(t) and S2(t)S_2(t)S2​(t): Survival probabilities for groups 1 and 2, respectively.
+
+    -   Var(S1(t))=(SE(S1(t)))2\text{Var}(S_1(t)) = (\text{SE}(S_1(t)))\^2Var(S1​(t))=(SE(S1​(t)))2 and Var(S2(t))=(SE(S2(t)))2\text{Var}(S_2(t)) = (\text{SE}(S_2(t)))\^2Var(S2​(t))=(SE(S2​(t)))2: Variance of survival probabilities.
+
+-   **Confidence Interval Calculation**:
+
+    -   Log-transform the survival ratio: log⁡(R(t))=log⁡(S1(t))−log⁡(S2(t))\log(R(t)) = \log(S_1(t)) - \log(S_2(t))log(R(t))=log(S1​(t))−log(S2​(t))
+
+    -   Compute the 95% CI for the log-ratio: CIlog⁡=log⁡(R(t))±z⋅Var(log⁡(R(t)))\text{CI}\_{\log} = \log(R(t)) \pm z \cdot \sqrt{\text{Var}(\log(R(t)))}CIlog​=log(R(t))±z⋅Var(log(R(t)))​ where z=1.96z = 1.96z=1.96 for a 95% CI.
+
+    -   Back-transform the CI to the original scale: CIratio=[exp⁡(CIlog⁡,lower),exp⁡(CIlog⁡,upper)]\text{CI}\_{\text{ratio}} = \left[\exp(\text{CI}_{\log, \text{lower}}), \exp(\text{CI}_{\log, \text{upper}})\right]CIratio​=[exp(CIlog,lower​),exp(CIlog,upper​)]
+
+## Rationale for the project
+
+There is a challenges in interpretation of survival graphs in practice
+
+###use of survival ratio and survival difference cite papers about time to event data visualization
+
+```{r }
+# Required libraries
+library(survival)
+library(ggplot2)
+
+surv_brca_cli<- read.csv("surv_brca_cli.csv")
+surv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
+```
+
+## KM Plot including all covariates
+
+```{r}
+#fit the kaplan maier model for pathologic stage 
+fit_path_stage <- survfit(surv_object ~ pathologic_stage , data = surv_brca_cli)
+
+ggsurvplot(
+  fit_path_stage,
+  size = 1.5,                  # Line thickness
+  font.x = c(16, "bold"),      # Font size for X-axis
+  font.y = c(16, "bold"),      # Font size for Y-axis
+  font.tickslab = c(10),       # Font size for tick labels
+  legend = "right",             # Legend position
+  conf.int = TRUE,                
+  risk.table = TRUE,             
+  pval = TRUE,                    
+  xlab = "Time(years)",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),      
+  legend.title = "pathological stage",     
+  risk.table.height = 0.5,        
+  surv.median.line = "hv" 
+  
+)
+
+
+```
+
+## Kaplan Meier plot for stage 2 and stage 3
+
+```{r}
+path_stage2_3_df<- surv_brca_cli|> select(time,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage II" | pathologic_stage == "Stage III")
+
+fit23 <- survfit(Surv(time,vital_status)~pathologic_stage, data = path_stage2_3_df)
+LogRank23<- survdiff(Surv(time,vital_status)~pathologic_stage, data = path_stage2_3_df)
+
+ggsurvplot(
+  fit23,
+  conf.int = TRUE,                
+  risk.table = TRUE,              
+  xlab = "Time in days",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),
+  pval = TRUE
+)  
+  
+
+
+```
+
+```{r}
+
+#KM fit of the data
+km_fit_path_stageII <- survfit(Surv(time= time, event=vital_status) ~ 1, data = subset(surv_brca_cli, pathologic_stage == "Stage II"))
+
+km_fit_path_stageIII <- survfit(Surv(time= time, event=vital_status) ~ 1, data = subset(surv_brca_cli, pathologic_stage == "Stage III"))
+
+####extract survival probabilities 
+
+# Manually define time points (e.g., every 30 days)
+manual_times <- seq(0, max(surv_brca_cli$time, na.rm = TRUE), by = 1)
+# Extract survival probabilities for Pathologic stage 2
+surv_pathII <- summary(km_fit_path_stageII, times = manual_times, extend = TRUE)$surv
+
+# Extract survival probabilities for pathologic stage 3
+surv_pathIII <- summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)$surv
+# Survival ratios and confidence intervals
+survival_ratio <- surv_pathII / surv_pathIII
+
+```
+
+## Permutation Envelopes:
+
+It Implements Monte Carlo permutation resampling to calculate confidence intervals (envelopes) for the survival ratios under the null hypothesis.
+
+```{r}
+# Permutation envelope setup (simplified for demonstration)
+set.seed(1995)
+n_permutations <- 1000
+permuted_ratios <- matrix(NA, ncol = n_permutations, nrow = length(manual_times))
+
+for (i in 1:n_permutations) {
+  # Shuffle group labels
+  surv_brca_cli$perm_pathologic_stage<- sample(surv_brca_cli$pathologic_stage)
+  
+  # Recompute Kaplan-Meier estimates for permuted groups
+  #KM fit of the data
+perm_km_fit_path_stageII <- survfit(Surv(time= time, event=vital_status) ~ 1, data = subset(surv_brca_cli, perm_pathologic_stage == "Stage II"))
+
+perm_km_fit_path_stageIII <- survfit(Surv(time= time, event=vital_status) ~ 1, data = subset(surv_brca_cli, perm_pathologic_stage == "Stage III"))
+  
+ 
+# Extract survival probabilities for Pathologic stage 2
+perm_surv_pathII <- summary( perm_km_fit_path_stageII, times = manual_times, extend = TRUE)$surv
+
+# Extract survival probabilities for pathologic stage 3
+perm_surv_pathIII <- summary(perm_km_fit_path_stageIII, times = manual_times, extend = TRUE)$surv
+# Survival ratios and confidence intervals
+permuted_ratios[, i] <- perm_surv_pathII / perm_surv_pathIII
+  
+ 
+}
+```
+
+```{r}
+
+
+# Calculate permutation envelope
+lower_bound <- apply(permuted_ratios, 1, function(x) quantile(x, 0.025, na.rm = TRUE))
+upper_bound <- apply(permuted_ratios, 1, function(x) quantile(x, 0.975, na.rm = TRUE))
+```
+
+## Confidence interval estimation
+
+```{r}
+
+# Confidence intervals using the Delta method
+# Assuming km_fit_male and km_fit_female are Kaplan-Meier survival objects
+
+# Extract Variances  for Pathologic stage 2 and 3
+var_pathII <- (summary(km_fit_path_stageII, times = manual_times, extend = TRUE)$std.err)^2
+Var_pathIII <- (summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)$std.err)^2
+
+
+
+# Log-transformed survival ratio
+log_ratio <- log(survival_ratio)
+
+# Variance of the log survival ratio
+log_ratio_var <- Var_pathIII / (surv_pathIII^2) + Var_pathIII / (surv_pathII^2)
+
+# Confidence intervals for log-ratio
+z_value <- qnorm(0.975)  # 1.96 for 95% confidence level
+lower_log <- log_ratio - z_value * sqrt(log_ratio_var)
+upper_log <- log_ratio + z_value * sqrt(log_ratio_var)
+
+# Back-transform to get confidence intervals for the ratio
+lower_ci <- exp(lower_log)
+upper_ci <- exp(upper_log)
+
+# Add CI to the plot
+plot_data <- data.frame(
+  time = manual_times,
+  ratio = survival_ratio,
+  lower_ci = lower_ci,
+  upper_ci = upper_ci,
+  lower_env = lower_bound,
+  upper_env = upper_bound
+)
+
+
+
+
+
+
+
+
+
+```
+
+## Plot data and ratio plot with confidence interval
+
+```{r}
+# Plot survival ratio with permutation envelope
+plot_data <- data.frame(
+  time = manual_times,
+  ratio = survival_ratio,
+   lower_ci = lower_ci,
+  upper_ci = upper_ci,
+  lower_env = lower_bound,
+  upper_env = upper_bound
+)
+
+ggplot(plot_data, aes(x = time, y = ratio)) +
+  geom_line(color = "green", size = 1.2) +
+
+  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci), fill = "blue", alpha = 0.3) +
+  geom_hline(aes(yintercept = 1, linetype = "No difference line"), color = "red") +
+  labs(
+    title = "Survival Ratio Plot with Confidence Intervals and Permutation envelopes",
+    x = "Time (Days)",
+    y = "Survival Ratio (pathologic stage II / stage III)"
+  ) +
+  theme_minimal()+
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
+
+
+
+
+
+```
+
+## Plot data and ratio plot with confidence interval and envelope
+
+You can also embed plots, for example:
+
+```{r , echo=FALSE}
+
+ggplot(plot_data, aes(x = time)) +
+  # Survival ratio line
+  geom_line(aes(y = ratio, color = "Survival Ratio"), size = 1.2) +
+  
+  # Permutation envelope ribbon
+  geom_ribbon(aes(ymin = lower_env, ymax = upper_env, fill = "95% Permutation Envelope"), alpha = 0.5) +
+  
+  # Confidence interval ribbon
+  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
+  
+  # Reference line
+  geom_hline(aes(yintercept = 1, linetype = "No Difference Line"), color = "red", size = 1 ) +
+  
+  
+  # Custom scales for the legend
+  scale_color_manual(
+    name = "Line",
+    values = c("Survival Ratio" = "green")
+  ) +
+  scale_fill_manual(
+    name = "Confidence Bands",
+    values = c(
+      "95% Permutation Envelope" = "yellow",
+      "95% Confidence Interval" = "blue"
+    )
+  ) +
+  scale_linetype_manual(
+    name = "Reference",
+    values = c("No Difference Line" = "dashed")
+  ) +
+  
+  # Labels and theme
+  labs(
+    title = "Survival Ratio Plot with Confidence Intervals and Permutation Envelopes",
+    x = "Time (Days)",
+    y = "Survival Ratio (Pathologic Stage II / Stage III)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",  # Position of the legend
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10)
+  )+ 
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
+
+```
