@@ -18,8 +18,8 @@ secondary_colour:	"#84003d"	# Main colour used for poster design.
 accent_colour:	"#e6007e"	# A third colour option.
 author_textcol: "white"
 title_textsize: "70pt"
-author_textsize: "35pt"
-body_textsize: "24pt"
+author_textsize: "38pt"
+body_textsize: "23.5pt"
 output: 
   posterdown::posterdown_html:
     self_contained: true
@@ -39,7 +39,7 @@ div.poster_title{
     break-after: column;
 }
 div.footnotes {
-    font-size: 15pt;
+    font-size: 20pt;
 }
 p.caption {
  margin-top: 0pt;
@@ -101,7 +101,7 @@ $d_j$ and $c_j$ denote the number of deaths and the number of censored survival 
 $n_j$ = the number of individuals at risk of death, at the start of the $j$ th interval.
 $n_i^{\prime}$ =number of individuals at least in interval j
 
-Survival Ratio plot is a robust approach for comparing survival distributions ^[J. Newell et.al  https://doi.org/10.1016/j.compbiomed.2005.03.005],
+Survival Ratio plot is a robust approach for comparing survival distributions ^[J.Newell et.al, Survival ratio plots with permutation envelopes in survival data problems,   https://doi.org/10.1016/j.compbiomed.2005.03.005],
 $$R(t) = \frac{S_1(t)}{S_2(t)}$$
 
 This Project will explore novel  informative visualization  of time to events data specifically comparing survival curves of different covariates or treatment in the trial.
@@ -302,9 +302,11 @@ ggplot(plot_data, aes(x = time)) +
 
 ```
 
+###
+
 # Next Project Steps
 
-- Explore different visualization approaches for parametric non parametric survival Methods. 
+- Explore different visualization approaches for parametric  and non parametric survival Methods. 
 - Extensive literature review and feedback collection on the generated plots.
 
 # GitHub
