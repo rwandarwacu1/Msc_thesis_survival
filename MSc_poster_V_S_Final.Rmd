@@ -18,8 +18,8 @@ secondary_colour:	"#84003d"	# Main colour used for poster design.
 accent_colour:	"#e6007e"	# A third colour option.
 author_textcol: "white"
 title_textsize: "70pt"
-author_textsize: "38pt"
-body_textsize: "23.5pt"
+author_textsize: "50pt"
+body_textsize: "25pt"
 output: 
   posterdown::posterdown_html:
     self_contained: true
@@ -66,6 +66,7 @@ library(tidyverse)
 library(plotly)
 library(kableExtra)
 library(posterdown)
+library(htmltools)
 # Load required libraries
 library(survival)
 library(ggplot2)
@@ -73,15 +74,16 @@ library(survminer)
 
 # Load the veteran dataset
 surv_brca_cli<- read.csv("surv_brca_cli.csv")
+#knitr::opts_chunk$set(fig.topcaption = TRUE) #to keep all captions on the top
 ```
 
 # Definition and Background
 
-Time-to-event or survival Analysis is the analysis of data in the form of times from a well-defined time origin until the occurrence of some particular event or end point1[^1]. Survival data are generally asymmetric and censored; which imply use of  specific approaches for analysis and visualizations, such as survival function and Kaplan Meier(KM) plot.
+Time-to-event or survival Analysis is the analysis of data in the form of times from a well-defined time origin until the occurrence of some particular event or end point1[^1]. Survival data are generally asymmetric and censored, which requires the use of specific approaches for analysis and visualisations, such as this survival function, Kaplan Meier(KM) estimator and plot.
 
 [^1]: David Collett, Modelling survival data in medical research , Fourth Ed.
 
-Survival function $S(t)$ is the probability that the survival time is greater than or equal to time $(t)$ which is the observed value of random Variable $T$ with distribution function $F(t)$[^2].
+The survival function $S(t)$ is the probability that the survival time is greater than or equal to time $(t)$ which is the observed value of random variable $T$ with distribution function $F(t)$[^2].
 
 [^2]: Peace, Karl E.. Design and Analysis of Clinical Trials with Time-to-Event Endpoints (Chapman & Hall/CRC Biostatistics Series) (p. 74). CRC Press. Kindle Edition.
 
@@ -92,37 +94,30 @@ $$
 $$
 F(t)=\mathrm{P}(T<t)=\int_0^t f(u) \mathrm{d} u
 $$
+The Kaplan Meier estimate of the survival function at $k$th interval is given by:
 
-The life table estimate of the survival function at $J$th interval  is given by:
+$$\hat{S}(t)=\prod_{j=1}^k\left(\frac{n_j-d_j}{n_j}\right)$$
 
-$$S^*(t)=\prod_{i=1}^{j-1}\left(\frac{n_i^{\prime}-d_i}{n_i^{\prime}}\right)$$
-$\text { for } t_{j-1}^{\prime} \leqslant t<t_j^{\prime}, j=2,3, \ldots, m \text {. }$
-$d_j$ and $c_j$ denote the number of deaths and the number of censored survival times, respectively, in this interval,
-$n_j$ = the number of individuals at risk of death, at the start of the $j$ th interval.
-$n_i^{\prime}$ =number of individuals at least in interval j
+For $t_{(k)} \leqslant t<t_{(k+1)}, k=1,2, \ldots, r$, with $\hat{S}(t)=1$ for $t<t_{(1)}$,where $t_{r+1}$ is taken to be $\infty$
+$d_j$ denotes the number of deaths and the number of censored survival times, respectively, in this interval, $n_j$ is the number of individuals alive just before $t_{(j)}$ and $d_j$ deaths at $t_{(j)}$.
 
-Survival Ratio plot is a robust approach for comparing survival distributions ^[J.Newell et.al, Survival ratio plots with permutation envelopes in survival data problems,   https://doi.org/10.1016/j.compbiomed.2005.03.005],
-$$R(t) = \frac{S_1(t)}{S_2(t)}$$
+Survival Ratio, a robust approach for comparing survival distributions [^3], is defined by: $$R(t) = \frac{S_1(t)}{S_2(t)}$$
 
-This Project will explore novel  informative visualization  of time to events data specifically comparing survival curves of different covariates or treatment in the trial.
+[^3]: J.Newell et.al, Survival ratio plots with permutation envelopes in survival data problems, <https://doi.org/10.1016/j.compbiomed.2005.03.005>
 
+This project explores the use of novel informative visualisations of time-to-event data, specifically comparing survival curves of different covariates or treatments in a trial.
 
 
-# Objectives of Project
-
-1.  Explain the statistical standard concept and visualization in time to events data.\
-2.  Propose novel Visualization of survival data in health sector.
 
 # Data Sources and Datasets
 
+The dataset is from the NIH National Cancer Institute , TCGA Program on a project called "Breast invasive carcinoma (BRCA)". It contains information about: demography, exposure , Family History(regarding cancer), Follow up, Molecular Test, other Clinical Attribute, pathology detail,and Treatment of female Breast cancer patients diagnosed and followed up for different outcomes.For demonstration, our analysis focuses on Survival outcomes by pathologic stages [^4]
 
-The dataset is from NIH National Cancer Institute , TCGA Program on a project called "Breast invasive carcinoma (BRCA)", it contains information about: demography, exposure , Family History(regarding cancer), Follow up, Molecular Test, other Clinical Attribute, pathology detail,and Treatment of female Breast cancer patients diagnosed and followed up for different outcomes.For demonstration, our analysis focuses on Survival outcomes by pathologic stages  [^3]
-
-[^3]: <TCGA-BRCA , https://portal.gdc.cancer.gov/projects/TCGA-BRCA>
+[^4]: \<TCGA-BRCA , <https://portal.gdc.cancer.gov/projects/TCGA-BRCA>\>
 
 # Proposed Approach
 
-Table \@ref(tab:mytable) demonstrate the pattern of survival function and the change on the number of people at risk on each time interval exported from a survival model.
+Table \@ref(tab:mytable) demonstrates the section of survival function and the change of the number of people at risk on each time interval.
 
 ```{r mytable, out.width='80%'}
 
@@ -130,8 +125,8 @@ surv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vi
 fit1 <- survfit(surv_object ~ 1, data = surv_brca_cli)
 
 mortality_summary <- data.frame(
-    Time = summary(fit1)$time,
-    Survival = 1 - summary(fit1)$surv,
+    Time_Yrs = summary(fit1)$time,
+    Survival_Prob = summary(fit1)$surv,
     n.risk= summary(fit1)$n.risk,
     Std.Error = summary(fit1)$std.err,
     Lower.95CI = summary(fit1)$lower,
@@ -139,14 +134,16 @@ mortality_summary <- data.frame(
   )
 
 
-knitr::kable(slice(mortality_summary,100:105), caption = 'BRCA data survival ',align = 'c',"html") %>%kable_styling(font_size = 20)
+knitr::kable(slice(mortality_summary,100:105), caption = "<b style='font-size:22px;'>BRCA data survival</b>",align = 'c',"html") %>%kable_styling(font_size = 20, full_width = FALSE, position = "center") 
+
 ```
 
 ### 
 
-Figure \@ref(fig:standard-plot),Figure \@ref(fig:standard-plot1), Figure \@ref(fig:morefigs) and Figure \@ref(fig:interactiveplot) highlight different approach of visualizing data from standard KM plot, KM with covariates, survival ratio with confidence interval as well as permutation envelopes  respectively.
+*Figure \@ref(fig:standard-plot), \@ref(fig:standard-plot1) and \@ref(fig:morefigs)*  highlight different approaches of visualising the estimated survival function.
 
-```{r standard-plot, out.width='80%', fig.align='center', fig.cap='KM plot_all pathologic stages   ', fig.height=4}
+```{r standard-plot, out.width='100%', fig.align='center', fig.cap='*KM plot_overall pathologic stages*   ', fig.height=5}
+
 
 ssurv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
 #fit the kaplan maier model for pathologic stage 
@@ -161,7 +158,9 @@ ggsurvplot(
   legend = "right",             # Legend position
   conf.int = TRUE,                
   risk.table = TRUE,             
-  pval = TRUE,                    
+  pval = TRUE, 
+  title="KM plot _Overall Pathologic stages",
+ font.title = c(20, "bold"),
   xlab = "Time(years)",                  
   ylab = "Survival Probability",  
   ggtheme = theme_minimal() + theme(
@@ -170,7 +169,7 @@ ggsurvplot(
       legend.key.size = unit(0.3, "cm")       # Reduce legend key size
     ),      
   legend.title = "pathological stage",     
-  risk.table.height = 0.5,        
+  risk.table.height = 0.4,        
   surv.median.line = "hv",
    width = 15,              # Width of the graph (in inches)
   height = 8               # Height of the graph (in inches)
@@ -180,28 +179,31 @@ ggsurvplot(
 
 ```
 
-```{r standard-plot1, out.width='80%', fig.align='center', fig.cap='KM plot Of Pathologic stage II and III ', fig.height=4}
+```{r standard-plot1, out.width='100%', fig.align='center', fig.cap='*KM plot Of Pathologic stage II and III* ', fig.height=5}
 path_stage2_3_df<- surv_brca_cli|> select(time,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage II" | pathologic_stage == "Stage III")
 
 fit23 <- survfit(Surv(time,vital_status)~pathologic_stage, data = path_stage2_3_df)
-#LogRank23<- survdiff(Surv(time,vital_status)~pathologic_stage, data = path_stage2_3_df)
+
 
 ggsurvplot(
   fit23,
   conf.int = TRUE,                
-  risk.table = TRUE,              
+  risk.table = TRUE,
+  title = "KM plot of pathologic stage II and III",
+  font.title = c(20, "bold"),
   xlab = "Time in days",                  
   ylab = "Survival Probability",  
   ggtheme = theme_minimal(),
   pval = TRUE,
   risk.table.height = 0.3,
   risk.table.length = 0.5
+  
 )  
   
 
 ```
 
-```{r morefigs, out.width='80%', echo=FALSE, fig.cap='Survival Ratio plot for Path. stage II/ III with C.I', fig.height=4}
+```{r morefigs, out.width='100%', echo=FALSE, fig.cap='*Survival Ratio plot for Path. stage II/ III with 95% C.I*', fig.height=5}
 
 plot_data<-read.csv("plot_data.csv")
 
@@ -234,7 +236,7 @@ ggplot(plot_data, aes(x = time)) +
   
   # Labels and theme
   labs(
-    title = "Survival Ratio Plot with Confidence Intervals and Permutation Envelopes",
+    title = "Survival Ratio plot for Path. stage II/ III with Confidence intervals",
     x = "Time (Days)",
     y = "Survival Ratio (Pathologic Stage II / Stage III)"
   ) +
@@ -242,7 +244,8 @@ ggplot(plot_data, aes(x = time)) +
   theme(
     legend.position = "right",  # Position of the legend
     legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10)
+    legend.text = element_text(size = 10),
+    plot.title = element_text(face = "bold", size = 18)
   )+ 
   annotate("text", x = max(plot_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
   annotate("text", x = max(plot_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
@@ -252,62 +255,20 @@ ggplot(plot_data, aes(x = time)) +
 
 ```
 
-```{r interactiveplot, out.width='80%', echo=FALSE, fig.cap='Survival Ratio plot for Path. stage II/ III with C.I and Permutation envelope', fig.height=4}
+```{r interactiveplot, out.width='80%', echo=FALSE, fig.cap='Survival ', fig.height=4}
 
-ggplot(plot_data, aes(x = time)) +
-  # Survival ratio line
-  geom_line(aes(y = ratio, color = "Survival Ratio"), size = 1.2) +
-  
-  # Permutation envelope ribbon
-  geom_ribbon(aes(ymin = lower_env, ymax = upper_env, fill = "95% Permutation Envelope"), alpha = 0.5) +
-  
-  # Confidence interval ribbon
-  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
-  
-  # Reference line
-  geom_hline(aes(yintercept = 1, linetype = "No Difference Line"), color = "red", size = 1 ) +
-  
-  
-  # Custom scales for the legend
-  scale_color_manual(
-    name = "Line",
-    values = c("Survival Ratio" = "green")
-  ) +
-  scale_fill_manual(
-    name = "Confidence Bands",
-    values = c(
-      "95% Permutation Envelope" = "yellow",
-      "95% Confidence Interval" = "blue"
-    )
-  ) +
-  scale_linetype_manual(
-    name = "Reference",
-    values = c("No Difference Line" = "dashed")
-  ) +
-  
-  # Labels and theme
-  labs(
-    title = "Survival Ratio Plot with Confidence Intervals and Permutation Envelopes",
-    x = "Time (Days)",
-    y = "Survival Ratio (Pathologic Stage II / Stage III)"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right",  # Position of the legend
-    legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10)
-  )+ 
-  annotate("text", x = max(plot_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
-  annotate("text", x = max(plot_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
 
 ```
 
-###
+### 
 
-# Next Project Steps
+# Next  Steps
 
-- Explore different visualization approaches for parametric  and non parametric survival Methods. 
-- Extensive literature review and feedback collection on the generated plots.
+-Visualize survival differences between independent groups, incorporating confidence intervals to assess variability and significance.
+
+-Generate survival ratio plots for paired data, using permutation envelopes as reference bands to evaluate deviations and provide robust comparisons.
+
+-Compare survival distributions across more than two groups utilizing non-parametric statistical methods to identify significant differences.
 
 # GitHub
 
