@@ -77,7 +77,7 @@ surv_brca_cli<- read.csv("surv_brca_cli.csv")
 #knitr::opts_chunk$set(fig.topcaption = TRUE) #to keep all captions on the top
 ```
 
-# Definition and Background
+# Background and objectives
 
 Time-to-event or survival Analysis is the analysis of data in the form of times from a well-defined time origin until the occurrence of some particular event or end point1[^1]. Survival data are generally asymmetric and censored, which requires the use of specific approaches for analysis and visualisations, such as this survival function, Kaplan Meier(KM) estimator and plot.
 
