@@ -177,7 +177,7 @@ upper_bound <- apply(permuted_ratios, 1, function(x) quantile(x, 0.975, na.rm = 
 
 # Extract Variances  for Pathologic stage 2 and 3
 var_pathII <- (summary(km_fit_path_stageII, times = manual_times, extend = TRUE)$std.err)^2
-Var_pathIII <- (summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)$std.err)^2
+var_pathIII <- (summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)$std.err)^2
 
 
 
@@ -185,7 +185,7 @@ Var_pathIII <- (summary(km_fit_path_stageIII, times = manual_times, extend = TRU
 log_ratio <- log(survival_ratio)
 
 # Variance of the log survival ratio
-log_ratio_var <- Var_pathIII / (surv_pathIII^2) + Var_pathIII / (surv_pathII^2)
+log_ratio_var <- var_pathIII / (surv_pathIII^2) + var_pathII / (surv_pathII^2)
 
 # Confidence intervals for log-ratio
 z_value <- qnorm(0.975)  # 1.96 for 95% confidence level
@@ -206,7 +206,7 @@ plot_data <- data.frame(
   upper_env = upper_bound
 )
 
-
+write.csv(plot_data,"plot_data.csv",row.names = FALSE)
 
 
 
@@ -240,8 +240,8 @@ ggplot(plot_data, aes(x = time, y = ratio)) +
     y = "Survival Ratio (pathologic stage II / stage III)"
   ) +
   theme_minimal()+
-  annotate("text", x = max(ratio_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
-  annotate("text", x = max(ratio_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
 
 
 
@@ -298,7 +298,7 @@ ggplot(plot_data, aes(x = time)) +
     legend.title = element_text(size = 12),
     legend.text = element_text(size = 10)
   )+ 
-  annotate("text", x = max(ratio_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
-  annotate("text", x = max(ratio_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 2, label = "Higher survival for Pathologic stage 2", hjust = 0) +
+  annotate("text", x = max(plot_data$Time) * 0.3, y = 0.5, label = "Higher survival for pathologic stage 3", hjust = 0) 
 
 ```

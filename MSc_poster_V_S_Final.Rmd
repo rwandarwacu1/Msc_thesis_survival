@@ -145,7 +145,7 @@ knitr::kable(slice(mortality_summary,100:105), caption = "<b style='font-size:22
 ```{r standard-plot, out.width='100%', fig.align='center', fig.cap='*KM plot_overall pathologic stages*   ', fig.height=5}
 
 
-ssurv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
+surv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
 #fit the kaplan maier model for pathologic stage 
 fit_path_stage <- survfit(surv_object ~ pathologic_stage , data = surv_brca_cli)
 
@@ -272,6 +272,6 @@ ggplot(plot_data, aes(x = time)) +
 
 # GitHub
 
-The code and data sets for this project can be viewed at our GitHub repository here: <https://github.com/rwandarwacu1/Msc_thesis_survival>
+The code and dataset for this project can be  at  GitHub repository through this link : <https://github.com/rwandarwacu1/Msc_thesis_survival>
 
 # References
