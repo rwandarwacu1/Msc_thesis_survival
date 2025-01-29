@@ -19,7 +19,7 @@ accent_colour:	"#e6007e"	# A third colour option.
 author_textcol: "white"
 title_textsize: "70pt"
 author_textsize: "50pt"
-body_textsize: "25pt"
+body_textsize: "26pt"
 output: 
   posterdown::posterdown_html:
     self_contained: true
@@ -109,7 +109,7 @@ This project explores the use of novel informative visualisations of time-to-eve
 
 
 
-# Data Sources and Datasets
+# Data Source and Dataset
 
 The dataset is from the NIH National Cancer Institute , TCGA Program on a project called "Breast invasive carcinoma (BRCA)". It contains information about: demography, exposure , Family History(regarding cancer), Follow up, Molecular Test, other Clinical Attribute, pathology detail,and Treatment of female Breast cancer patients diagnosed and followed up for different outcomes.For demonstration, our analysis focuses on Survival outcomes by pathologic stages [^4]
 
@@ -138,9 +138,13 @@ knitr::kable(slice(mortality_summary,100:105), caption = "<b style='font-size:22
 
 ```
 
-### 
+ 
+ 
+ 
 
 *Figure \@ref(fig:standard-plot), \@ref(fig:standard-plot1) and \@ref(fig:morefigs)*  highlight different approaches of visualising the estimated survival function.
+
+
 
 ```{r standard-plot, out.width='100%', fig.align='center', fig.cap='*KM plot_overall pathologic stages*   ', fig.height=5}
 
@@ -255,10 +259,6 @@ ggplot(plot_data, aes(x = time)) +
 
 ```
 
-```{r interactiveplot, out.width='80%', echo=FALSE, fig.cap='Survival ', fig.height=4}
-
-
-```
 
 ### 
 
