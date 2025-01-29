@@ -79,7 +79,7 @@ surv_brca_cli<- read.csv("surv_brca_cli.csv")
 
 # Background and objectives
 
-Time-to-event or survival Analysis is the analysis of data in the form of times from a well-defined time origin until the occurrence of some particular event or end point1[^1]. Survival data are generally asymmetric and censored, which requires the use of specific approaches for analysis and visualisations, such as this survival function, Kaplan Meier(KM) estimator and plot.
+Time-to-event or survival Analysis is the analysis of data in the form of times from a well-defined time origin until the occurrence of some particular event or end point[^1]. Survival data are generally asymmetric and censored, which requires the use of specific approaches for analysis and visualisations, such as this survival function, Kaplan Meier(KM) estimator and plot.
 
 [^1]: David Collett, Modelling survival data in medical research , Fourth Ed.
 
@@ -99,7 +99,7 @@ The Kaplan Meier estimate of the survival function at $k$th interval is given by
 $$\hat{S}(t)=\prod_{j=1}^k\left(\frac{n_j-d_j}{n_j}\right)$$
 
 For $t_{(k)} \leqslant t<t_{(k+1)}, k=1,2, \ldots, r$, with $\hat{S}(t)=1$ for $t<t_{(1)}$,where $t_{r+1}$ is taken to be $\infty$
-$d_j$ denotes the number of deaths and the number of censored survival times, respectively, in this interval, $n_j$ is the number of individuals alive just before $t_{(j)}$ and $d_j$ deaths at $t_{(j)}$.
+$d_j$ denotes the number of deaths in this interval, $n_j$ is the number of individuals alive just before $t_{(j)}$ and $d_j$ deaths at $t_{(j)}$.
 
 Survival Ratio, a robust approach for comparing survival distributions [^3], is defined by: $$R(t) = \frac{S_1(t)}{S_2(t)}$$
 
