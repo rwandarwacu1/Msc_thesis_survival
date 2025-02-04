@@ -27,9 +27,9 @@ concepts : censoring dataand manipulation
 
 -   **Variance Calculation**: For independent samples, the variance of the survival ratio $R(t) = \frac{S_1(t)}{S_2(t)}$ ​ is calculated using the standard errors (SEs) of the survival probabilities for each group:
 
-    $\text{Var}(\log(R(t))) = \frac{\text{Var}(S_1(t))}S_1(t)^2} + \frac{\text{Var}(S_2(t))}{S_2(t)^2}$
+    $$\text{Var}(\log(R(t))) = \frac{\text{Var}(S_1(t))}S_1(t)^2} + \frac{\text{Var}(S_2(t))}{S_2(t)^2}$$
 
-    -   S1(t)S_1(t)S1​(t) and S2(t)S_2(t)S2​(t): Survival probabilities for groups 1 and 2, respectively.
+    -   $$S1(t)S_1(t)S1​(t) and S2(t)S_2(t)S2​(t)$$: Survival probabilities for groups 1 and 2, respectively.
 
     -   Var(S1(t))=(SE(S1(t)))2\text{Var}(S_1(t)) = (\text{SE}(S_1(t)))\^2Var(S1​(t))=(SE(S1​(t)))2 and Var(S2(t))=(SE(S2(t)))2\text{Var}(S_2(t)) = (\text{SE}(S_2(t)))\^2Var(S2​(t))=(SE(S2​(t)))2: Variance of survival probabilities.
 
@@ -173,7 +173,7 @@ upper_bound <- apply(permuted_ratios, 1, function(x) quantile(x, 0.975, na.rm = 
 ```{r}
 
 # Confidence intervals using the Delta method
-# Assuming km_fit_male and km_fit_female are Kaplan-Meier survival objects
+
 
 # Extract Variances  for Pathologic stage 2 and 3
 var_pathII <- (summary(km_fit_path_stageII, times = manual_times, extend = TRUE)$std.err)^2
@@ -188,7 +188,7 @@ log_ratio <- log(survival_ratio)
 log_ratio_var <- var_pathIII / (surv_pathIII^2) + var_pathII / (surv_pathII^2)
 
 # Confidence intervals for log-ratio
-z_value <- qnorm(0.975)  # 1.96 for 95% confidence level
+z_value <- qnorm(0.975)  
 lower_log <- log_ratio - z_value * sqrt(log_ratio_var)
 upper_log <- log_ratio + z_value * sqrt(log_ratio_var)
 
