@@ -272,6 +272,6 @@ ggplot(plot_data, aes(x = time)) +
 
 # GitHub
 
-The code and dataset for this project can be  at  GitHub repository through this link : <https://github.com/rwandarwacu1/Msc_thesis_survival>
+The code and dataset for this project can be found at  GitHub repository through this link : <https://github.com/rwandarwacu1/Msc_thesis_survival>
 
 # References
