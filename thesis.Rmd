@@ -1,0 +1,113 @@
+---
+title: "thesis"
+author: "Shyamsundar Ranganath"
+date: "2025-02-12"
+output: html_document
+---
+
+```{r}
+library(survival)
+library(survminer)
+library(ggplot2)
+library(dplyr)
+```
+
+
+
+```{r}
+dialysis_data
+```
+
+```{r}
+# Plot Kaplan-Meier survival curves for each group
+ggsurvplot(
+  km_fit,
+  data = dialysis_data,
+  pval = TRUE, # Add p-value to compare groups
+  conf.int = TRUE, # Add confidence intervals
+  risk.table = TRUE, # Add risk table
+  legend.labs = c("Non-Diabetic", "Diabetic"), # Label groups
+  palette = c("blue", "red") # Assign colors to groups
+)
+```
+
+
+
+
+
+
+```{r}
+library(survival)
+library(dplyr)
+library(ggplot2)
+
+# Define survival object
+surv_object <- Surv(time = dialysis_data$time_years, event = dialysis_data$event)
+
+# Fit Kaplan-Meier survival curves for the two groups
+km_fit <- survfit(surv_object ~ dialysis_data$disease_diabetes, data = dialysis_data)
+
+# Extract survival probabilities with confidence intervals
+km_summary <- summary(km_fit, times = km_fit$time)
+
+group_names <- names(km_fit$strata)
+group_indices <- split(seq_along(km_summary$strata), km_summary$strata)
+
+# Create a data frame for each group
+surv_df_list <- lapply(group_names, function(group_name) {
+  idx <- group_indices[[group_name]]
+  data.frame(
+    time = km_summary$time[idx],
+    survival = km_summary$surv[idx],
+    lower = km_summary$lower[idx],
+    upper = km_summary$upper[idx],
+    group = group_name
+  )
+})
+
+# Combine the data frames into one
+surv_df <- do.call(rbind, surv_df_list)
+
+# Separate survival probabilities for the two groups
+surv_0 <- surv_df %>% filter(group == group_names[1])
+surv_1 <- surv_df %>% filter(group == group_names[2])
+
+# Align survival times to compute differences
+common_times <- intersect(surv_0$time, surv_1$time)
+surv_0_common <- surv_0 %>% filter(time %in% common_times)
+surv_1_common <- surv_1 %>% filter(time %in% common_times)
+
+# Calculate survival difference (Group 0 - Group 1)
+survival_diff <- surv_0_common$survival - surv_1_common$survival
+
+# Compute confidence intervals for the difference
+survival_diff_lower <- surv_0_common$lower - surv_1_common$upper
+survival_diff_upper <- surv_0_common$upper - surv_1_common$lower
+
+# Plot survival difference over time with confidence intervals
+plot_df <- data.frame(
+  time = common_times,
+  survival_diff = survival_diff,
+  lower = survival_diff_lower,
+  upper = survival_diff_upper
+)
+
+# Plot
+ggplot(plot_df, aes(x = time, y = survival_diff)) +
+  geom_line(color = "blue", size = 1) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.2, fill = "blue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(
+    x = "Time (Years)",
+    y = "Survival Difference (Non-Diabetic - Diabetic)",
+    title = "Survival Difference Over Time with Confidence Intervals"
+  ) +
+  theme_minimal()
+
+```
+
+
+
+
+
+
