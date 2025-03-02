@@ -15,7 +15,7 @@ This document includes Kaplan Meier and survival ratio plots to be used for surv
 
 ## Rationale for the project
 
-Standard visualisation of survival data enable understand of time to event and survival probabilty at certain period. however , there is limitation when it comes to comparison of different groups.
+Standard visualization of survival data enable understand of time to event and survival probability at certain period. however , there is limitation when it comes to comparison of different groups.
 
 \~literature review
 
@@ -36,13 +36,18 @@ library(tidyverse)
 
 surv_brca_cli<- read.csv("surv_brca_cli.csv")
 surv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
+head(surv_brca_cli)
+surv_brca_cli= surv_brca_cli %>% mutate(group= pathologic_stage) %>% mutate( group= case_when( group=="Stage I"~ "Group A",group=="Stage II"~ "Group B",group=="Stage III"~ "Group C",group=="Stage IV"~ "Group D",group=="Stage X"~ "Group E",group=="Unspecified"~ "Group F"))
+
+summary(surv_brca_cli$pathologic_stage)
+
 ```
 
 ## KM Plot including all covariates
 
 ```{r}
-#fit the kaplan maier model for pathologic stage 
-fit_path_stage <- survfit(surv_object ~ pathologic_stage , data = surv_brca_cli)
+#fit the kaplan meier model for pathologic stage 
+fit_path_stage <- survfit(surv_object ~ group , data = surv_brca_cli)
 
 ggsurvplot(
   fit_path_stage,
@@ -75,15 +80,15 @@ ggsurvplot(
 ## Kaplan Meier plot for stage 2 and stage 3
 
 ```{r}
-path_stage2_3_df<- surv_brca_cli|> select(time_in_years,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage II" | pathologic_stage == "Stage III")
+group2_3_df<- surv_brca_cli|> select(time_in_years,vital_status,group)|> filter(group == "Group B" | group == "Group C")
 
-fit23 <- survfit(Surv(time_in_years,vital_status)~pathologic_stage, data = path_stage2_3_df)
+fit23 <- survfit(Surv(time_in_years,vital_status)~group, data = group2_3_df)
 
 
 ggsurvplot(
   fit23,
-  conf.int = TRUE,                
-  risk.table = TRUE,              
+  conf.int = FALSE,                
+  risk.table = FALSE,              
   xlab = "Time in years",                  
   ylab = "Survival Probability",  
   ggtheme = theme_minimal(),
@@ -99,21 +104,21 @@ ggsurvplot(
 ```{r}
 
 #KM fit of the data
-km_fit_path_stageII <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, pathologic_stage == "Stage II"))
+km_fit_groupb <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, group == "Group B"))
 
-km_fit_path_stageIII <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, pathologic_stage == "Stage III"))
+km_fit_groupc <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, group == "Group C"))
 
 ####extract survival probabilities 
 
 # Manually define time points (we mentained the exact time in the data set in days )
 manual_times <- seq(0, max(surv_brca_cli$time_in_years, na.rm = TRUE), by = 0.08333)
 # Extract survival probabilities for Pathologic stage 2
-surv_pathII <- summary(km_fit_path_stageII, times = manual_times, extend = TRUE)$surv
+surv_groupb <- summary(km_fit_groupb, times = manual_times, extend = TRUE)$surv
 
 # Extract survival probabilities for pathologic stage 3
-surv_pathIII <- summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)$surv
+surv_groupc <- summary(km_fit_groupc, times = manual_times, extend = TRUE)$surv
 # Survival ratios and confidence intervals
-survival_ratio <- surv_pathII / surv_pathIII
+survival_ratio <- surv_groupb / surv_groupc
 
 ```
 
@@ -126,9 +131,9 @@ This confidence interval is calculated using a delta method variance is calculat
 # Confidence intervals using the Delta method
 
 
-# Extract Variances  for Pathologic stage 2 and 3
-var_pathII <- (summary(km_fit_path_stageII, times = manual_times, extend = TRUE)$std.err)^2
-var_pathIII <- (summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)$std.err)^2
+# Extract Variances  forgroup B and C
+var_groupb <- (summary(km_fit_groupb, times = manual_times, extend = TRUE)$std.err)^2
+var_groupc <- (summary(km_fit_groupc, times = manual_times, extend = TRUE)$std.err)^2
 
 
 
@@ -224,24 +229,23 @@ ggplot(plot_data, aes(x = time)) +
 ```{r}
 
 # Compute survival difference
-survival_diff_stage2_3 <- surv_pathII - surv_pathIII
+survival_diff_groupbc <- surv_groupb - surv_groupc
 
 # Compute standard error for difference
-diff_var_stage2_3 <- var_pathII + var_pathIV
+diff_var_groupbc <- var_groupb + var_groupc
 z_value <- qnorm(0.975)
-lower_ci_stage2_3dif <- survival_diff_stage2_3 - z_value * sqrt(diff_var_stage2_3)
-upper_ci_stage2_3dif<- survival_diff_stage2_3 + z_value * sqrt(diff_var_stage2_3)
+lower_ci_groupbc_dif <- survival_diff_groupbc - z_value * sqrt(diff_var_groupbc)
+upper_ci_groupbc_dif<- survival_diff_groupbc + z_value * sqrt(diff_var_groupbc)
 
 # Prepare data for plotting
-plot_data_diff23 <- data.frame(
+plot_data_diffbc <- data.frame(
   time = manual_times,
-  difference = survival_diff_stage2_3,
-  lower_ci = lower_ci_stage2_3dif,
-  upper_ci = upper_ci_stage2_3dif
-)
+  difference = survival_diff_groupbc,
+  lower_ci = lower_ci_groupbc_dif,
+  upper_ci = upper_ci_groupbc_dif)
 
 # Generate survival difference plot
-ggplot(plot_data_diff23, aes(x = time)) +
+ggplot(plot_data_diffbc, aes(x = time)) +
   geom_line(aes(y = difference, color = "Survival Difference"), size = 1.2) +
   geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
   geom_hline(aes(yintercept = 0, linetype = "No Difference Line"), color = "red", size = 1) +
@@ -249,9 +253,9 @@ ggplot(plot_data_diff23, aes(x = time)) +
   scale_fill_manual(name = "Confidence Bands", values = c("95% Confidence Interval" = "blue")) +
   scale_linetype_manual(name = "Reference", values = c("No Difference Line" = "dashed")) +
   labs(
-    title = "Survival Difference Plot for Pathologic Stage II vs. III",
+    title = "Survival difference plot for group B and C",
     x = "Time (Years)",
-    y = "Survival Difference (Pathologic Stage II - Stage III)"
+    y = "Survival Difference (Group B - Group C)"
   ) +
   theme_minimal() +
   theme(
@@ -278,20 +282,20 @@ ggplot(plot_data_diff23, aes(x = time)) +
 ## Kaplan Meier plot for stage 2 and stage 4
 
 ```{r}
-path_stage2_4_df<- surv_brca_cli|> select(time_in_years,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage II" | pathologic_stage == "Stage IV")
+group2_4_df<- surv_brca_cli|> select(time_in_years,vital_status,group)|> filter(group == "Group B" | group == "Group D")
 
-fit24 <- survfit(Surv(time_in_years,vital_status)~pathologic_stage, data = path_stage2_4_df)
+fit24 <- survfit(Surv(time_in_years,vital_status)~group, data = group2_4_df)
 
 
 ggsurvplot(
   fit24,
-  conf.int = TRUE,                
-  risk.table = TRUE,              
+  conf.int = FALSE,                
+  risk.table = FALSE,              
   xlab = "Time in years",                  
   ylab = "Survival Probability",  
   ggtheme = theme_minimal(),
   pval = FALSE,
-  title= "Kaplan Meier plot for pathologic stage II and IV"
+  title= "Kaplan Meier plot for group B and D"
 )  
 ```
 
@@ -303,7 +307,7 @@ ggsurvplot(
 ## RATIO PLOT STAGE 2 OVER 4
 
 ```{r}
-data_path4 = subset(surv_brca_cli, pathologic_stage == "Stage IV")
+data_group4 = subset(surv_brca_cli, group == "Group D")
 ```
 
 ```{r}
@@ -311,21 +315,23 @@ data_path4 = subset(surv_brca_cli, pathologic_stage == "Stage IV")
 
 
 #KM fit of the data
-km_fit_path_stageII <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, pathologic_stage == "Stage II"))
+km_fit_groupb <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, group == "Group B"))
 
-km_fit_path_stageIV <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, pathologic_stage == "Stage IV"))
+km_fit_groupd <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, group == "Group D"))
+
+
 
 ####extract survival probabilities 
 
 # Manually define time points (we mentained the exact time in the data set in days )
-manual_times24 <- seq(0, max(data_path4$time_in_years, na.rm = TRUE), by = 0.083)
+manual_times <- seq(0, max(data_group4$time_in_years, na.rm = TRUE), by = 0.08333)
 # Extract survival probabilities for Pathologic stage 2
-surv_pathII <- summary(km_fit_path_stageII, times = manual_times24, extend = TRUE)$surv
+surv_groupb <- summary(km_fit_groupb, times = manual_times, extend = TRUE)$surv
 
 # Extract survival probabilities for pathologic stage 3
-surv_pathIV <- summary(km_fit_path_stageIV, times = manual_times24, extend = TRUE)$surv
+surv_groupd <- summary(km_fit_groupd, times = manual_times, extend = TRUE)$surv
 # Survival ratios and confidence intervals
-survival_ratio_stage2_4 <- surv_pathII / surv_pathIV
+#survival_ratio <- surv_groupb / surv_groupc
 
 ```
 
@@ -336,9 +342,10 @@ survival_ratio_stage2_4 <- surv_pathII / surv_pathIV
 # Confidence intervals using the Delta method
 
 
-# Extract Variances  for Pathologic stage 2 and 3
-var_pathII <- (summary(km_fit_path_stageII, times = manual_times24, extend = TRUE)$std.err)^2
-var_pathIV <- (summary(km_fit_path_stageIV, times = manual_times24, extend = TRUE)$std.err)^2
+
+# Extract Variances  forgroup B and D
+var_groupb <- (summary(km_fit_groupb, times = manual_times, extend = TRUE)$std.err)^2
+var_groupd <- (summary(km_fit_groupd, times = manual_times, extend = TRUE)$std.err)^2
 
 
 
@@ -428,24 +435,23 @@ ggplot(plot_data_stage2_4, aes(x = time)) +
 
 ```{r}
 # Compute survival difference
-survival_diff_stage2_4 <- surv_pathII - surv_pathIV
+survival_diff_groupbd <- surv_groupb - surv_groupd
 
 # Compute standard error for difference
-diff_var_stage2_4 <- var_pathII + var_pathIV
+diff_var_groupbd <- var_groupb + var_groupd
 z_value <- qnorm(0.975)
-lower_ci_stage2_4dif <- survival_diff_stage2_4 - z_value * sqrt(diff_var_stage2_4)
-upper_ci_stage2_4dif<- survival_diff_stage2_4 + z_value * sqrt(diff_var_stage2_4)
+lower_ci_groupbd_dif <- survival_diff_groupbd - z_value * sqrt(diff_var_groupbd)
+upper_ci_groupbd_dif<- survival_diff_groupbd + z_value * sqrt(diff_var_groupbd)
 
 # Prepare data for plotting
-plot_data_diff24 <- data.frame(
-  time = manual_times24,
-  difference = survival_diff_stage2_4,
-  lower_ci = lower_ci_stage2_4dif,
-  upper_ci = upper_ci_stage2_4dif
-)
+plot_data_diffbd <- data.frame(
+  time = manual_times,
+  difference = survival_diff_groupbd,
+  lower_ci = lower_ci_groupbd_dif,
+  upper_ci = upper_ci_groupbd_dif)
 
 # Generate survival difference plot
-ggplot(plot_data_diff, aes(x = time)) +
+ggplot(plot_data_diffbd, aes(x = time)) +
   geom_line(aes(y = difference, color = "Survival Difference"), size = 1.2) +
   geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
   geom_hline(aes(yintercept = 0, linetype = "No Difference Line"), color = "red", size = 1) +
@@ -453,9 +459,9 @@ ggplot(plot_data_diff, aes(x = time)) +
   scale_fill_manual(name = "Confidence Bands", values = c("95% Confidence Interval" = "blue")) +
   scale_linetype_manual(name = "Reference", values = c("No Difference Line" = "dashed")) +
   labs(
-    title = "Survival Difference Plot for Pathologic Stage II vs. IV",
+    title = "Survival difference plot for group B and D",
     x = "Time (Years)",
-    y = "Survival Difference (Pathologic Stage II - Stage IV)"
+    y = "Survival Difference (Group B - Group D)"
   ) +
   theme_minimal() +
   theme(
@@ -464,7 +470,6 @@ ggplot(plot_data_diff, aes(x = time)) +
     legend.text = element_text(size = 10),
     plot.title = element_text(face = "bold", size = 18)
   )
-
 
 ```
 
@@ -703,172 +708,6 @@ ggsurvplot(
 )
 ```
 
-```{r}
-
-
-```
-
-## RATIO PLOT Black ror african american versus white
-
-```{r}
-
-#KM fit of the data
-km_fit_race_white <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, race == "White"))
-
-km_fit_race_black <- survfit(Surv(time= time_in_years, event=vital_status) ~ 1, data = subset(surv_brca_cli, race == "Black or African American"))
-
-####extract survival probabilities 
-
-# Manually define time points (we mentained the exact time in the data set in days )
-manual_times <- seq(0, max(surv_brca_cli$time_in_years, na.rm = TRUE), by = 0.083)
-# Extract survival probabilities for Pathologic stage 2
-surv_white <- summary(km_fit_race_white, times = manual_times, extend = TRUE)$surv
-
-# Extract survival probabilities for pathologic stage 3
-surv_black <- summary(km_fit_race_black, times = manual_times, extend = TRUE)$surv
-# Survival ratios and confidence intervals
-survival_ratio_race <- surv_white / surv_black
-
-```
-
-## Confidence interval estimation 1/2
-
-```{r}
-
-
-
-
-# Extract Variances  for Pathologic stage 2 and 3
-var_white <- (summary(km_fit_race_white, times = manual_times, extend = TRUE)$std.err)^2
-var_black <- (summary(km_fit_race_black, times = manual_times, extend = TRUE)$std.err)^2
-
-
-
-# Log-transformed survival ratio
-log_ratio_race <- log(survival_ratio_race)
-
-# Variance of the log survival ratio
-log_ratio_var_race <- var_white / (surv_white^2) + var_black / (surv_white^2)
-
-# Confidence intervals for log-ratio
-z_value <- qnorm(0.975)  
-lower_log_race <- log_ratio_race - z_value * sqrt(log_ratio_var_race)
-upper_log_race <- log_ratio_race + z_value * sqrt(log_ratio_var_race)
-
-# Back-transform to get confidence intervals for the ratio
-lower_ci_race <- exp(lower_log_race)
-upper_ci_race <- exp(upper_log_race)
-
-# Add CI to the plot
-plot_data_race <- data.frame(
-  time = manual_times,
-  ratio = survival_ratio_race,
-  lower_ci = lower_ci_race,
-  upper_ci = upper_ci_race
-  
-)
-
-
-
-```
-
-## Plot data and ratio plot with confidence interval
-
-```{r}
-
-ggplot(plot_data_race, aes(x = time)) +
-  # Survival ratio line
-  geom_line(aes(y = ratio, color = "Survival Ratio"), size = 1.2) +
-  
-  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
-  
-  geom_hline(aes(yintercept = 1, linetype = "No Difference Line"), color = "red", size = 1 ) +
-  
-  scale_color_manual(
-    name = "Line",
-    values = c("Survival Ratio" = "green")
-  ) +
-  scale_fill_manual(
-    name = "Confidence Bands",
-    values = c(
-      "95% Confidence Interval" = "blue"
-    )
-  ) +
-  scale_linetype_manual(
-    name = "Reference",
-    values = c("No Difference Line" = "dashed")
-  ) +
-  
-  
-  labs(
-    title = "Survival Ratio plot for White/Black ",
-    x = "Time (Years)",
-    y = "Survival Ratio (Pathologic Stage White/Black)"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right",  # Position of the legend
-    legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10),
-    plot.title = element_text(face = "bold", size = 18)
-  )+ 
-  annotate("text", x = max(plot_data_stage2_4$Time) * 0.3, y = 2, label = "Higher survival for white ", hjust = 0) +
-  annotate("text", x = max(plot_data_stage2_4$Time) * 0.3, y = 0.5, label = "Higher survival for Black or African American", hjust = 0)  
-
-
-
-
-
-```
-
-##COMPARISON OF SURVIVAL DIFFERENCE ON RACE
-
-```{r}
-
-# Compute survival difference
-survival_diff_race <- surv_white - surv_black
-
-# Compute standard error for difference
-diff_var_race <- var_white + var_black
-z_value <- qnorm(0.975)
-lower_ci_race_dif <- survival_diff_race - z_value * sqrt(diff_var_race)
-upper_ci_race_dif<- survival_diff_race + z_value * sqrt(diff_var_race)
-
-# Prepare data for plotting
-plot_data_diff_race <- data.frame(
-  time = manual_times,
-  difference = survival_diff_race,
-  lower_ci = lower_ci_race_dif,
-  upper_ci = upper_ci_race_dif
-)
-
-# Generate survival difference plot
-ggplot(plot_data_diff_race, aes(x = time)) +
-  geom_line(aes(y = difference, color = "Survival Difference"), size = 1.2) +
-  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
-  geom_hline(aes(yintercept = 0, linetype = "No Difference Line"), color = "red", size = 1) +
-  scale_color_manual(name = "Line", values = c("Survival Difference" = "green")) +
-  scale_fill_manual(name = "Confidence Bands", values = c("95% Confidence Interval" = "blue")) +
-  scale_linetype_manual(name = "Reference", values = c("No Difference Line" = "dashed")) +
-  labs(
-    title = "Survival Difference Plot for White vs. Black Race",
-    x = "Time (Years)",
-    y = "Survival Difference (White - Black Race)"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right",  
-    legend.title = element_text(size = 12),
-    legend.text = element_text(size = 10),
-    plot.title = element_text(face = "bold", size = 18)
-  )
-
-
-
-
-
-```
-
 ##PATHOLOGICAL LYMPH NODE INVOLVEMENT
 
 ```{r}
@@ -1072,8 +911,8 @@ ggsurvplot(
   font.y = c(12, "bold"),     
   font.tickslab = c(10),       
   legend = "right",             
-  conf.int = TRUE,                
-  risk.table = TRUE,             
+  conf.int = FALSE,                
+  risk.table = FALSE,             
     pval = FALSE,                  
   xlab = "Time(years)",                  
   ylab = "Survival Probability",  
