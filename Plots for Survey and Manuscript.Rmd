@@ -64,8 +64,8 @@ ggsurvplot(
   ggtheme = theme_minimal(),      
   legend.title = "pathological stage",     
   risk.table.height = 0.5,        
-  surv.median.line = "hv" 
-  
+  surv.median.line = "hv" ,
+  legend.labs = c("Group A", "Group B","Group C","Group D","Group E","Group F") 
 )
 
 
@@ -93,8 +93,8 @@ ggsurvplot(
   ylab = "Survival Probability",  
   ggtheme = theme_minimal(),
   pval = FALSE,
-  title= "Kaplan Meier plot for pathologic stage II and III"
-  
+  title= "Kaplan Meier plot for Group A and B ",
+  legend.labs = c("Group A", "Group B")
 )  
   
 
@@ -253,9 +253,9 @@ ggplot(plot_data_diffbc, aes(x = time)) +
   scale_fill_manual(name = "Confidence Bands", values = c("95% Confidence Interval" = "blue")) +
   scale_linetype_manual(name = "Reference", values = c("No Difference Line" = "dashed")) +
   labs(
-    title = "Survival difference plot for group B and C",
+    title = "Survival difference plot for group A and B",
     x = "Time (Years)",
-    y = "Survival Difference (Group B - Group C)"
+    y = "Survival Difference (Group A - Group B)"
   ) +
   theme_minimal() +
   theme(
@@ -295,7 +295,8 @@ ggsurvplot(
   ylab = "Survival Probability",  
   ggtheme = theme_minimal(),
   pval = FALSE,
-  title= "Kaplan Meier plot for group B and D"
+  title= "Kaplan Meier plot for group A and B",
+  legend.labs = c("Group A", "Group B")
 )  
 ```
 
@@ -459,9 +460,9 @@ ggplot(plot_data_diffbd, aes(x = time)) +
   scale_fill_manual(name = "Confidence Bands", values = c("95% Confidence Interval" = "blue")) +
   scale_linetype_manual(name = "Reference", values = c("No Difference Line" = "dashed")) +
   labs(
-    title = "Survival difference plot for group B and D",
+    title = "Survival difference plot for group A and B",
     x = "Time (Years)",
-    y = "Survival Difference (Group B - Group D)"
+    y = "Survival Difference (Group A - Group B)"
   ) +
   theme_minimal() +
   theme(
