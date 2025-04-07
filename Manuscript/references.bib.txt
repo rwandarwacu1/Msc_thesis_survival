@@ -1,0 +1,12 @@
+@article{alvarez2015summarising,
+  title = {Summarising censored survival data using the mean residual life function},
+  author = {Alvarez-Iglesias, Alberto and Newell, John and Scarrott, Carl and Hinde, John},
+  journal = {Statistics in Medicine},
+  volume = {34},
+  number = {11},
+  pages = {1965--1976},
+  year = {2015},
+  publisher = {Wiley Online Library},
+  doi = {10.1002/sim.6431},
+  url = {https://onlinelibrary.wiley.com/doi/10.1002/sim.6431}
+}

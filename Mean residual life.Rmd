@@ -1,0 +1,564 @@
+---
+title: "Mean residual life"
+author: "Victor Rwandarwacu"
+date: "2025-03-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+```{r}
+# Load required libraries
+library(survival)
+library(survminer)
+library(dplyr)
+
+
+library(KMsurv)
+
+surv_brca_cli <- read.csv("surv_brca_cli.csv")
+surv_brca_cli= surv_brca_cli %>% mutate(group= pathologic_stage) %>% mutate( group= case_when( group=="Stage I"~ "Group A",group=="Stage II"~ "Group B",group=="Stage III"~ "Group C",group=="Stage IV"~ "Group D",group=="Stage X"~ "Group E",group=="Unspecified"~ "Group F"))
+
+```
+
+
+## mean resuial life stage 2vs 3 
+
+```{r}
+library(survival)
+library(ggplot2)
+library(dplyr)
+
+# Filter and prepare the data
+filtered_data <- surv_brca_cli %>%
+  filter(group %in% c("Group B","Group C")) %>%
+  mutate(group = factor(group))
+
+summary(filtered_data)
+# survival Object
+surv_object <- Surv(time = filtered_data$time_in_years, event = filtered_data$vital_status)
+
+# KM fit
+fit <- survfit(surv_object ~ group, data = filtered_data)
+summary(fit)
+# Function to compute MRL from survival fit
+compute_mrl <- function(fit) {
+  time <- fit$time
+  surv_probs <- fit$surv
+  strata <- rep(names(fit$strata), fit$strata)
+
+  df <- data.frame(time = time, surv = surv_probs, strata = strata)
+
+  mrl_df <- df %>%
+    group_by(strata) %>%
+    arrange(time) %>%
+    mutate(
+      delta_t = lead(time, default = max(time)) - time,
+      area = surv * delta_t,
+      mrl = rev(cumsum(rev(area)))  # Mean residual life
+    )
+
+  return(mrl_df)
+}
+
+# Compute MRL
+mrl_data <- compute_mrl(fit)
+
+# Plot Mean Residual Life
+ggplot(mrl_data, aes(x = time, y = mrl, color = strata)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "Mean Residual Life: Group A vs Group B",
+    x = "Time in Years",
+    y = "Mean Residual Life (Years)",
+    color = "Group"
+  ) +
+  theme_minimal()+ 
+  scale_color_manual(
+    labels = c("Group A", "Group B"),
+    values = c("blue", "red")  # or use your desired colors
+  )
+
+
+```
+
+# interpretation 
+
+At any given point in follow-up, a Stage II patient has more expected years of life remaining than a Stage III patient — reflecting the impact of cancer stage on survival expectations. The difference is greatest early in follow-up and diminishes as time progresses
+
+consider the distance between the 2 plots . the curves converges around 12 to 16 years.
+
+Patients with pathologic Stage II breast cancer consistently have better prognosis and longer expected survival, even after surviving up to a certain time.
+
+## mean residual life stage 2 vs 4 
+
+```{r}
+# Load required libraries
+library(survival)
+library(ggplot2)
+library(dplyr)
+
+# Filter and prepare the data for Stage II and Stage IV
+filtered_data <- surv_brca_cli %>%
+  filter(pathologic_stage %in% c("Stage II", "Stage IV")) %>%
+  mutate(pathologic_stage = factor(pathologic_stage))
+
+# Create survival object
+surv_object <- Surv(time = filtered_data$time_in_years, event = filtered_data$vital_status)
+
+# Fit Kaplan-Meier survival model
+fit <- survfit(surv_object ~ pathologic_stage, data = filtered_data)
+
+# Function to compute Mean Residual Life from survfit object
+compute_mrl <- function(fit) {
+  time <- fit$time
+  surv_probs <- fit$surv
+  strata <- rep(names(fit$strata), fit$strata)
+
+  df <- data.frame(time = time, surv = surv_probs, strata = strata)
+
+  mrl_df <- df %>%
+    group_by(strata) %>%
+    arrange(time) %>%
+    mutate(
+      delta_t = lead(time, default = max(time)) - time,
+      area = surv * delta_t,
+      mrl = rev(cumsum(rev(area)))  # Mean Residual Life
+    )
+
+  return(mrl_df)
+}
+
+# Compute MRL values
+mrl_data <- compute_mrl(fit)
+
+# Plot Mean Residual Life
+ggplot(mrl_data, aes(x = time, y = mrl, color = strata)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "Mean Residual Life: Group A vs Group B",
+    x = "Time in Years",
+    y = "Mean Residual Life (Years)",
+    color = "Group"
+  ) +
+  theme_minimal()+ 
+  scale_color_manual(
+    labels = c("Group A", "Group B"),
+    values = c("blue", "red")  # or use your desired colors
+  )
+
+```
+##Interpration 
+
+the stage 4 curves drops quickls and ends
+
+
+The plot clearly illustrates that Stage IV cancer is associated with drastically worse survival expectations than Stage II — both at diagnosis and at every point in time thereafter. Stage II patients have more life years to expect and the decline in their MRL is more gradual, reflecting more favorable long-term survival.
+
+## interporation of the difference plot 
+```{r}
+# Load libraries
+library(survival)
+library(ggplot2)
+library(dplyr)
+
+# Function to compute MRL from survfit
+compute_mrl <- function(fit) {
+  time <- fit$time
+  surv_probs <- fit$surv
+  strata <- rep(names(fit$strata), fit$strata)
+
+  df <- data.frame(time = time, surv = surv_probs, strata = strata)
+
+  mrl_df <- df %>%
+    group_by(strata) %>%
+    arrange(time) %>%
+    mutate(
+      delta_t = lead(time, default = max(time)) - time,
+      area = surv * delta_t,
+      mrl = rev(cumsum(rev(area)))
+    )
+  return(mrl_df)
+}
+
+# Function to interpolate MRL values on common time grid
+interpolate_mrl <- function(mrl_df, group_name, grid_times) {
+  approx_df <- approx(mrl_df$time, mrl_df$mrl, xout = grid_times, rule = 2)
+  data.frame(
+    time = grid_times,
+    mrl = approx_df$y,
+    group = group_name
+  )
+}
+
+# Get MRL data for 2 vs 3
+data_2_3 <- surv_brca_cli %>%
+  filter(pathologic_stage %in% c("Stage II", "Stage III")) %>%
+  mutate(pathologic_stage = factor(pathologic_stage))
+
+fit_2_3 <- survfit(Surv(time_in_years, vital_status) ~ pathologic_stage, data = data_2_3)
+mrl_2_3 <- compute_mrl(fit_2_3)
+
+# Get MRL data for 2 vs 4
+data_2_4 <- surv_brca_cli %>%
+  filter(pathologic_stage %in% c("Stage II", "Stage IV")) %>%
+  mutate(pathologic_stage = factor(pathologic_stage))
+
+fit_2_4 <- survfit(Surv(time_in_years, vital_status) ~ pathologic_stage, data = data_2_4)
+mrl_2_4 <- compute_mrl(fit_2_4)
+
+# Create a common time grid
+common_times <- sort(unique(c(mrl_2_3$time, mrl_2_4$time)))
+common_times <- common_times[common_times > 0]  # Avoid time zero issues
+
+# Interpolate both comparisons on common time grid
+mrl_2_3_stage2 <- interpolate_mrl(filter(mrl_2_3, strata == "pathologic_stage=Stage II"), "Stage II", common_times)
+mrl_2_3_stage3 <- interpolate_mrl(filter(mrl_2_3, strata == "pathologic_stage=Stage III"), "Stage III", common_times)
+
+mrl_2_4_stage2 <- interpolate_mrl(filter(mrl_2_4, strata == "pathologic_stage=Stage II"), "Stage II", common_times)
+mrl_2_4_stage4 <- interpolate_mrl(filter(mrl_2_4, strata == "pathologic_stage=Stage IV"), "Stage IV", common_times)
+
+# Compute MRL differences
+mrl_diff_2_3 <- data.frame(
+  time = common_times,
+  mrl_diff = mrl_2_3_stage2$mrl - mrl_2_3_stage3$mrl,
+  comparison = "Stage II - Stage III"
+)
+
+mrl_diff_2_4 <- data.frame(
+  time = common_times,
+  mrl_diff = mrl_2_4_stage2$mrl - mrl_2_4_stage4$mrl,
+  comparison = "Stage II - Stage IV"
+)
+
+
+```
+
+
+
+
+## no extrapolation
+
+```{r}
+# Determine max time for shortest group in Stage II vs III
+max_time_2_3 <- min(
+  max(mrl_2_3_stage2$time, na.rm = TRUE),
+  max(mrl_2_3_stage3$time, na.rm = TRUE)
+)
+
+# Plot with x-axis limited
+ggplot(mrl_diff_2_3 %>% filter(time <= max_time_2_3), aes(x = time, y = mrl_diff)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  labs(
+    title = "Mean Residual Life Difference: Group A vs B",
+    x = "Time in Years",
+    y = "MRL Difference (Group A - B)"
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  xlim(0, max_time_2_3) +
+  theme_minimal()
+
+
+```
+
+
+
+
+```{r}
+# Determine max time for shortest group in Stage II vs IV
+max_time_2_4 <- min(
+  max(mrl_2_4_stage2$time, na.rm = TRUE),
+  max(mrl_2_4_stage4$time, na.rm = TRUE)
+)
+
+# Plot with x-axis limited
+ggplot(mrl_diff_2_4 %>% filter(time <= max_time_2_4), aes(x = time, y = mrl_diff)) +
+  geom_line(color = "firebrick", size = 1.2) +
+  labs(
+    title = "Mean Residual Life Difference: Group A vs B",
+    x = "Time in Years",
+    y = "MRL Difference (Group A - B)"
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  xlim(0, max_time_2_4) +
+  theme_minimal()
+```
+```{r}
+# Load necessary libraries
+library(survival)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# Load your data
+surv_brca_cli <- read.csv("surv_brca_cli.csv")
+
+# Utility: compute MRL
+compute_mrl <- function(fit) {
+  time <- fit$time
+  surv_probs <- fit$surv
+  strata <- rep(names(fit$strata), fit$strata)
+  
+  df <- data.frame(time = time, surv = surv_probs, strata = strata)
+  
+  df %>%
+    group_by(strata) %>%
+    arrange(time) %>%
+    mutate(
+      delta_t = lead(time, default = max(time)) - time,
+      area = surv * delta_t,
+      mrl = rev(cumsum(rev(area)))
+    ) %>%
+    select(time, mrl, strata)
+}
+
+# Interpolate MRL to common grid
+interpolate_mrl <- function(mrl_df, strata_label, grid) {
+  mrl_interp <- approx(mrl_df$time, mrl_df$mrl, xout = grid, rule = 2)$y
+  tibble(time = grid, mrl = mrl_interp, strata = strata_label)
+}
+
+# Bootstrap function
+bootstrap_mrl_diff <- function(data, stage1, stage2, n_boot = 500) {
+  set.seed(123)
+  data <- data %>% filter(pathologic_stage %in% c(stage1, stage2))
+  data$pathologic_stage <- factor(data$pathologic_stage)
+  
+  # Common time grid from original data
+  surv_obj <- Surv(data$time_in_years, data$vital_status)
+  fit <- survfit(surv_obj ~ pathologic_stage, data = data)
+  mrl_orig <- compute_mrl(fit)
+  common_time <- sort(unique(mrl_orig$time))
+  
+  # Original interpolated MRL
+  mrl1 <- interpolate_mrl(filter(mrl_orig, strata == paste0("pathologic_stage=", stage1)), stage1, common_time)
+  mrl2 <- interpolate_mrl(filter(mrl_orig, strata == paste0("pathologic_stage=", stage2)), stage2, common_time)
+  mrl_diff_mean <- mrl1$mrl - mrl2$mrl
+  
+  # Matrix to hold bootstrapped differences
+  boot_matrix <- matrix(NA, nrow = length(common_time), ncol = n_boot)
+  
+  for (i in 1:n_boot) {
+    boot_sample <- data %>% group_by(pathologic_stage) %>% slice_sample(prop = 1, replace = TRUE) %>% ungroup()
+    fit_boot <- survfit(Surv(time_in_years, vital_status) ~ pathologic_stage, data = boot_sample)
+    
+    mrl_boot <- compute_mrl(fit_boot)
+    
+    try({
+      mrl1_boot <- interpolate_mrl(filter(mrl_boot, strata == paste0("pathologic_stage=", stage1)), stage1, common_time)
+      mrl2_boot <- interpolate_mrl(filter(mrl_boot, strata == paste0("pathologic_stage=", stage2)), stage2, common_time)
+      boot_matrix[, i] <- mrl1_boot$mrl - mrl2_boot$mrl
+    }, silent = TRUE)
+  }
+  
+  # CI computation
+  ci_lower <- apply(boot_matrix, 1, quantile, probs = 0.025, na.rm = TRUE)
+  ci_upper <- apply(boot_matrix, 1, quantile, probs = 0.975, na.rm = TRUE)
+  
+  result <- tibble(
+    time = common_time,
+    diff = mrl_diff_mean,
+    lower = ci_lower,
+    upper = ci_upper
+  )
+  
+  return(result)
+}
+
+# Run bootstrap for both comparisons
+mrl_ci_2_3 <- bootstrap_mrl_diff(surv_brca_cli, "Stage II", "Stage III", n_boot = 500)
+mrl_ci_2_4 <- bootstrap_mrl_diff(surv_brca_cli, "Stage II", "Stage IV", n_boot = 500)
+
+# Plot: Stage II vs III
+ggplot(mrl_ci_2_3, aes(x = time, y = diff)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), fill = "steelblue", alpha = 0.3) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 0.8) + 
+  labs(
+    title = "MRL Difference with 95% CI: Group A vs B",
+    x = "Time in Years",
+    y = "MRL Difference (A - B)_Years"
+  ) +
+  theme_minimal()
+
+# Plot: Stage II vs IV
+ggplot(mrl_ci_2_4, aes(x = time, y = diff)) +
+  geom_line(color = "firebrick", size = 1.2) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), fill = "firebrick", alpha = 0.3) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 0.8) + 
+  labs(
+    title = "MRL Difference with 95% CI: Group A vs B",
+    x = "Time in Years",
+    y = "MRL Difference (Group A- B)_Years"
+  ) +
+  theme_minimal()
+
+```
+########################################################################################################
+#Exact time point plot 
+#################################################################################
+
+
+```{r}
+# STEP 1: Load required packages
+library(survival)
+library(dplyr)
+
+# STEP 2: Filter your data
+df <- surv_brca_cli %>%
+  filter(pathologic_stage %in% c("Stage II", "Stage IV")) %>%
+  mutate(pathologic_stage = factor(pathologic_stage))
+summary(df)
+# STEP 3: Fit KM model
+fit <- survfit(Surv(time_in_years, vital_status) ~ pathologic_stage, data = df)
+
+# STEP 4: Extract MRL for each group
+compute_mrl <- function(fit) {
+  time <- fit$time
+  surv_probs <- fit$surv
+  strata <- rep(names(fit$strata), fit$strata)
+  
+  df <- data.frame(time = time, surv = surv_probs, strata = strata) %>%
+    group_by(strata) %>%
+    arrange(time) %>%
+    mutate(
+      delta_t = lead(time, default = max(time)) - time,
+      area = surv * delta_t,
+      mrl = rev(cumsum(rev(area)))
+    )
+  return(df %>% select(time, mrl, strata))
+}
+
+mrl_df <- compute_mrl(fit)
+
+# STEP 5: Split by group
+mrl_ii <- filter(mrl_df, strata == "pathologic_stage=Stage II")
+mrl_iii <- filter(mrl_df, strata == "pathologic_stage=Stage IV")
+
+# STEP 6: Determine shared time grid
+max_common_time <- min(max(mrl_ii$time), max(mrl_iii$time))
+shared_time <- sort(unique(c(mrl_ii$time, mrl_iii$time)))
+shared_time <- shared_time[shared_time <= max_common_time]
+
+# STEP 7: Use step function to evaluate MRL at shared times
+step_mrl_ii <- stepfun(mrl_ii$time, c(mrl_ii$mrl, tail(mrl_ii$mrl, 1)))
+step_mrl_iii <- stepfun(mrl_iii$time, c(mrl_iii$mrl, tail(mrl_iii$mrl, 1)))
+
+# STEP 8: Create aligned data frame
+aligned_df <- data.frame(
+  time = shared_time,
+  MRL_II = step_mrl_ii(shared_time),
+  MRL_III = step_mrl_iii(shared_time),
+  MRL_Diff = step_mrl_ii(shared_time) - step_mrl_iii(shared_time)
+)
+
+# STEP 9: View or plot the result
+head(aligned_df)
+
+```
+```{r}
+library(ggplot2)
+
+ggplot(aligned_df, aes(x = time, y = MRL_Diff)) +
+  geom_step(color = "steelblue", linewidth = 1.2) +
+  geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
+  labs(
+    title = "MRL Difference: Stage II vs Stage III ",
+    x = "Time (Years)",
+    y = "Mean Residual Life Difference"
+  ) +
+  theme_minimal()
+
+```
+## WIth confidence interval calculated using Delta method for variance 
+```{r}
+# Required libraries
+library(survival)
+library(dplyr)
+library(ggplot2)
+
+# Filter data
+df <- surv_brca_cli %>%
+  filter(pathologic_stage %in% c("Stage II", "Stage III")) %>%
+  mutate(pathologic_stage = factor(pathologic_stage))
+
+# Fit Kaplan-Meier model
+fit <- survfit(Surv(time_in_years, vital_status) ~ pathologic_stage, data = df)
+
+# Greenwood-based SE for MRL
+compute_mrl_with_se <- function(fit) {
+  time <- fit$time
+  surv_probs <- fit$surv
+  strata <- rep(names(fit$strata), fit$strata)
+  
+  df <- data.frame(time = time, surv = surv_probs, strata = strata) %>%
+    group_by(strata) %>%
+    arrange(time) %>%
+    mutate(
+      delta_t = lead(time, default = max(time)) - time,
+      area = surv * delta_t,
+      mrl = rev(cumsum(rev(area))),
+      var = c(rev(cumsum(rev((delta_t^2) * (surv * (1 - surv) / sum(surv)))))),  # crude delta approx
+      se = sqrt(var),
+      lower = mrl - 1.96 * se,
+      upper = mrl + 1.96 * se
+    )
+  return(df %>% select(time, mrl, se, lower, upper, strata))
+}
+
+mrl_df <- compute_mrl_with_se(fit)
+
+# Split groups
+mrl_ii <- filter(mrl_df, strata == "pathologic_stage=Stage II")
+mrl_iii <- filter(mrl_df, strata == "pathologic_stage=Stage III")
+
+# Shared time grid
+max_common_time <- min(max(mrl_ii$time), max(mrl_iii$time))
+shared_time <- sort(unique(c(mrl_ii$time, mrl_iii$time)))
+shared_time <- shared_time[shared_time <= max_common_time]
+
+# Step functions for each group
+step_mrl_ii <- stepfun(mrl_ii$time, c(mrl_ii$mrl, tail(mrl_ii$mrl, 1)))
+step_se_ii  <- stepfun(mrl_ii$time, c(mrl_ii$se, tail(mrl_ii$se, 1)))
+
+step_mrl_iii <- stepfun(mrl_iii$time, c(mrl_iii$mrl, tail(mrl_iii$mrl, 1)))
+step_se_iii  <- stepfun(mrl_iii$time, c(mrl_iii$se, tail(mrl_iii$se, 1)))
+
+# Create aligned data
+aligned_df <- data.frame(
+  time = shared_time,
+  MRL_II = step_mrl_ii(shared_time),
+  SE_II = step_se_ii(shared_time),
+  MRL_III = step_mrl_iii(shared_time),
+  SE_III = step_se_iii(shared_time)
+)
+
+# Compute difference and CI
+aligned_df <- aligned_df %>%
+  mutate(
+    MRL_Diff = MRL_II - MRL_III,
+    SE_Diff = sqrt(SE_II^2 + SE_III^2),
+    Lower_CI = MRL_Diff - 1.96 * SE_Diff,
+    Upper_CI = MRL_Diff + 1.96 * SE_Diff
+  )
+
+# Plot with 95% CI ribbon
+ggplot(aligned_df, aes(x = time, y = MRL_Diff)) +
+  geom_step(color = "steelblue", size = 1.2) +
+  geom_ribbon(aes(ymin = Lower_CI, ymax = Upper_CI), fill = "steelblue", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 0.8) +
+  labs(
+    title = "Mean Residual Life Difference with 95% CI: Group A vs B ",
+    x = "Time in Years",
+    y = "MRL Difference Group A-B"
+  ) +
+  theme_minimal()
+
+```
+

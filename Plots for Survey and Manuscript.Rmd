@@ -85,7 +85,7 @@ group2_3_df<- surv_brca_cli|> select(time_in_years,vital_status,group)|> filter(
 fit23 <- survfit(Surv(time_in_years,vital_status)~group, data = group2_3_df)
 
 
-ggsurvplot(
+KM_23=ggsurvplot(
   fit23,
   conf.int = FALSE,                
   risk.table = FALSE,              
@@ -96,8 +96,8 @@ ggsurvplot(
   title= "Kaplan Meier plot for Group A and B ",
   legend.labs = c("Group A", "Group B")
 )  
-  
-
+ png("KM_23.png") 
+KM_23
 
 ```
 
