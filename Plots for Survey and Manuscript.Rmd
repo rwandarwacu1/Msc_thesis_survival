@@ -96,8 +96,10 @@ KM_23=ggsurvplot(
   title= "Kaplan Meier plot for Group A and B ",
   legend.labs = c("Group A", "Group B")
 )  
- png("KM_23.png") 
+  
 KM_23
+
+ggsave("KM_23.png", plot = KM_23$plot, width = 8, height = 6, dpi = 300,bg="white")
 
 ```
 
@@ -245,7 +247,7 @@ plot_data_diffbc <- data.frame(
   upper_ci = upper_ci_groupbc_dif)
 
 # Generate survival difference plot
-ggplot(plot_data_diffbc, aes(x = time)) +
+KM_diff_23 <- ggplot(plot_data_diffbc, aes(x = time)) +
   geom_line(aes(y = difference, color = "Survival Difference"), size = 1.2) +
   geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
   geom_hline(aes(yintercept = 0, linetype = "No Difference Line"), color = "red", size = 1) +
@@ -266,7 +268,7 @@ ggplot(plot_data_diffbc, aes(x = time)) +
   )
 
 
-
+ggsave("KM_diff_23.png", plot = KM_diff_23, width = 8, height = 6, dpi = 300,bg="white")
 
 
 
@@ -287,7 +289,7 @@ group2_4_df<- surv_brca_cli|> select(time_in_years,vital_status,group)|> filter(
 fit24 <- survfit(Surv(time_in_years,vital_status)~group, data = group2_4_df)
 
 
-ggsurvplot(
+KM_24 <- ggsurvplot(
   fit24,
   conf.int = FALSE,                
   risk.table = FALSE,              
@@ -295,9 +297,11 @@ ggsurvplot(
   ylab = "Survival Probability",  
   ggtheme = theme_minimal(),
   pval = FALSE,
-  title= "Kaplan Meier plot for group A and B",
-  legend.labs = c("Group A", "Group B")
+  title= "Kaplan Meier plot for group A and C",
+  legend.labs = c("Group A", "Group C")
 )  
+
+ggsave("KM_24.png", plot = KM_24$plot, width = 8, height = 6, dpi = 300,bg="white")
 ```
 
 ```{r}
@@ -452,7 +456,7 @@ plot_data_diffbd <- data.frame(
   upper_ci = upper_ci_groupbd_dif)
 
 # Generate survival difference plot
-ggplot(plot_data_diffbd, aes(x = time)) +
+KM_diff_24 <- ggplot(plot_data_diffbd, aes(x = time)) +
   geom_line(aes(y = difference, color = "Survival Difference"), size = 1.2) +
   geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci, fill = "95% Confidence Interval"), alpha = 0.3) +
   geom_hline(aes(yintercept = 0, linetype = "No Difference Line"), color = "red", size = 1) +
@@ -460,9 +464,9 @@ ggplot(plot_data_diffbd, aes(x = time)) +
   scale_fill_manual(name = "Confidence Bands", values = c("95% Confidence Interval" = "blue")) +
   scale_linetype_manual(name = "Reference", values = c("No Difference Line" = "dashed")) +
   labs(
-    title = "Survival difference plot for group A and B",
+    title = "Survival difference plot for group A and C",
     x = "Time (Years)",
-    y = "Survival Difference (Group A - Group B)"
+    y = "Survival Difference (Group A - Group C)"
   ) +
   theme_minimal() +
   theme(
@@ -471,7 +475,7 @@ ggplot(plot_data_diffbd, aes(x = time)) +
     legend.text = element_text(size = 10),
     plot.title = element_text(face = "bold", size = 18)
   )
-
+ggsave("KM_diff_24.png", plot = KM_diff_24, width = 8, height = 6, dpi = 300,bg="white")
 ```
 
 #################################################################################################### 
