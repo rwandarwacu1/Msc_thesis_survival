@@ -148,11 +148,11 @@ This is an open resources data, thus it was used to generate plots for presented
 
 **design and setting**
 
-Online survey 
+This is qualitative study aimed at understanding clinicians preference on visualisation of survival data using different plots such as Kapln Meier , survival difference, Mean Residual life  and Mean residual Li=fe difference plot.  
 
 **recruitment**
 
-
+Data were collected using anonymous  Online questionnaire "Google Form", and 
 
 **analysis** 
 
