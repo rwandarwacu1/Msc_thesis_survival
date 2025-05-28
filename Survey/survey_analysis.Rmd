@@ -1,0 +1,553 @@
+---
+title: "Survey_analysis"
+author: "Victor Rwandarwacu"
+date: "2025-05-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## survey Analysis 
+
+```{r}
+#library 
+library(readxl)
+library(janitor)
+library (tidyverse)
+library(table1)
+library(rpart)
+library(rpart.plot)
+
+
+
+
+```
+
+
+```{r}
+#import data 
+survey_data <- read_xlsx("Survey_coded_export20250521.xlsx")
+
+
+```
+#Tidy data & rename columns 
+
+```{r}
+
+survey_data <- survey_data %>% clean_names()
+survey_data <- survey_data %>% 
+  select(-pre_km 
+,-pre_survdiff,-pre_mrl,-pre_mr_ldiff,-post_km,-post_survdiff,-post_mrl,-post_mr_ldiff)
+
+
+
+sapply(survey_data,class)
+#colSums(is.na(survey_data))
+
+colnames(survey_data)
+
+categorical_vars <- c("qualification","country","pre_km_code","pre_survdiff_code","pre_mrl_code",       "pre_mr_ldiff_code","post_km_code","post_survdiff_code","post_mrl_code","post_mr_ldiff_code","ranking1_km","ranking1_survdiff","ranking1_mrl","ranking1_mr_ldiff","ranking2_km","ranking2_survdiff","ranking2_mrl","ranking2_mr_ldiff")
+
+survey_data[categorical_vars] <- lapply(survey_data[categorical_vars],factor)
+summary(survey_data)
+```
+
+
+
+## table 1_ demographic summary 
+
+```{r}
+table1(~ country+qualification+knowledge_rate , data = survey_data, caption = "<b>Descriptive summary" )
+```
+
+## Exploratory visualisation 
+
+## self rated knowledge score 
+```{r}
+score_rate_distribution <- survey_data %>%  group_by(knowledge_rate) %>% summarise( count=n())
+score_rate_distribution
+
+distr_knowledge_score<- ggplot(data = score_rate_distribution, aes(x = as.factor(knowledge_rate), y = count)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  geom_text(aes(label = count), vjust = -0.3, size = 4.5) +
+  labs(title = "Distribution of Self-rated Knowledge Scores",
+       x = "Self-rated Knowledge Score",
+       y = NULL) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    plot.title = element_text(face = "bold", size = 16),         
+    axis.title.x = element_text(size = 14, face = "bold"),       
+    axis.text.x = element_text(size = 12)
+  )
+
+ggsave("Distribution of Self-rated Knowledge Scores.png", plot = distr_knowledge_score, width = 10, height = 6, dpi = 300,bg="white")
+
+distr_knowledge_score
+```
+
+## Do those who said they know actually know?
+```{r}
+
+# Create a proportion of correct answers on pre-test
+survey_data <- survey_data %>%
+  mutate(
+    pre_correct = rowMeans(across(ends_with("pre_km_code") | 
+                                  ends_with("pre_survdiff_code") | 
+                                  ends_with("pre_mrl_code") | 
+                                  ends_with("pre_mr_ldiff_code"), 
+                                  ~ . == "CORRECT", 
+                                  .names = "correct_{col}"), 
+                           na.rm = TRUE)
+  )
+
+# Average correctness by knowledge level
+knowledge_plot_data <- survey_data %>%
+  group_by(knowledge_rate) %>%
+  summarise(avg_pre_correct = mean(pre_correct, na.rm = TRUE))
+
+# Plot
+avg_prop_pretest <- ggplot(knowledge_plot_data, aes(x = factor(knowledge_rate), y = avg_pre_correct)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "Proportion of Correct Interpretation per Self-rated Knowledge",
+    x = "Self-rated Knowledge (1 = Low, 10 = High)",
+    y = "Average Proportion Correct (Pre-Test)"
+  ) +
+  theme_minimal()+
+  theme(
+    plot.title = element_text(face = "bold", size = 16),         
+    axis.title.x = element_text(size = 14, face = "bold"),       
+    axis.text.x = element_text(size = 12),
+    axis.title.y = element_text(size = 14, face = "bold"),       
+    axis.text.y = element_text(size = 12)
+  )
+
+ggsave("Average Proportion Correct (Pre-Test).png", plot = avg_prop_pretest, width = 10, height = 6, dpi = 300,bg="white")
+avg_prop_pretest
+```
+
+
+# Question 2: Did those who don’t know learn (pre vs post)?
+```{r}
+
+
+# Create total pre/post correctness
+survey_data <- survey_data %>%
+  mutate(
+    pre_score = rowSums(across(ends_with("pre_km_code") | 
+                               ends_with("pre_survdiff_code") | 
+                               ends_with("pre_mrl_code") | 
+                               ends_with("pre_mr_ldiff_code"), ~ . == "CORRECT")),
+    post_score = rowSums(across(ends_with("post_km_code") | 
+                                ends_with("post_survdiff_code") | 
+                                ends_with("post_mrl_code") | 
+                                ends_with("post_mr_ldiff_code"), ~ . == "CORRECT")),
+    learning_gain = post_score - pre_score
+  )
+
+# Filter for those with low knowledge rate (1 or 5)
+low_knowledge_learners <- survey_data %>%
+  filter(knowledge_rate <= 5)
+
+# Plot learning gain
+knowledge_gain <- ggplot(low_knowledge_learners, aes(x = factor(knowledge_rate), y = learning_gain)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(
+    title = "Learning Gain for Low-Knowledge Respondents",
+    x = "Self-rated Knowledge (Low)",
+    y = "Change in Correct Answers (Post - Pre)"
+  ) +
+  theme_minimal()+
+  theme(
+    plot.title = element_text(face = "bold", size = 16),         
+    axis.title.x = element_text(size = 14, face = "bold"),       
+    axis.text.x = element_text(size = 12),
+    axis.title.y = element_text(size = 14, face = "bold"),       
+    axis.text.y = element_text(size = 12)
+  )
+
+ggsave("Learning Gain for Low-Knowledge Respondents.png", plot = knowledge_gain, width = 10, height = 6, dpi = 300,bg="white")
+
+knowledge_gain
+```
+
+## knowledge gain faceted by types of plots ( pre versus post )
+```{r}
+
+# Prepare long-format data for plotting
+correctness_long <- survey_data %>%
+  select(ends_with("code")) %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(
+    cols = -id,
+    names_to = "question_full",
+    values_to = "correctness"
+  ) %>%
+  mutate(
+    phase = factor(
+      case_when(
+      str_detect(question_full, "^pre_") ~ "Pre_Learning",
+      str_detect(question_full, "^post_") ~ "Post_Learning"
+    ),levels = c("Pre_Learning", "Post_Learning")  # Specify order explicitly
+),
+    question = case_when(
+      str_detect(question_full, "km") ~ "Kaplan Meier",
+      str_detect(question_full, "survdiff") ~ "Survival difference ",
+      str_detect(question_full, "mrl") ~ "MRL",
+      str_detect(question_full, "mr_ldiff") ~ "MRL Difference"
+    ),
+    correctness = factor(correctness, levels = c("INCORRECT", "CORRECT")) # Ensure CORRECT is on the bottom
+  )
+
+# stacked proportional bars, faceted by question and phase
+prop_correct_pre_vs_post <- ggplot(correctness_long, aes(x = 1, fill = correctness)) +
+  geom_bar(position = "fill", width = 0.5) +
+  facet_grid(rows = vars(question), cols = vars(phase), switch = "y") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(values = c("CORRECT" = "#0072B2", "INCORRECT" = "#E69F00")) +
+  labs(
+    title = "Proportion of Correct vs Incorrect Interpretations(Pre vs Post)",
+    x = NULL,
+    y = "Proportion",
+    fill = "Answer"
+  ) +
+  theme_minimal() +
+  theme(
+  axis.text.x = element_blank(),
+  axis.ticks.x = element_blank(),
+  strip.text.y.left = element_text(angle = 0, size = 12,face = "bold"),
+  strip.placement = "outside",
+  strip.text.x = element_text(size = 10,face = "bold"),
+  plot.title = element_text(face = "bold", size = 14),
+  axis.title.x = element_text(size = 14, face = "bold"),       
+  axis.title.y = element_text(size = 14, face = "bold"),       
+  axis.text.y = element_text(size = 8,face = "bold"),
+  legend.position = "top"
+  
+)
+
+ggsave("Proportion of Correct vs Incorrect (Pre vs Post).png", plot = prop_correct_pre_vs_post, width = 10, height = 6, dpi = 300,bg="white")
+prop_correct_pre_vs_post
+```
+
+## McNemar test for each question 
+```{r}
+library(dplyr)
+library(tidyr)
+library(broom)
+
+# Convert to wide format
+correctness_wide <- correctness_long %>%
+  select(id, question, phase, correctness) %>%
+  pivot_wider(
+    names_from = phase,
+    values_from = correctness
+  )
+
+# Run McNemar test for each question
+mcnemar_results <- correctness_wide %>%
+  group_by(question) %>%
+  summarise(
+    p_value = broom::tidy(
+      stats::mcnemar.test(
+        table(Pre_Learning, Post_Learning)
+      )
+    )$p.value
+  )
+
+print(mcnemar_results)
+
+```
+
+
+## side by side bar chart 
+
+```{r}
+
+
+# Reshape to long format with proper labels for Pre and Post
+ranking_bar <- survey_data %>%
+  pivot_longer(
+    cols = starts_with("ranking"),
+    names_to = "ranking_type",
+    values_to = "rank"
+  ) %>%
+  mutate(
+    question = case_when(
+      str_detect(ranking_type, "km") ~ "Kaplan Meier(KM)",
+      str_detect(ranking_type, "survdiff") ~ "Survival difference",
+      str_detect(ranking_type, "mrl$") ~ "Mean Residual Life(MRL)",
+      str_detect(ranking_type, "mr_ldiff") ~ "MRL difference"
+    ),
+    preference = case_when(
+      str_detect(ranking_type, "ranking1") ~ "Easy to understand",
+      str_detect(ranking_type, "ranking2") ~ "use with patient"
+    ),
+    rank = factor(rank, levels = c("1", "2", "3", "4"))  # Ensure correct rank order
+  ) %>%
+  drop_na(rank)
+
+#  Side-by-side bars for Pre vs Post,
+ranking_bar_plot <- ggplot(ranking_bar, aes(x = rank, fill = preference)) +
+  geom_bar(position = "dodge") +
+  facet_wrap(~question) +
+  scale_fill_manual(values = c("Easy to understand" = "#0072B2", "use with patient" = "#E69F00")) +
+  labs(
+    title = "Distribution of Rankings ",
+    x = "Rank",
+    y = "Number of Participants",
+    fill = "preference"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 16),         
+    axis.title.x = element_text(size = 14, face = "bold"),       
+    axis.text.x = element_text(size = 12),
+    axis.title.y = element_text(size = 14, face = "bold"),       
+    axis.text.y = element_text(size = 12),
+    strip.text = element_text(size = 12, face = "bold")
+   
+)
+
+ggsave("Distribution of Rankings.png", plot = ranking_bar_plot, width = 10, height = 6, dpi = 300,bg="white")
+ranking_bar_plot
+```
+
+
+
+#scatter plot with jitter 
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+# Prepare the data with factors
+ranking_scatter <- survey_data %>%
+  select(id,
+         ranking1_km, ranking2_km,
+         ranking1_survdiff, ranking2_survdiff,
+         ranking1_mrl, ranking2_mrl,
+         ranking1_mr_ldiff, ranking2_mr_ldiff) %>%
+  pivot_longer(
+    cols = -id,
+    names_to = c("phase", "question"),
+    names_pattern = "ranking(\\d)_(.*)",
+    values_to = "rank"
+  ) %>%
+  mutate(
+    phase = recode(phase, `1` = "Pre", `2` = "Post"),
+    question = case_when(
+      question == "km" ~ "Kaplan Meier",
+      question == "survdiff" ~ "Survival difference",
+      question == "mrl" ~ "MRL",
+      question == "mr_ldiff" ~ "MRL difference",
+      TRUE ~ question
+    )
+  ) %>%
+  pivot_wider(names_from = phase, values_from = rank) %>%
+  drop_na() %>%
+  mutate(
+    Pre = factor(Pre, levels = c("1", "2", "3", "4")),
+    Post = factor(Post, levels = c("1", "2", "3", "4"))
+  )
+
+```
+
+
+```{r}
+
+
+ranking_scatter_plot <-ggplot(ranking_scatter, aes(x = Pre, y = Post)) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.4, color = "#0072B2", size = 2.5) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray40") +
+  facet_wrap(~question) +
+ scale_x_discrete(name = "Easy to understand by clinician") +
+  scale_y_discrete(name = "Easy to use in consultation") +
+  labs(
+    title = "Agreement Between Rankings"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(face = "bold", size = 12),
+    strip.text = element_text(size = 12, face = "bold"),
+    axis.title.x = element_text(size = 14, face = "bold"),       
+    axis.text.x = element_text(size = 12),
+    axis.title.y = element_text(size = 14, face = "bold"),       
+    axis.text.y = element_text(size = 12),
+  )
+ggsave(" Agreement of Rankings.png", plot = ranking_scatter_plot, width = 10, height = 6, dpi = 300,bg="white")
+ranking_scatter_plot
+
+```
+
+
+
+
+```{r}
+
+# Make sure Pre and Post are factors with defined levels
+ranking_scatter <- ranking_scatter %>%
+  mutate(
+    Pre = factor(Pre, levels = 1:4),
+    Post = factor(Post, levels = 1:4)
+  )
+
+# Count occurrences of each Pre-Post combination
+ranking_counts <- ranking_scatter %>%
+  count(question, Pre, Post)
+
+# Plot
+g<- ggplot(ranking_counts, aes(x = Pre, y = Post)) +
+  geom_jitter(data = ranking_scatter, aes(x = Pre, y = Post), 
+              width = 0.2, height = 0.2, alpha = 0.3, color = "#0072B2", size = 2.5) +
+  geom_text(aes(label = n), color = "black", fontface = "bold", size = 4) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray40") +
+  facet_wrap(~question) +
+  scale_x_discrete(name = "Easy to understand by clinician") +
+  scale_y_discrete(name = "Easy to use in consultation") +
+  labs(
+    title = "Agreement Between Rankings (with Counts)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(face = "bold", size = 12)
+  )
+
+
+ggplotly(g)
+
+```
+
+
+
+## Ranking chnages (allevial plot)
+```{r}
+
+library(ggalluvial)
+
+
+# Create long format for rankings
+ranking_long <- survey_data %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(
+    cols = starts_with("ranking"),
+    names_to = "ranking_type",
+    values_to = "rank"
+  ) %>%
+  mutate(
+    plot_type = case_when(
+      str_detect(ranking_type, "km") ~ "Kaplan Meier(KM)",
+      str_detect(ranking_type, "survdiff") ~ "Survival difference",
+      str_detect(ranking_type, "mrl$") ~ "Mean Residual Life(MRL)",
+      str_detect(ranking_type, "mr_ldiff") ~ "MRL difference"
+    ),
+    preference = case_when(
+      str_detect(ranking_type, "ranking1") ~ "Pre",
+      str_detect(ranking_type, "ranking2") ~ "Post"
+    )
+  ) %>%
+  drop_na(rank)
+
+# Reshape into wide format to define flows: one row per person-question
+ranking_wide <- ranking_long %>%
+  pivot_wider(id_cols = c(id, plot_type),
+              names_from = preference,
+              values_from = rank)
+
+# Plot: Alluvial diagram
+ranking_change_plot <- ggplot(ranking_wide,
+       aes(axis1 = as.factor(Pre),
+           axis2 = as.factor(Post))) +
+  geom_alluvium(aes(fill = plot_type), width = 0.25, alpha = 0.8) +
+  geom_stratum(width = 0.25, color = "black", fill = "gray90") +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
+  facet_wrap(~plot_type) +
+  scale_x_discrete(limits = c("Easy to understand", "use with patient")) +
+  labs(
+    title = "Ranking Changes: Easy to understand by clinician versus Use with patient in consultation",
+    x = "preference", y = "Number of Participants"
+  ) +
+  theme_minimal()+
+  theme(plot.title = element_text(face = "bold", size = 14))
+
+ggsave("Ranking change.png", plot = ranking_change_plot, width = 10, height = 6, dpi = 300,bg="white")
+```
+
+
+
+## Fitting a tree to the data set #####################################################
+
+
+```{r}
+
+library(rpart.plot)
+# Create useful predictors
+tree_data <- survey_data %>%
+  mutate(
+    pre_total_correct = rowSums(across(c(pre_km_code, pre_survdiff_code, pre_mrl_code, pre_mr_ldiff_code), ~ . == "CORRECT")),
+    post_mrl_correct = factor(post_mrl_code, levels = c("INCORRECT", "CORRECT")),
+    qualification = factor(qualification),
+    Self_rated_knowledge = as.numeric(knowledge_rate)
+  ) %>%
+  select(post_mrl_correct, Self_rated_knowledge, pre_total_correct, qualification) %>%
+  drop_na()
+
+tree_data <- tree_data %>%
+  mutate(
+    qualification = case_when(
+      qualification == "Medical Doctor (Specialist or postgraduate)" ~ "MD_Specialist",
+      qualification == "Medical Doctor (General Practitioner)" ~ "MD_GP",
+      qualification == "Medical student" ~ "Med_student"
+    )
+  )
+head(tree_data)
+# Fit decision tree model
+tree_model <- rpart(post_mrl_correct ~ ., data = tree_data, method = "class", control = rpart.control(cp = 0, minsplit = 10,minbucket =5 ,maxdepth = 10))
+
+# Plot the tree
+rpart.plot(tree_model, type = 4, extra = 104,
+           main = "Prediction of correct MRL plot interpretation post learning section")
+
+```
+## predict learning gain 
+
+```{r}
+
+
+# data process
+tree_data_gain <- survey_data %>%
+  mutate(
+    # Convert correctness codes to numeric (1 = correct, 0 = incorrect)
+    pre_total_correct = rowSums(across(c(pre_km_code, pre_survdiff_code, pre_mrl_code, pre_mr_ldiff_code), ~ . == "CORRECT")),
+    post_total_correct = rowSums(across(c(post_km_code, post_survdiff_code, post_mrl_code, post_mr_ldiff_code), ~ . == "CORRECT")),
+    learning_gain = post_total_correct - pre_total_correct,
+    qualification = case_when(
+      qualification == "Medical Doctor (Specialist or postgraduate)" ~ "MD_Specialist",
+      qualification == "Medical Doctor (General Practitioner)" ~ "MD_GP",
+      qualification == "Medical student" ~ "Med_student"
+    ),
+    knowledge_rate = as.numeric(knowledge_rate)
+  ) %>%
+  select(learning_gain, knowledge_rate, pre_total_correct, qualification) %>%
+  drop_na()
+
+# Fit regression tree model
+reg_tree <- rpart(learning_gain ~ ., data = tree_data_gain, method = "anova", control = rpart.control(cp = 0, minsplit = 10,minbucket =5 ,maxdepth = 10))
+
+# Plot the regression tree
+regression_tree_gain <- rpart.plot(reg_tree, type = 4, extra = 101,
+           main = "Regression Tree Predicting Learning Gain")
+
+ggsave("Regression Tree Predicting Learning Gain.png", plot = regression_tree_gain, width = 10, height = 6, dpi = 300,bg="white")
+
+```
+
