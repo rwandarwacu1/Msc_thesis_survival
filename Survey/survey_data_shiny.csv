@@ -1,0 +1,33 @@
+"id","knowledge_rate","qualification","country","pre_km_code","pre_survdiff_code","pre_mrl_code","pre_mr_ldiff_code","post_km_code","post_survdiff_code","post_mrl_code","post_mr_ldiff_code","ranking1_km","ranking1_survdiff","ranking1_mrl","ranking1_mr_ldiff","ranking2_km","ranking2_survdiff","ranking2_mrl","ranking2_mr_ldiff","pre_correct","post_correct","pre_score","post_score","learning_gain"
+1,2,"Medical Doctor (Specialist or postgraduate)","Rwanda","INCORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","3","2","4","1","3","2","4",0.25,0.25,1,3,2
+2,4,"Medical Doctor (General Practitioner)","Rwanda","INCORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","2","3","4","1","2","3","4",0.5,0.5,2,3,1
+3,4,"Medical Doctor (General Practitioner)","Rwanda","INCORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","1","4","3","2","4","3","1","2",0.25,0.25,1,4,3
+4,4,"Medical Doctor (General Practitioner)","Rwanda","INCORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","4","2","3","1","4","2","3",0,0,0,3,3
+5,2,"Medical Doctor (Specialist or postgraduate)","Rwanda","INCORRECT","CORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","1","3","2","4","1","3","2","4",0.5,0.5,2,4,2
+6,9,"Medical Doctor (Specialist or postgraduate)","Rwanda","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","4","3","2","1","4","3","2","1",1,1,4,3,-1
+7,5,"Medical Doctor (General Practitioner)","Rwanda","CORRECT","CORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","4","2","3","1","4","3","2","1",0.75,0.75,3,2,-1
+8,2,"Medical Doctor (Specialist or postgraduate)","Rwanda","CORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","4","2","1","3","4","2","1","3",0.5,0.5,2,2,0
+9,3,"Medical Doctor (Specialist or postgraduate)","Germany","CORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","INCORRECT","CORRECT","1","2","4","3","1","2","4","3",0.5,0.5,2,3,1
+10,3,"Medical Doctor (General Practitioner)","Rwanda","CORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","4","2","3","1","3","4","2","1",0.5,0.5,2,2,0
+11,1,"Medical Doctor (General Practitioner)","Portugal","INCORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","2","4","3","1","2","4","3","1",0,0,0,4,4
+12,1,"Medical Doctor (General Practitioner)","Rwanda","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","INCORRECT","1","2","3","4","1","2","3","4",0,0,0,2,2
+13,5,"Medical Doctor (Specialist or postgraduate)","Switzerland","INCORRECT","CORRECT","CORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","INCORRECT","1","2","4","3","1","2","3","4",0.5,0.5,2,1,-1
+14,5,"Medical Doctor (Specialist or postgraduate)","Switzerland","CORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","2","3","4","1","3","2","4",0.5,0.5,2,3,1
+15,8,"Medical Doctor (Specialist or postgraduate)","Spain","CORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","1","2","3","4","1","2","3","4",0.25,0.25,1,4,3
+16,1,"Medical Doctor (General Practitioner)","Rwanda","CORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","INCORRECT","1","2","3","4","1","2","3","4",0.25,0.25,1,2,1
+17,7,"Medical Doctor (Specialist or postgraduate)","Rwanda","INCORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","4","3","2","1","4","2","3","1",0.25,0.25,1,3,2
+18,6,"Medical Doctor (Specialist or postgraduate)","Italy","CORRECT","CORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","4","3","2","1","4","3","2","1",0.75,0.75,3,3,0
+19,4,"Medical Doctor (Specialist or postgraduate)","Rwanda","INCORRECT","INCORRECT","CORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","1","2","3","4","2","1","3","4",0.25,0.25,1,0,-1
+20,2,"Medical Doctor (Specialist or postgraduate)","Rwanda","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","INCORRECT","1","2","3","4","1","2","3","4",0.75,0.75,3,2,-1
+21,1,"Medical student","Ireland","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","CORRECT","2","1","3","4","2","1","3","4",1,1,4,4,0
+22,5,"Medical student","Ireland","CORRECT","INCORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","2","4","3","1","2","4","3",0.5,0.5,2,3,1
+23,5,"Medical Doctor (General Practitioner)","Rwanda","CORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","4","3","2","1","4","3","2","1",0.25,0.25,1,3,2
+24,7,"Medical Doctor (General Practitioner)","Rwanda","CORRECT","CORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","2","3","4","1","2","3","4",0.75,0.75,3,3,0
+25,5,"Medical Doctor (Specialist or postgraduate)","Switzerland","CORRECT","INCORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","2","3","4","1","2","3","4",0.25,0.25,1,3,2
+26,5,"Medical Doctor (General Practitioner)","Rwanda","CORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","1","2","3","4","1","2","3","4",0.5,0.5,2,3,1
+27,1,"Medical student","Rwanda","INCORRECT","CORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","2","1","3","4","2","1","3","4",0.25,0.25,1,0,-1
+28,8,"Medical Doctor (Specialist or postgraduate)","Ireland","INCORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","2","3","1","4","4","3","1","2",0.25,0.25,1,4,3
+29,2,"Medical Doctor (Specialist or postgraduate)","Rwanda","CORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","1","3","4","2","1","3","2","4",0.25,0.25,1,0,-1
+30,1,"Medical Doctor (General Practitioner)","Ethiopia","INCORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","INCORRECT","2","1","3","4","1","2","3","4",0.25,0.25,1,3,2
+31,6,"Medical Doctor (General Practitioner)","Rwanda","INCORRECT","INCORRECT","CORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","INCORRECT","4","3","2","1","4","3","2","1",0.25,0.25,1,0,-1
+32,7,"Medical Doctor (General Practitioner)","Ethiopia","CORRECT","CORRECT","INCORRECT","INCORRECT","CORRECT","CORRECT","CORRECT","CORRECT","1","4","2","3","2","1","4","3",0.5,0.5,2,4,2
