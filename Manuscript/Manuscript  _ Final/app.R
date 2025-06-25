@@ -38,7 +38,7 @@ correctness_long <- survey_data %>%
         knowledge_group = if_else(knowledge_rate < 5, "<5 (Low)", "≥5 (High)")
       )
 
-# Calculation of  accuracy per plot  and phase
+# Calculation of  proportion of CORRECT per plot  and phase
 correct_prop <- correctness_long %>%
   group_by( plot, phase) %>%
   summarise(prop_correct = mean(correctness == "CORRECT")) %>%
@@ -76,7 +76,7 @@ ranking_df <- survey_data %>%
     Use_with_patient = factor(Use_with_patient, levels = c("1", "2", "3", "4"))
   )
 
-# user interface 
+# user interface design   
 ui <- dashboardPage(
   
   dashboardHeader(
@@ -451,7 +451,7 @@ server <- function(input, output) {
  
  
  
- # Interactive 
+ # Interactive version
  ggplotly(ranking_post_learning_plot)})   
 }
 
