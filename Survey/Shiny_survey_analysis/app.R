@@ -168,9 +168,17 @@ server <- function(input, output) {
   })
   
   output$prelearningPlot <- renderPlot({
-    knowledge_plot_data <- survey_data %>%
+    knowledge_plot_data <- survey_data %>% mutate(
+      pre_correct_KM_MRL = rowMeans(across(ends_with("pre_km_code") | 
+                                      
+                                      ends_with("pre_mrl_code"), 
+                                    ~ . == "CORRECT", 
+                                    .names = "correct_{col}"), 
+                             na.rm = TRUE)
+      
+    ) %>% 
       group_by(knowledge_rate) %>%
-      summarise(avg_pre_correct = mean(pre_correct, na.rm = TRUE))
+      summarise(avg_pre_correct = mean(pre_correct_KM_MRL, na.rm = TRUE))
     
     # Plot
     ggplot(knowledge_plot_data, aes(x = factor(knowledge_rate), y = avg_pre_correct)) +

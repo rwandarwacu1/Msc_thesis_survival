@@ -1,0 +1,708 @@
+---
+title: "Victor_Thesis"
+author: "Victor Rwandarwacu"
+date: "2024-11-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## TCGA Clinical data set
+
+https://portal.gdc.cancer.gov/projects/TCGA-BRCA 
+
+```{r }
+
+library(survival)
+library(survminer)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+```
+
+## Dataset overview 
+
+This is a data set from NIH National Cancer Institute , TCGA Program on a project called "Breast invasive carcinoma (BRCA)"
+The data set contains information about: demography, exposure , Family History(regarding cancer), Follow up, Molecular Test, other Clinical Attribute, pathology detail,and Treatment.
+
+```{r , echo=FALSE}
+# Import the TSV file TCGA brca clinical data 
+
+brca_clinical <- read.delim("clinical.tsv")
+#sapply(brca_clinical,class)
+
+names(brca_clinical)
+head(brca_clinical)
+nrow(brca_clinical)
+```
+
+
+##subgroug needed for survival analysis ####
+
+This survival analysis included the following columns: gender, race, ethnicity  age at diagnosis, vital status (Survival state), cancer staging and Management.
+
+```{r , echo=FALSE}
+brca_cli_sub<- brca_clinical|>select(case_id,gender,race,ethnicity,age_at_index, year_of_birth,year_of_death,age_at_diagnosis,vital_status,days_to_diagnosis,days_to_death,days_to_last_follow_up,ajcc_pathologic_stage, ajcc_pathologic_t, ajcc_pathologic_n,ajcc_pathologic_m,treatment_type,)
+
+head(brca_cli_sub)
+names(brca_clinical)
+
+```
+##data cleaning 
+
+Record variables names  and types 
+
+```{r , echo=FALSE}
+
+
+ 
+##rename column 
+colnames(brca_cli_sub)<- c("case_id","gender","race","ethnicity","age_at_index", "year_of_birth","year_of_death","age_at_diagnosis","vital_status","days_to_diagnosis","days_to_death","days_to_last_follow_up", "pathologic_stage","pathologic_t","pathologic_n","pathologic_m","treatment_type")
+
+
+```
+
+
+
+
+
+
+
+```{r , echo=FALSE}
+brca_cli_sub<- brca_cli_sub|> mutate(age_at_diagnosis=as.numeric(age_at_diagnosis),days_to_death=as.numeric(days_to_death),days_to_last_follow_up=as.numeric(days_to_last_follow_up))
+
+#conversion of time from days to years 
+#brca_cli_sub<- brca_cli_sub|>mutate(age_diag_yrs=age_at_diagnosis/365.25,yrs_to_event=days_to_death/365.25,yrs_to_last_follow_up=days_to_last_follow_up/365.25)
+
+
+```
+
+
+
+```{r , echo=FALSE}
+###remain with high level stages 
+
+brca_cli_sub <- brca_cli_sub %>%
+  mutate(pathologic_stage = case_when(
+    grepl("Stage ([IVX]+)[A-Z]*", pathologic_stage) ~ gsub("Stage ([IVX]+)[A-Z]*", "Stage \\1", pathologic_stage),
+    TRUE ~ "Unspecified"
+  ))
+
+
+
+head(brca_cli_sub)
+```
+
+
+
+```{r , echo=FALSE}
+#modification of the treatment type into 2 categories
+
+brca_cli_sub <- brca_cli_sub %>%
+  mutate(treatment_type = case_when(
+    grepl("Pharmaceutical Therapy, NOS", treatment_type, ignore.case = TRUE) ~ "Chemotherapy",
+    grepl("Radiation Therapy, NOS",treatment_type, ignore.case = TRUE) ~ "Radiotherapy",
+    TRUE ~ "Other"))
+```
+
+
+
+
+
+
+
+```{r , echo=FALSE}
+#  Modify "race" to include only three categories
+brca_cli_sub <- brca_cli_sub %>%
+  mutate(race = case_when(
+    grepl("black or african american", race, ignore.case = TRUE) ~ "Black or African American",
+    grepl("white", race, ignore.case = TRUE) ~ "White",
+    TRUE ~ "Other"
+  ))
+
+##remove male patients 
+#brca_cli_sub <- brca_cli_sub %>%filter(tolower(gender) != "male"| is.na(gender))
+##remove negative time to follow up
+#brca_cli_sub <- brca_cli_sub %>%filter(days_to_last_follow_up >= 0)
+#brca_cli_sub <- brca_cli_sub %>%filter(days_to_last_follow_up >= 0,yrs_to_last_follow_up>=0)
+summary(brca_cli_sub)
+```
+
+
+
+```{r , echo=FALSE}
+
+
+```
+
+
+##distribution of variables
+distribution of age at diagnosis 
+
+```{r , echo=FALSE}
+brca_cli_sub %>%
+  ggplot(aes(x = age_at_diagnosis)) +
+  geom_histogram(binwidth = 2, na.rm = TRUE, fill = "blue", color = "black") +
+  labs(
+    title = "Distribution of Age at Diagnosis",
+    x = "Age at Diagnosis (Years)",
+    y = "Count"
+  )
+
+
+
+brca_cli_sub %>%
+  ggplot(aes(x = days_to_death)) +
+  geom_histogram(bins = 30, na.rm = TRUE, fill = "blue", color = "black") +
+  labs(
+    title = "Distribution of time to event",
+    x = "time to event (Years)",
+    y = "Count"
+  )
+
+brca_cli_sub %>%
+  ggplot(aes(x = days_to_last_follow_up)) +
+  geom_histogram(bins = 30, na.rm = TRUE, fill = "blue", color = "black") +
+  labs(
+    title = "Distribution of time of follow up",
+    x = "time of follow up (Years)",
+    y = "Count"
+  )
+summary(brca_cli_sub$age_diag_yrs)
+```
+
+
+
+
+
+
+
+##contigency tables##
+
+```{r , echo=FALSE}
+addmargins(table(brca_cli_sub$vital_status,brca_cli_sub$treatment_type))
+
+```
+
+
+
+```{r , echo=FALSE}
+addmargins(table(brca_cli_sub$race,brca_cli_sub$vital_status))
+```
+there is predominance of the white population.
+
+encode the vital status column  and add plot KMP AND cumulative functions plot 
+
+
+###merging the time to event and time to follow up data##########################################################
+
+
+```{r , echo=FALSE}
+#USING IF ELSE 
+#brca_cli_sub<- brca_cli_sub|> mutate(time= if_else(is.na(days_to_death),days_to_last_follow_up,days_to_death))
+
+#USING RESHAPE
+#transformation to long format 
+brca_cli_sub <- brca_cli_sub %>%
+  mutate(id = row_number())
+
+brca_cli_sub_long<- reshape(
+  brca_cli_sub,
+  varying = list(c("days_to_last_follow_up", "days_to_death")),
+  v.names = "time",
+  timevar = "source",
+  times = c("days_to_last_follow_up", "days_to_death"),
+  direction = "long"
+)
+head(brca_cli_sub_long)
+#filling the missing values in long format 
+
+filled_time<- brca_cli_sub_long %>%
+  group_by(id) %>%
+  summarize(time = first(na.omit(time)), .groups = "drop")
+
+#reshape back to wide format , 
+#data set with merged time 
+
+brca_cli_sub_filled<-brca_cli_sub|> select(-days_to_death,-days_to_last_follow_up) |> left_join(filled_time, by = "id")
+head(brca_cli_sub_filled)
+```
+
+
+
+
+```{r , echo=FALSE}
+
+##keep only female patients 
+brca_cli_sub_filled <- brca_cli_sub_filled %>%filter(tolower(gender) == "female")
+##Keep needed variables only 
+##remove negative time 
+brca_cli_sub_filled <- brca_cli_sub_filled %>%filter(time >= 0)
+
+#sort the data set by treatment, to keep individual patient instead of duplicates  , for further analysis, 
+brca_cli_sub_chemo <- brca_cli_sub_filled|> filter(treatment_type == "Chemotherapy")
+
+
+
+```
+
+
+
+```{r }
+####Survival data set 
+
+surv_brca_cli<- brca_cli_sub_chemo|> select(gender,race,ethnicity,vital_status,pathologic_stage,pathologic_t,pathologic_n,pathologic_m,time) 
+
+surv_brca_cli <- surv_brca_cli |> mutate(time_in_years = time /365.25 )
+
+summary(surv_brca_cli)
+hist(surv_brca_cli$time_in_years)
+
+```
+
+
+
+
+
+###preprocessing of survival data#### 
+```{r , echo=FALSE}
+#change columns from characters to factors 
+
+surv_brca_cli[] <- lapply(surv_brca_cli, function(x) if(!is.numeric(x)) as.factor(x) else x)
+sapply(surv_brca_cli,class)
+
+#encode vital status 
+surv_brca_cli <- surv_brca_cli|> mutate( vital_status= ifelse(vital_status == "Alive", 0, 1))
+
+colSums(is.na(surv_brca_cli))
+write.csv(surv_brca_cli, file = "surv_brca_cli.csv", row)
+
+summary(surv_brca_cli)
+```
+
+
+##Survival object##
+
+Overall Mortality risk and implications
+
+The following table include mortality  summary and risk 
+The graph is the kaplan maier plot of all values 
+```{r , echo=FALSE}
+#survival object for use 
+
+surv_object <- Surv(time = surv_brca_cli$time_in_years, event = surv_brca_cli$vital_status)
+
+
+fit1 <- survfit(surv_object ~ 1, data = surv_brca_cli)
+mortality_summary <- data.frame(
+    Time = summary(fit1)$time,
+    Risk = 1 - summary(fit1)$surv,
+    Std.Error = summary(fit1)$std.err,
+    Lower.95CI = summary(fit1)$lower,
+    Upper.95CI = summary(fit1)$upper
+  )
+
+head(mortality_summary)
+
+
+ggsurvplot(
+  fit1,
+  conf.int = TRUE,                
+  risk.table = TRUE,              
+  xlab = "Time in years",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),
+  
+)  
+```
+
+
+##KM PLOT stratification by pathologic stages 
+
+
+```{r , echo=FALSE}
+#fit the kaplan maier model 
+fit_path_stage <- survfit(surv_object ~ pathologic_stage , data = surv_brca_cli)
+#plot the survival curve 
+summary(fit_path_stage)
+
+ggsurvplot(
+  fit_path_stage,
+  size = 1.5,                  # Line thickness
+  font.x = c(16, "bold"),      # Font size for X-axis
+  font.y = c(16, "bold"),      # Font size for Y-axis
+  font.tickslab = c(10),       # Font size for tick labels
+  legend = "right",             # Legend position
+  conf.int = TRUE,                
+  risk.table = TRUE,             
+  pval = TRUE,                    
+  xlab = "Time(years)",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),      
+  legend.title = "pathological stage",     
+  risk.table.height = 0.5,        
+  surv.median.line = "hv" 
+  
+)
+
+```
+
+
+```{r , echo=FALSE}
+survdiff(formula = surv_object ~ pathologic_stage,  data = surv_brca_cli)
+
+
+```
+
+## survival ratio
+survival ratio plot for the pathological stage 
+This a novel approach of visualization of the survival data compring different covariates.
+For demonstration we will compare stage II and III
+
+```{r , echo=FALSE}
+#data frame with pathological stages as co-variate 
+##extraction of stage 3 and 2 data frame from the data set 
+path_stageII_df<- surv_brca_cli|> select(time,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage II")
+path_stageIII_df<- surv_brca_cli|> select(time,vital_status,pathologic_stage)|> filter(pathologic_stage == "Stage III")
+
+#KM fit of the data 
+#surv_ob_Path_stageII<- Surv(time = surv_ratio_brca_cli$time,event = surv_ratio_brca_cli$vital_status)
+
+km_fit_path_stageII <- survfit(Surv(time= time, event=vital_status) ~ 1, data = path_stageII_df)
+km_fit_path_stageIII <- survfit(Surv(time= time, event=vital_status) ~ 1, data = path_stageIII_df)
+
+####extract survival probabilities 
+
+# Manually define time points (e.g., every 30 days)
+manual_times <- seq(0, max(path_stageII_df$time, na.rm = TRUE), by = 30)
+
+# Extract survival probabilities for Pathologic stage 2
+surv_pathII <- summary(km_fit_path_stageII, times = manual_times, extend = TRUE)
+
+# Extract survival probabilities for pathologic stage 3
+surv_pathIII <- summary(km_fit_path_stageIII, times = manual_times, extend = TRUE)
+
+
+
+
+# Survival ratios and confidence intervals
+survival_ratio <- surv_pathIII$surv / surv_pathII$surv
+lower_ratio <- surv_pathIII$lower / surv_pathII$upper
+upper_ratio <- surv_pathIII$upper / surv_pathII$lower
+
+# Combine into a data frame
+ratio_data <- data.frame(
+  Time = manual_times,
+  Path_stageIII_surv= surv_pathIII$surv,
+  Path_stageII_surv= surv_pathII$surv,
+  Survival_Ratio = survival_ratio,
+  Lower = lower_ratio,
+  Upper = upper_ratio
+)
+
+# Survival probabilities for stage 2 and 3  (for plotting individual curves)
+surv_pathII_curve <- data.frame(Time = surv_pathII$time, Survival = surv_pathII$surv, Group = "pathologic_stageII")
+surv_pathIII_curve <- data.frame(Time = surv_pathIII$time, Survival = surv_pathIII$surv, Group = "pathologic_stageIII")
+
+# Combine survival curves into a single data frame
+survival_curves_path23_combined <- rbind(surv_pathII_curve, surv_pathIII_curve)
+
+library(ggplot2)
+
+# Plot survival ratio and individual survival curves
+ggplot() +
+  # Plot individual survival curves
+  geom_step(data = survival_curves_path23_combined, aes(x = Time, y = Survival, color = Group), size = 1) +
+  # Plot survival ratio
+  geom_step(data = ratio_data, aes(x = Time, y = Survival_Ratio), color = "green", size = 1) +
+  geom_ribbon(data = ratio_data, aes(x = Time, ymin = Lower, ymax = Upper), alpha = 0.3, fill = "red") +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "blue") +  # Reference line at ratio = 1
+  labs(
+    title = "Survival Ratio and Kaplan-Meier Curves",
+    x = "Follow-Up Time (Days)",
+    y = "Survival Probability / Ratio",
+    color = "Group"
+  ) +
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 2, label = "Higher survival for stage 3", hjust = 0) +
+  annotate("text", x = max(ratio_data$Time) * 0.3, y = 0.5, label = "Higher survival for stage 2", hjust = 0) +
+  theme_minimal() +
+  scale_color_manual(values = c("pathologic_stageII" = "blue", "pathologic_stageIII" = "red"))
+
+```
+
+
+
+
+
+
+##Methods other than sequence 
+```{r}
+
+stageII_surv <- summary(
+  fit_path_stage,
+  times = fit_path_stage$time[fit_path_stage$strata == "pathologic_stage = StageII"],
+ 
+)
+
+stageII_times <- fit_path_stage$time[fit_path_stage$strata == "pathologic_stage=Stage II"]
+print(stageII_times)
+
+
+
+summary(fit_path_stage)
+fit_path_stage$time[fit_path_stage$strata=="pathologic_stage=Stage II"]
+
+```
+
+
+
+
+##parametric modelling for cancer stages#
+generate an new data set for survreg
+
+```{r , echo=FALSE}
+surv_brca_cli$pathologic_stage <- as.factor(surv_brca_cli$pathologic_stage)
+summary(surv_brca_cli$time)
+regsurv_brca_cli <- surv_brca_cli[surv_brca_cli$time > 0, ]
+
+reg_path_stage <- survreg(Surv(surv_brca_cli$time,surv_brca_cli$vital_status) ~ pathologic_stage , data = regsurv_brca_cli, dist="weibull")
+#plot the survival curve 
+summary(reg_path_stage)
+
+table(surv_brca_cli$vital_status)
+table(surv_brca_cli$pathologic_stage)
+
+
+#######################################################################################################
+
+
+
+# Generate survival probabilities from the parametric model
+new_data <- data.frame(pathologic_stage = levels(regsurv_brca_cli$pathologic_stage)) # Modify for covariates
+times <- seq(0, max(regsurv_brca_cli$time), by = 1)  # Define time range
+###option 1 
+surv_curves <- sapply(1:nrow(new_data), function(i) {
+  predict(reg_path_stage, newdata = new_data[i, ,drop=FALSE ], type = "quantile", p = seq(0, 1, length.out = length(times)))
+})
+
+# Plot the curves using ggplot2
+library(ggplot2)
+df <- data.frame(
+  Time = rep(times, each = nrow(new_data)),
+  Survival = c(t(surv_curves)),
+  Group = rep(new_data$pathologic_stage, each = length(times))
+)
+
+ggplot(df, aes(x = Time, y = Survival, color = Group)) +
+  geom_line(linewidth = 1.5) +
+  labs(
+    title = "Parametric Survival Curves",
+    x = "Time (years)",
+    y = "Survival Probability",
+    color = "Pathological Stage"
+  ) +
+  theme_minimal()
+#option 2 
+
+surv_curves2 <- sapply(1:nrow(new_data), function(i) {
+  sapply(times, function(t) {
+    predict(
+      reg_path_stage,
+      newdata = new_data[i, , drop = FALSE],
+      type = "response",
+      p = t
+    )
+  })
+})
+
+df <- data.frame(
+  Time = rep(times, nrow(new_data)),
+  Survival = c(t(surv_curves)),  # Flatten the matrix into a vector
+  Group = rep(new_data$pathologic_stage, each = length(times))
+)
+
+ggplot(df, aes(x = Time, y = Survival, color = Group)) +
+  geom_line(size = 1.5) +
+  labs(
+    title = "Parametric Survival Curves",
+    x = "Time (years)",
+    y = "Survival Probability",
+    color = "Pathological Stage"
+  ) +
+  theme_minimal()
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#stratification of survival  by ethnicity 
+
+```{r , echo=FALSE}
+
+#fit the kaplan meier model 
+
+
+#fit the kaplan maier model 
+fit_ethn <- survfit(surv_object ~ ethnicity , data = surv_brca_cli)
+#plot the survival curve 
+
+ggsurvplot(
+  fit_ethn,
+  size = 1.5,                  # Line thickness
+  font.x = c(10, "bold"),      # Font size for X-axis
+  font.y = c(10, "bold"),      # Font size for Y-axis
+  font.tickslab = c(10),       # Font size for tick labels
+  legend = "right",             # Legend position
+  conf.int = TRUE,                
+  risk.table = TRUE,             
+  pval = TRUE,                    
+  xlab = "Time(years)",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),      
+  legend.title = "race",     
+  risk.table.height = 0.3,        
+  surv.median.line = "hv" 
+  
+)
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+#survival stratification by Race 
+
+```{r , echo=FALSE}
+
+#fit the kaplan maier model 
+fit_race <- survfit(surv_object ~ race , data = surv_brca_cli)
+#plot the survival curve 
+
+ggsurvplot(
+  fit_race,
+  size = 1.5,                  
+  font.x = c(12, "bold"),     
+  font.y = c(12, "bold"),     
+  font.tickslab = c(10),       
+  legend = "right",             
+  conf.int = TRUE,                
+  risk.table = TRUE,             
+  pval = TRUE,                    
+  xlab = "Time(years)",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),      
+  legend.title = "race",     
+  risk.table.height = 0.3,        
+  surv.median.line = "hv" 
+  
+)
+
+```
+
+
+median survival time black is 17.5 years 
+
+
+```{r , echo=FALSE}
+survdiff(formula = surv_object ~ race,  data = surv_brca_cli)
+
+
+```
+##stratification by metastasis 
+
+```{r , echo=FALSE}
+
+#fit the kaplan maier model 
+fit_path_met <- survfit(surv_object ~ pathologic_m , data = surv_brca_cli)
+#plot the survival curve 
+
+ggsurvplot(
+  fit_path_met,
+  size = 1.5,                  
+  font.x = c(12, "bold"),     
+  font.y = c(12, "bold"),     
+  font.tickslab = c(10),       
+  legend = "right",             
+  conf.int = TRUE,                
+  risk.table = TRUE,             
+  pval = TRUE,                    
+  xlab = "Time(years)",                  
+  ylab = "Survival Probability",  
+  ggtheme = theme_minimal(),      
+  legend.title = "Path. Metastasis",     
+  risk.table.height = 0.3,        
+  surv.median.line = "hv" 
+  
+)
+
+
+
+
+
+survdiff(formula = surv_object ~ pathologic_m,  data = surv_brca_cli)
+
+```
+
+
+
+
+
+
+
+##log rank test 
+
+Log rank test is used  to compare the distribution of time to event data between 2 indipendent samples.
+ $H_{0}$ is that both curves has identical distribution (all curves are the same), 
+ $H_{A}$ curves has different distribution 
+ 
+
+
+
+```{r , echo=FALSE}
+
+```
+
+## survival ratio
+survival ratio lot for the pathological stage 
+```{r , echo=FALSE}
+
+
+```
+
+
+
+
+
+
+```{r , echo=FALSE}
+
+
+```

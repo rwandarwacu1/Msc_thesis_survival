@@ -1,0 +1,1085 @@
+"gender","race","ethnicity","vital_status","pathologic_stage","pathologic_t","pathologic_n","pathologic_m","time","time_in_years"
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (mol+)","M0",337,0.922655715263518
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",259,0.709103353867214
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","M0",3102,8.49281314168378
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",5,0.0136892539356605
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","MX",759,2.07802874743326
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","MX",954,2.61190965092402
+"female","Other","not reported",0,"Stage IV","T2","NX","M1",304,0.832306639288159
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",503,1.37713894592745
+"female","White","hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",915,2.50513347022587
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3248,8.89253935660506
+"female","White","not hispanic or latino",0,"Stage I","T1c","N1mi","MX",442,1.21013004791239
+"female","White","not hispanic or latino",0,"Stage III","T3","N1b","M0",4285,11.7316906228611
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",640,1.75222450376454
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",1179,3.22792607802875
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",1234,3.37850787132101
+"female","Other","not hispanic or latino",0,"Stage III","T3","N3","M0",521,1.42642026009582
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",680,1.86173853524983
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",480,1.31416837782341
+"female","Other","not reported",0,"Stage II","T2","N0","M0",546,1.49486652977413
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1547,4.23545516769336
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0","M0",2156,5.90280629705681
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",379,1.03764544832307
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2","M0",1059,2.8993839835729
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",643,1.76043805612594
+"female","Black or African American","not hispanic or latino",1,"Stage II","T1c","N1","M0",991,2.71321013004791
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N2a","MX",987,2.70225872689938
+"female","White","not hispanic or latino",1,"Stage III","T4","N1","M0",571,1.56331279945243
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",5042,13.8042436687201
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",2534,6.93771389459274
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","White","not hispanic or latino",0,"Stage I","T1c","N1mi","M0",1516,4.15058179329227
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","MX",530,1.45106091718001
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0 (i-)","M0",1793,4.90896646132786
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2","M0",1208,3.30732375085558
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",538,1.47296372347707
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",2976,8.14784394250513
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",759,2.07802874743326
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","M0",1013,2.77344284736482
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",8391,22.9733059548255
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",575,1.57426420260096
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1051,2.87748117727584
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1b","M0",6292,17.2265571526352
+"female","Black or African American","not hispanic or latino",0,"Stage X","TX","N0 (i-)","M0",7777,21.2922655715264
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","MX",554,1.51676933607118
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","M0",2019,5.52772073921971
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1866,5.1088295687885
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",1165,3.1895961670089
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","MX",594,1.62628336755647
+"female","Other","not reported",0,"Stage III","T4b","N2a","M0",761,2.08350444900753
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",287,0.785763175906913
+"female","Other","not reported",0,"Stage III","T2","N3a","M0",1004,2.74880219028063
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",2190,5.9958932238193
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",630,1.72484599589322
+"female","Other","not reported",0,"Unspecified","T1c","N0","MX",579,1.58521560574949
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",404,1.10609171800137
+"female","White","not hispanic or latino",0,"Stage III","T4","N1a","M0",4929,13.4948665297741
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",307,0.840520191649555
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",2041,5.58795345653662
+"female","White","not hispanic or latino",0,"Stage II","T1","N1","M0",1935,5.29774127310062
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",806,2.20670773442847
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",345,0.944558521560575
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","M0",890,2.43668720054757
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",371,1.01574264202601
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",222,0.607802874743327
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1","MX",1196,3.27446954140999
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",397,1.08692676249144
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",421,1.15263518138261
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1133,3.10198494182067
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",368,1.00752908966461
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",434,1.18822724161533
+"female","White","not reported",0,"Stage II","T2","N0 (i-)","M0",1247,3.41409993155373
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",428,1.17180013689254
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1025,2.8062970568104
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0 (i+)","M0",30,0.082135523613963
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",210,0.574948665297741
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",2483,6.79808350444901
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0 (i-)","M0",1812,4.96098562628337
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",575,1.57426420260096
+"female","Other","not hispanic or latino",0,"Stage III","T3","N2","M0",2442,6.68583162217659
+"female","Other","not reported",0,"Stage II","T2","N0","M0",79,0.216290212183436
+"female","White","not hispanic or latino",0,"Stage III","T3","N2","M0",3607,9.87542778918549
+"female","Black or African American","not hispanic or latino",0,"Stage III","T1c","N2a","M0",2033,5.56605065023956
+"female","White","not hispanic or latino",1,"Stage IV","T3","N3","M1",255,0.698151950718686
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",3017,8.26009582477755
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",489,1.3388090349076
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","Black or African American","not reported",0,"Stage III","T2","N2","M0",3316,9.07871321013005
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0 (i-)","M0",3374,9.23750855578371
+"female","White","not reported",0,"Stage II","T3","N0 (i-)","M0",476,1.30321697467488
+"female","White","not hispanic or latino",1,"Stage III","T4b","N2a","M0",723,1.97946611909651
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1673,4.58042436687201
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1326,3.63039014373717
+"female","Black or African American","not hispanic or latino",1,"Stage X","TX","NX","MX",2373,6.49691991786448
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",488,1.33607118412047
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1371,3.75359342915811
+"female","White","not hispanic or latino",1,"Stage IV","T3","N3","M1",3941,10.7898699520876
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",322,0.881587953456537
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1232,3.37303216974675
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",635,1.73853524982888
+"female","White","not hispanic or latino",1,"Stage X","T1c","NX","MX",2573,7.0444900752909
+"female","White","hispanic or latino",0,"Stage IV","T2","N0","M1",1471,4.02737850787132
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",1546,4.23271731690623
+"female","White","not hispanic or latino",1,"Stage IV","T2","N1b","M1",1034,2.83093771389459
+"female","White","not hispanic or latino",1,"Unspecified","T2","N1","M1",5677,15.5427789185489
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1139,3.11841204654346
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",275,0.752908966461328
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",727,1.99041752224504
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",4052,11.0937713894593
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1728,4.73100616016427
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",725,1.98494182067077
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",996,2.72689938398357
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1534,4.19986310746064
+"female","White","not reported",0,"Stage II","T2","N1a","M0",1203,3.29363449691992
+"female","White","not hispanic or latino",1,"Stage III","T2","N2a","M0",304,0.832306639288159
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",375,1.02669404517454
+"female","White","hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",4354,11.9206023271732
+"female","Black or African American","not hispanic or latino",1,"Stage X","T1c","NX","MX",2965,8.11772758384668
+"female","White","not hispanic or latino",0,"Stage II","T2","N1b","M0",8556,23.4250513347023
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1","M0",562,1.53867214236824
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","MX",0,0
+"female","White","not hispanic or latino",1,"Stage III","T3","N2","M0",1304,3.57015742642026
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",767,2.09993155373032
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",2654,7.2662559890486
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",431,1.18001368925394
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0","M0",574,1.57152635181383
+"female","Black or African American","not hispanic or latino",1,"Stage III","T4b","N3a","M0",266,0.728268309377139
+"female","Black or African American","not reported",0,"Stage III","T2","N3","MX",1062,2.90759753593429
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","MX",519,1.42094455852156
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",2236,6.12183436002738
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0 (i-)","M0",3945,10.8008213552361
+"female","White","not hispanic or latino",1,"Stage II","T1c","N1a","M0",991,2.71321013004791
+"female","White","not hispanic or latino",0,"Stage II","T1","N1","M0",541,1.48117727583847
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",2971,8.13415468856947
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1640,4.49007529089665
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",1611,4.41067761806982
+"female","White","not reported",0,"Stage III","T1c","N2a","M0",702,1.92197125256674
+"female","White","not reported",0,"Stage III","T3","N3a","M0",134,0.366872005475702
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",2559,7.00616016427105
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2426,6.64202600958248
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",8008,21.9247091033539
+"female","White","not hispanic or latino",1,"Stage II","T1a","N1c","M0",785,2.1492128678987
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",1926,5.27310061601643
+"female","Other","not reported",0,"Stage II","T2","N0","M0",518,1.41820670773443
+"female","White","not hispanic or latino",1,"Stage III","T2","N2a","M0",1563,4.27926078028747
+"female","Other","not reported",0,"Stage II","T3","N0","M0",31,0.0848733744010951
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1318,3.60848733744011
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",92,0.251882272416153
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",586,1.60438056125941
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1642,4.49555099247091
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",2383,6.5242984257358
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","MX",3287,8.99931553730322
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",1419,3.88501026694045
+"female","White","not hispanic or latino",0,"Stage II","T1","N1","M0",3128,8.56399726214921
+"female","White","not reported",0,"Stage II","T2","N1","M0",178,0.487337440109514
+"female","White","not hispanic or latino",1,"Stage III","T3","N1b","M0",2965,8.11772758384668
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","MX",471,1.28952772073922
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",591,1.61806981519507
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",403,1.10335386721424
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0","M0",2197,6.01505817932923
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1467,4.01642710472279
+"female","White","not hispanic or latino",0,"Stage III","T4b","N1","M0",4233,11.5893223819302
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",554,1.51676933607118
+"female","Other","not reported",0,"Stage II","T1c","N1","M0",1004,2.74880219028063
+"female","Other","not reported",1,"Stage III","T2","N3a","M0",426,1.16632443531828
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",912,2.49691991786448
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",398,1.08966461327858
+"female","White","not reported",0,"Stage II","T1c","N1a","M0",328,0.898015058179329
+"female","Other","not reported",0,"Stage III","T3","N2","M0",31,0.0848733744010951
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","MX",620,1.6974674880219
+"female","White","not reported",0,"Stage II","T3","N0","M0",3172,8.68446269678303
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",501,1.37166324435318
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",1476,4.04106776180698
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",659,1.80424366872005
+"female","Other","not reported",0,"Stage I","T1c","N0","M0",1277,3.49623545516769
+"female","Other","not reported",0,"Stage I","T1c","N0 (i-)","M0",1561,4.27378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N2a","MX",1309,3.58384668035592
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","MX",1021,2.79534565366188
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","MX",606,1.65913757700205
+"female","White","not hispanic or latino",0,"Stage III","T3","N1c","M0",2612,7.15126625598905
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","MX",1,0.0027378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N1a","MX",574,1.57152635181383
+"female","Other","not reported",0,"Stage III","T3","N1a","M0",1614,4.41889117043121
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i+)","M0",769,2.10540725530459
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",7106,19.4551676933607
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","MX",466,1.27583846680356
+"female","Other","not reported",0,"Stage II","T2","N0","M0",396,1.08418891170431
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i+)","M0",2142,5.86447638603696
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",765,2.09445585215606
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",2362,6.46680355920602
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",1102,3.01711156741958
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N1","M0",2576,7.05270362765229
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",3364,9.21013004791239
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",19,0.0520191649555099
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","MX",899,2.46132785763176
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1mi","M0",1648,4.5119780971937
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",616,1.68651608487337
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",2091,5.72484599589322
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","White","not hispanic or latino",0,"Stage III","T4","N0","M0",213,0.583162217659138
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","NX","MX",303,0.829568788501027
+"female","White","not hispanic or latino",0,"Stage I","T1","N0 (i-)","M0",3094,8.47091033538672
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",2515,6.88569472963724
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",3035,8.30937713894593
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","M0",1163,3.18412046543463
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",224,0.613278576317591
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","M0",1325,3.62765229295003
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1042,2.85284052019165
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",365,0.999315537303217
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",7,0.0191649555099247
+"female","Other","not reported",0,"Stage III","T4b","N3","M0",274,0.750171115674196
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2048,5.60711841204654
+"female","White","not reported",0,"Stage III","T2","N3","M0",974,2.66666666666667
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1119,3.06365503080082
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",4361,11.9397672826831
+"female","Other","not reported",1,"Stage IV","T2","N1a","M1",2830,7.74811772758385
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",3283,8.98836413415469
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",395,1.08145106091718
+"female","White","not hispanic or latino",1,"Stage II","T2","N0 (i+)","M0",158,0.432580424366872
+"female","Other","not reported",0,"Stage III","T2","N3a","M0",31,0.0848733744010951
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",1732,4.7419575633128
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",393,1.07597535934292
+"female","White","not hispanic or latino",0,"Stage III","T4b","N0","MX",225,0.616016427104723
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",600,1.64271047227926
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",727,1.99041752224504
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",4456,12.1998631074606
+"female","Other","not reported",0,"Stage II","T2","N0","M0",579,1.58521560574949
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",3121,8.54483230663929
+"female","White","not hispanic or latino",1,"Stage III","T2","N3b","M0",239,0.654346338124572
+"female","Black or African American","not hispanic or latino",0,"Stage II","T1c","N1mi","MX",714,1.95482546201232
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1914,5.24024640657084
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",2868,7.85215605749487
+"female","Other","not reported",0,"Stage II","T2","N1","M0",1522,4.16700889801506
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",531,1.45379876796715
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2a","M0",2335,6.39288158795346
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",626,1.7138945927447
+"female","White","not hispanic or latino",1,"Stage III","T3","N3","M0",616,1.68651608487337
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2289,6.26694045174538
+"female","Other","not reported",0,"Stage III","T4b","N1a","M0",365,0.999315537303217
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",499,1.36618754277892
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","M0",402,1.1006160164271
+"female","White","not hispanic or latino",1,"Stage III","T3","N1a","MX",116,0.317590691307324
+"female","Other","not reported",0,"Stage III","T2","N2a","M0",942,2.57905544147844
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","MX",646,1.76865160848734
+"female","Other","not reported",0,"Stage III","T3","N3a","M0",0,0
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","MX",858,2.34907597535934
+"female","White","not reported",0,"Stage II","T2","N1a","MX",1853,5.07323750855578
+"female","White","not hispanic or latino",0,"Stage II","T2","N1b","M0",651,1.782340862423
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",170,0.465434633812457
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",2645,7.24161533196441
+"female","Other","not reported",0,"Stage III","T4b","N0","M0",0,0
+"female","White","not hispanic or latino",0,"Stage II","T1","N1","M0",2953,8.08487337440109
+"female","White","not hispanic or latino",1,"Stage III","T3","N1","M0",322,0.881587953456537
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1085,2.97056810403833
+"female","White","not reported",0,"Stage II","T2","N1a","M0",829,2.26967830253251
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",747,2.04517453798768
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",738,2.02053388090349
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",0,0
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",856,2.34360027378508
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1185,3.24435318275154
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",728,1.99315537303217
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0","M0",1009,2.76249144421629
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","MX",2759,7.55373032169747
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",3203,8.76933607118412
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1088,2.97878165639973
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0 (i-)","M0",727,1.99041752224504
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",458,1.2539356605065
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",10,0.027378507871321
+"female","Black or African American","not hispanic or latino",1,"Stage IV","T1c","NX","M1",137,0.375085557837098
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",590,1.61533196440794
+"female","White","not hispanic or latino",0,"Stage III","T4","N0","M0",227,0.621492128678987
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",1542,4.2217659137577
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",2330,6.3791923340178
+"female","Other","not reported",0,"Stage II","T2","N0","M0",365,0.999315537303217
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",889,2.43394934976044
+"female","Black or African American","not hispanic or latino",1,"Stage III","T3","N1b","M0",1993,5.45653661875428
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1596,4.36960985626283
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1417,3.87953456536619
+"female","White","not hispanic or latino",1,"Stage III","T3","N1b","M0",365,0.999315537303217
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",666,1.82340862422998
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","M0",1233,3.37577002053388
+"female","Black or African American","hispanic or latino",0,"Stage II","T2","N1a","M0",1010,2.76522929500342
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",382,1.04585900068446
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",1474,4.03559206023272
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","MX",541,1.48117727583847
+"female","White","not hispanic or latino",0,"Unspecified","T1c","N1","M0",626,1.7138945927447
+"female","White","hispanic or latino",0,"Stage II","T2","N0","M0",2920,7.99452429842574
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0","M0",2009,5.50034223134839
+"female","Black or African American","not reported",0,"Stage II","T2","N1a","MX",620,1.6974674880219
+"female","Black or African American","not reported",0,"Stage I","T1c","N0","MX",878,2.40383299110198
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",160,0.438056125941136
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",631,1.72758384668036
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",363,0.993839835728953
+"female","Other","not hispanic or latino",0,"Stage III","T2","N2","M0",343,0.939082819986311
+"female","White","not hispanic or latino",1,"Stage IV","T3","NX","M1",362,0.991101984941821
+"female","Other","hispanic or latino",0,"Stage II","T2","N1","M0",2184,5.97946611909651
+"female","Black or African American","not hispanic or latino",1,"Stage IV","T4d","N3b","M1",116,0.317590691307324
+"female","White","not hispanic or latino",1,"Stage II","T1c","N1","M0",2798,7.66050650239562
+"female","White","not hispanic or latino",1,"Unspecified","T2","N1b","M0",3126,8.55852156057495
+"female","Other","not reported",0,"Stage III","T2","N3","M0",30,0.082135523613963
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",252,0.68993839835729
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",163,0.446269678302533
+"female","White","not reported",0,"Stage II","T2","N1a","M0",495,1.35523613963039
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",339,0.928131416837782
+"female","Black or African American","not hispanic or latino",0,"Stage II","T1c","N1a","M0",2596,7.10746064339494
+"female","White","not reported",0,"Stage II","T2","N1a","M0",1156,3.16495550992471
+"female","White","not reported",0,"Stage II","T2","N0","M0",3004,8.22450376454483
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","M0",78,0.213552361396304
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",410,1.12251882272416
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1842,5.04312114989733
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",52,0.142368240930869
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1mi","cM0 (i+)",424,1.16084873374401
+"female","White","not reported",0,"Stage III","T3","N3a","M0",1132,3.09924709103354
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",2255,6.17385352498289
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1873,5.12799452429843
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","M0",540,1.47843942505133
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","M0",2273,6.22313483915127
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1189,3.25530458590007
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1935,5.29774127310062
+"female","Other","not reported",0,"Stage III","T2","N3a","M0",640,1.75222450376454
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1369,3.74811772758385
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","MX",518,1.41820670773443
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1463,4.00547570157426
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",2721,7.44969199178645
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","MX",504,1.37987679671458
+"female","Other","not hispanic or latino",0,"Stage II","T3","N0","M0",3283,8.98836413415469
+"female","White","hispanic or latino",0,"Stage II","T2","N1a","M0",575,1.57426420260096
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",2838,7.7700205338809
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","MX",475,1.30047912388775
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",426,1.16632443531828
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",1272,3.48254620123203
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",1229,3.36481861738535
+"female","White","hispanic or latino",0,"Stage II","T1c","N1a","M0",607,1.66187542778919
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",10,0.027378507871321
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",860,2.35455167693361
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",1783,4.88158795345654
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N1b","M0",2097,5.74127310061602
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",837,2.29158110882957
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","MX",849,2.32443531827515
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",1871,5.12251882272416
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1174,3.21423682409309
+"female","White","not hispanic or latino",1,"Stage I","T1","N0","M0",2763,7.564681724846
+"female","Other","not reported",0,"Stage II","T2","N0","M0",791,2.16563997262149
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","cM0 (i+)",1919,5.2539356605065
+"female","White","not hispanic or latino",1,"Stage II","T2","N1a","M0",3462,9.47843942505133
+"female","White","hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",907,2.48323066392882
+"female","Black or African American","not hispanic or latino",0,"Stage II","T1c","N1a","M0",326,0.892539356605065
+"female","Black or African American","not hispanic or latino",1,"Stage I","T1c","N0","M0",3959,10.839151266256
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",366,1.00205338809035
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",552,1.51129363449692
+"female","Black or African American","not hispanic or latino",1,"Stage III","T1c","N2a","M0",573,1.56878850102669
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0","M0",1168,3.19780971937029
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",59,0.161533196440794
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",703,1.92470910335387
+"female","White","hispanic or latino",0,"Stage II","T2","N0","MX",908,2.48596851471595
+"female","White","not hispanic or latino",0,"Stage IV","T2","N2","M1",242,0.662559890485969
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","M0",528,1.44558521560575
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",4005,10.9650924024641
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",2469,6.75975359342916
+"female","White","not reported",1,"Stage I","T1","N0","M0",921,2.52156057494867
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1mi","M0",393,1.07597535934292
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1239,3.39219712525667
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",0,0
+"female","Black or African American","not hispanic or latino",0,"Stage II","T1c","N1a","MX",250,0.684462696783025
+"female","Other","not reported",0,"Stage III","T2","N2a","M0",426,1.16632443531828
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3091,8.46269678302533
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i+)","M0",2193,6.0041067761807
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",313,0.856947296372348
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N1mi","M0",635,1.73853524982888
+"female","Black or African American","hispanic or latino",0,"Stage II","T2","N0","M0",78,0.213552361396304
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",798,2.18480492813142
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",1639,4.48733744010951
+"female","White","not reported",0,"Stage II","T2","N0","M0",1548,4.23819301848049
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",235,0.643394934976044
+"female","Other","not reported",0,"Stage III","T2","N2a","M0",760,2.0807665982204
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",662,1.81245722108145
+"female","White","not hispanic or latino",0,"Unspecified","T2","N2a","M0",635,1.73853524982888
+"female","Black or African American","not hispanic or latino",1,"Stage II","T3","N0 (i-)","M0",3836,10.5023956194387
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","M0",648,1.7741273100616
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",1572,4.30390143737166
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",513,1.40451745379877
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","M0",4159,11.3867214236824
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","MX",417,1.14168377823409
+"female","White","not hispanic or latino",1,"Stage X","T1c","NX","MX",1781,4.87611225188227
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",760,2.0807665982204
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N2a","M0",3015,8.25462012320328
+"female","White","not hispanic or latino",0,"Stage II","T2","NX","MX",0,0
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",965,2.64202600958248
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","MX",883,2.41752224503765
+"female","White","not hispanic or latino",0,"Stage III","T4b","N3","M0",1224,3.35112936344969
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","M0",2371,6.49144421629021
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",577,1.57973990417522
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",477,1.30595482546201
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",2991,8.18891170431212
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0","M0",2361,6.46406570841889
+"female","White","hispanic or latino",0,"Stage II","T2","N1a","MX",371,1.01574264202601
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",549,1.50308008213552
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",4088,11.192334017796
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1mi","M0",598,1.637234770705
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",722,1.97672826830938
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0 (i+)","M0",295,0.80766598220397
+"female","Other","not reported",0,"Stage IV","T2","N3a","M1",943,2.58179329226557
+"female","Other","not reported",0,"Stage III","T1c","N2a","M0",396,1.08418891170431
+"female","White","hispanic or latino",0,"Stage II","T2","N0","MX",911,2.49418206707734
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",2596,7.10746064339494
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",1026,2.80903490759754
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",34,0.0930869267624914
+"female","Other","not hispanic or latino",0,"Stage I","T1c","N0","MX",258,0.706365503080082
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",2605,7.13210130047912
+"female","White","not reported",0,"Stage II","T2","N1a","M0",72,0.197125256673511
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","M0",499,1.36618754277892
+"female","White","not reported",0,"Stage II","T2","N1","M0",477,1.30595482546201
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2","M0",972,2.6611909650924
+"female","Other","not reported",1,"Stage II","T2","N1","M0",1883,5.15537303216975
+"female","White","not hispanic or latino",0,"Stage II","T1","N1","M0",2618,7.16769336071184
+"female","Other","not reported",0,"Stage III","T2","N3a","M0",1006,2.75427789185489
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",431,1.18001368925394
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","MX",430,1.1772758384668
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1186,3.24709103353867
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","M0",2191,5.99863107460643
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1692,4.63244353182752
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",30,0.082135523613963
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","M0",1062,2.90759753593429
+"female","Other","not reported",0,"Stage II","T2","N0","M0",2288,6.26420260095825
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",506,1.38535249828884
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",1269,3.47433264887064
+"female","White","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",1920,5.25667351129363
+"female","Other","not hispanic or latino",0,"Stage III","T2","N2","M0",297,0.813141683778234
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",656,1.79603011635866
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2108,5.77138945927447
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",385,1.05407255304586
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",54,0.147843942505133
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",348,0.952772073921971
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",852,2.33264887063655
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",468,1.28131416837782
+"female","Black or African American","not reported",0,"Stage I","T1c","N0","M0",2477,6.78165639972621
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i+)","M0",2590,7.09103353867214
+"female","White","not hispanic or latino",0,"Stage I","T1","N0 (i+)","M0",3603,9.86447638603696
+"female","White","not reported",0,"Stage II","T2","N1","M0",1550,4.24366872005476
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","MX",1005,2.75154004106776
+"female","White","not hispanic or latino",0,"Stage III","T3","N1mi","M0",762,2.08624229979466
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",412,1.12799452429843
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1043,2.85557837097878
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",530,1.45106091718001
+"female","Other","not reported",1,"Stage IV","T4b","N3","M1",1127,3.08555783709788
+"female","Other","not reported",0,"Stage I","T1c","N0","M0",396,1.08418891170431
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",380,1.0403832991102
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",8605,23.5592060232717
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",1000,2.7378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","MX",996,2.72689938398357
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1682,4.60506502395619
+"female","White","not hispanic or latino",1,"Stage III","T4b","N1b","M0",959,2.62559890485969
+"female","Other","not hispanic or latino",0,"Stage III","T4","N1","M0",385,1.05407255304586
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","MX",532,1.45653661875428
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",345,0.944558521560575
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",0,0
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1556,4.26009582477755
+"female","Other","not reported",1,"Stage II","T2","N1a","M0",883,2.41752224503765
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",293,0.802190280629706
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",627,1.71663244353183
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",718,1.96577686516085
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1928,5.27857631759069
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",450,1.23203285420945
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0","MX",973,2.66392881587953
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",2192,6.00136892539357
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3361,9.20191649555099
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",677,1.85352498288843
+"female","White","not hispanic or latino",1,"Stage X","T1","NX","M0",749,2.05065023956194
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2406,6.58726899383984
+"female","White","not hispanic or latino",0,"Stage X","TX","NX","MX",4047,11.0800821355236
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",1330,3.64134154688569
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N3a","MX",0,0
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","MX",675,1.84804928131417
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",463,1.26762491444216
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",409,1.11978097193703
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",4894,13.3990417522245
+"female","Other","not reported",0,"Stage II","T1c","N1","M0",912,2.49691991786448
+"female","Black or African American","not reported",0,"Stage III","T2","N2a","MX",2222,6.08350444900753
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0","M0",271,0.741957563312799
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",968,2.65023956194387
+"female","Other","not reported",1,"Stage II","T3","N0","M0",943,2.58179329226557
+"female","Other","not hispanic or latino",0,"Stage II","T1","N1","M0",376,1.02943189596167
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",482,1.31964407939767
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","M0",2012,5.50855578370979
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",2372,6.49418206707734
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1138,3.11567419575633
+"female","Other","not reported",0,"Stage II","T2","N0","M0",607,1.66187542778919
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",3261,8.92813141683778
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1855,5.07871321013005
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",984,2.69404517453799
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",592,1.6208076659822
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i+)","M0",1505,4.12046543463381
+"female","Other","not reported",0,"Stage III","T2","N3a","M0",273,0.747433264887064
+"female","White","not hispanic or latino",1,"Stage III","T2","N3a","M0",879,2.40657084188912
+"female","White","not reported",0,"Stage II","T2","N0 (i-)","M0",1686,4.61601642710472
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","MX",2632,7.20602327173169
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",839,2.29705681040383
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",710,1.94387405886379
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",408,1.1170431211499
+"female","White","not hispanic or latino",0,"Stage I","T1c","N1mi","M0",2263,6.19575633127995
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",149,0.407939767282683
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","MX",373,1.02121834360027
+"female","White","not reported",0,"Stage II","T1c","N1a","M0",2403,6.57905544147844
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",767,2.09993155373032
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1434,3.92607802874743
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",639,1.74948665297741
+"female","White","hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3226,8.83230663928816
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1673,4.58042436687201
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",2417,6.61738535249829
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",2281,6.24503764544832
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",584,1.59890485968515
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",352,0.9637234770705
+"female","White","not hispanic or latino",1,"Stage III","T2","N2a","M0",1430,3.91512662559891
+"female","White","not reported",0,"Stage II","T2","N1a","M0",2489,6.8145106091718
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N1mi","MX",812,2.22313483915127
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",1015,2.77891854893908
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",3957,10.8336755646817
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",518,1.41820670773443
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",701,1.9192334017796
+"female","White","not reported",0,"Stage II","T1c","N1a","M0",1270,3.47707049965777
+"female","Other","not reported",0,"Stage II","T2","N0","M0",881,2.41204654346338
+"female","Black or African American","not reported",0,"Stage I","T1c","N0","M0",1820,4.98288843258042
+"female","White","hispanic or latino",0,"Stage III","T2","N3a","M0",2650,7.25530458590007
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",1836,5.02669404517454
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","M0",566,1.54962354551677
+"female","Other","not reported",0,"Stage II","T2","N0","M0",365,0.999315537303217
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",523,1.43189596167009
+"female","Other","not reported",0,"Stage II","T2","N0","M0",822,2.25051334702259
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1508,4.12867898699521
+"female","White","not reported",0,"Stage I","T1c","N0","M0",2709,7.41683778234086
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",10,0.027378507871321
+"female","Other","not reported",0,"Stage II","T2","N1","M0",1150,3.14852840520192
+"female","White","not reported",0,"Stage II","T2","N1","M0",923,2.52703627652293
+"female","White","not hispanic or latino",1,"Stage II","T2","NX","M0",0,0
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",385,1.05407255304586
+"female","Black or African American","not reported",0,"Stage I","T1b","N0","MX",679,1.8590006844627
+"female","White","not hispanic or latino",0,"Stage III","T3","N3","MX",847,2.31895961670089
+"female","White","not hispanic or latino",1,"Stage III","T2","N2","M0",1388,3.80013689253936
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",317,0.867898699520876
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2372,6.49418206707734
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1612,4.41341546885695
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1461,4
+"female","Other","not reported",0,"Stage I","T1c","N0","M0",30,0.082135523613963
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",659,1.80424366872005
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",683,1.86995208761123
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1158,3.17043121149897
+"female","Other","not reported",0,"Stage X","T2","N0","MX",31,0.0848733744010951
+"female","Black or African American","not reported",0,"Stage II","T2","N1a","MX",3022,8.27378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",413,1.13073237508556
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","MX",456,1.24845995893224
+"female","White","not hispanic or latino",0,"Stage II","T2","N1b","MX",1251,3.42505133470226
+"female","Other","not reported",0,"Stage II","T3","N0","M0",0,0
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","M0",26,0.0711841204654346
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",10,0.027378507871321
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","MX",989,2.70773442847365
+"female","White","not reported",0,"Stage II","T1c","N1a","M0",76,0.20807665982204
+"female","Black or African American","not reported",0,"Stage II","T1c","N1","MX",752,2.05886379192334
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",385,1.05407255304586
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","MX",754,2.0643394934976
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",820,2.24503764544832
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1545,4.2299794661191
+"female","White","hispanic or latino",0,"Stage I","T1c","N0","M0",439,1.20191649555099
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",554,1.51676933607118
+"female","White","not hispanic or latino",0,"Stage III","T3a","N3","M0",1120,3.06639288158795
+"female","Other","not reported",0,"Stage X","T4b","N3a","MX",608,1.66461327857632
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0 (i-)","M0",3152,8.62970568104038
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3456,9.46201232032854
+"female","White","not hispanic or latino",1,"Stage II","T2","NX","M0",2127,5.82340862422998
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","M0",783,2.14373716632444
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","MX",1063,2.91033538672142
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",394,1.07871321013005
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N3","M0",655,1.79329226557153
+"female","White","hispanic or latino",0,"Stage II","T2","N0","M0",1477,4.04380561259411
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",754,2.0643394934976
+"female","White","hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",875,2.39561943874059
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2","M0",647,1.77138945927447
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",965,2.64202600958248
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0","M0",652,1.78507871321013
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",461,1.2621492128679
+"female","Other","not hispanic or latino",0,"Stage I","T1c","N1mi","M0",2541,6.95687885010267
+"female","White","not reported",0,"Stage II","T2","N1a","M0",1519,4.15879534565366
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1309,3.58384668035592
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N1a","MX",608,1.66461327857632
+"female","White","hispanic or latino",0,"Stage II","T2","N1a","M0",2329,6.37645448323066
+"female","Other","not hispanic or latino",0,"Stage III","T3","N2","M0",616,1.68651608487337
+"female","White","not hispanic or latino",1,"Stage I","T1","N0","M0",2520,6.8993839835729
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",975,2.6694045174538
+"female","White","not reported",0,"Stage II","T2","N0","M0",2645,7.24161533196441
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",383,1.04859685147159
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",2653,7.26351813826146
+"female","Black or African American","not reported",0,"Stage III","T2","N2a","M0",435,1.19096509240246
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",375,1.02669404517454
+"female","Other","not reported",1,"Stage III","T3","N2a","M0",30,0.082135523613963
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",441,1.20739219712526
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",3030,8.29568788501027
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","MX",326,0.892539356605065
+"female","Other","not reported",0,"Stage II","T2","N1","M0",334,0.914442162902122
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","MX",40,0.109514031485284
+"female","Other","not hispanic or latino",0,"Stage III","T3","N2","M0",370,1.01300479123888
+"female","Other","not reported",0,"Stage II","T1c","N1a","M0",577,1.57973990417522
+"female","White","not hispanic or latino",1,"Stage III","T1b","N3a","M0",905,2.47775496235455
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","MX",51,0.139630390143737
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",3009,8.23819301848049
+"female","Other","not hispanic or latino",0,"Stage III","T2","N2","M0",396,1.08418891170431
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","MX",568,1.55509924709103
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",878,2.40383299110198
+"female","White","not hispanic or latino",1,"Stage II","T3","N0","M0",1468,4.01916495550992
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",588,1.60985626283368
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1229,3.36481861738535
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","MX",343,0.939082819986311
+"female","Black or African American","not hispanic or latino",0,"Stage III","T4b","N2","M0",302,0.826830937713895
+"female","White","not hispanic or latino",0,"Stage II","T2a","N0 (i-)","MX",347,0.950034223134839
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",681,1.86447638603696
+"female","White","not reported",0,"Stage I","T1c","N0","M0",1604,4.39151266255989
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",293,0.802190280629706
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",762,2.08624229979466
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",538,1.47296372347707
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2a","MX",679,1.8590006844627
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1","N0 (i+)","cM0 (i+)",529,1.44832306639288
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",2278,6.23682409308693
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2a","MX",80,0.219028062970568
+"female","White","not reported",0,"Stage II","T2","N0 (i-)","M0",777,2.12731006160164
+"female","White","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",3063,8.38603696098563
+"female","Black or African American","not hispanic or latino",1,"Stage IV","T3","N1","M1",1132,3.09924709103354
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",2031,5.5605749486653
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",2856,7.81930184804928
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",3159,8.64887063655031
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",633,1.73305954825462
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",618,1.69199178644764
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","M0",410,1.12251882272416
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",926,2.53524982888433
+"female","Other","not hispanic or latino",1,"Stage III","T4b","N0","M0",1,0.0027378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","M0",323,0.884325804243669
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",533,1.45927446954141
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","MX",734,2.00958247775496
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",10,0.027378507871321
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",16,0.0438056125941136
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",461,1.2621492128679
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","M0",303,0.829568788501027
+"female","Black or African American","not hispanic or latino",0,"Stage II","T1c","N1","M0",463,1.26762491444216
+"female","White","not reported",0,"Stage III","T2","N2a","M0",2064,5.65092402464066
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","MX",1996,5.46475017111567
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",492,1.34702258726899
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",1066,2.91854893908282
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",2558,7.00342231348391
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0 (i-)","MX",455,1.24572210814511
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",952,2.60643394934976
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","MX",441,1.20739219712526
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",385,1.05407255304586
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",3296,9.02395619438741
+"female","White","hispanic or latino",0,"Stage II","T2","N0","M0",5176,14.1711156741958
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",3021,8.27104722792608
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",285,0.780287474332649
+"female","White","not hispanic or latino",1,"Stage IV","T2","N2","M1",1365,3.73716632443532
+"female","Other","not reported",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",819,2.24229979466119
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1101,3.01437371663244
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",30,0.082135523613963
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N3a","M0",2072,5.67282683093771
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",1631,4.46543463381246
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",3112,8.5201916495551
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",1027,2.81177275838467
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1220,3.34017796030116
+"female","White","not hispanic or latino",1,"Stage III","T2","N2","M0",2551,6.98425735797399
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",2082,5.70020533880903
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0","M0",8,0.0219028062970568
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","cM0 (i+)",1093,2.99247091033539
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","M0",439,1.20191649555099
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2231,6.10814510609172
+"female","White","not reported",0,"Stage II","T2","N1mi","M0",1099,3.00889801505818
+"female","White","not hispanic or latino",0,"Unspecified","T4b","NX","M0",502,1.37440109514031
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1694,4.63791923340178
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i+)","M0",752,2.05886379192334
+"female","Other","not reported",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1074,2.94045174537988
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",2136,5.84804928131417
+"female","White","not hispanic or latino",0,"Stage III","T3","N2","M0",643,1.76043805612594
+"female","White","not hispanic or latino",1,"Stage III","T3","N1mi","M0",811,2.22039698836413
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1079,2.95414099931554
+"female","White","not hispanic or latino",0,"Stage III","T3","N3","M0",3202,8.76659822039699
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",224,0.613278576317591
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1","M0",747,2.04517453798768
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0","MX",3342,9.14989733059548
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1363,3.73169062286105
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1616,4.42436687200548
+"female","White","not reported",0,"Stage II","T2","N0","M0",3001,8.21629021218344
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2109,5.7741273100616
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N3a","M0",216,0.591375770020534
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1161,3.17864476386037
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2707,7.4113620807666
+"female","White","not hispanic or latino",1,"Stage I","T1","N0","M0",1286,3.52087611225188
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2632,7.20602327173169
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",595,1.6290212183436
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","M0",990,2.71047227926078
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","Other","not reported",0,"Stage II","T2","N0","M0",243,0.665297741273101
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",360,0.985626283367556
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",332,0.908966461327858
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1371,3.75359342915811
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2190,5.9958932238193
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N1a","M0",416,1.13894592744695
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",454,1.24298425735797
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1mi","M0",2365,6.47501711156742
+"female","Black or African American","not hispanic or latino",0,"Unspecified","T1c","N1mi","MX",403,1.10335386721424
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",803,2.19849418206708
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","MX",528,1.44558521560575
+"female","White","not hispanic or latino",0,"Stage III","T1c","N3a","MX",707,1.9356605065024
+"female","Black or African American","not hispanic or latino",1,"Stage III","T3","N1b","M0",639,1.74948665297741
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","M0",1613,4.41615331964408
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",21,0.0574948665297741
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",706,1.93292265571526
+"female","Other","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",967,2.64750171115674
+"female","White","hispanic or latino",0,"Stage III","T3","N1","MX",715,1.95756331279945
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",516,1.41273100616016
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1437,3.93429158110883
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1351,3.69883641341547
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",3807,10.4229979466119
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","M0",563,1.54140999315537
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1mi","M0",450,1.23203285420945
+"female","White","not reported",0,"Stage II","T1c","N1","MX",2248,6.15468856947296
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",3519,9.63449691991786
+"female","Black or African American","not hispanic or latino",1,"Stage III","T1","N2a","M0",1032,2.82546201232033
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",2128,5.82614647501711
+"female","Other","not hispanic or latino",1,"Stage III","T1","N2","M0",2,0.0054757015742642
+"female","Black or African American","not reported",0,"Stage II","T1c","N1","MX",1106,3.0280629705681
+"female","White","not reported",0,"Stage II","T2","N1","M0",98,0.268309377138946
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",5,0.0136892539356605
+"female","Other","not hispanic or latino",0,"Stage III","T3","N1","M0",317,0.867898699520876
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","cM0 (i+)",567,1.5523613963039
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",610,1.67008898015058
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N1mi","M0",912,2.49691991786448
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","MX",447,1.22381930184805
+"female","White","not hispanic or latino",0,"Stage III","T3","N1mi","M0",418,1.14442162902122
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1587,4.34496919917864
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",584,1.59890485968515
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",3660,10.0205338809035
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",611,1.67282683093771
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","MX",441,1.20739219712526
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3276,8.96919917864476
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1","N0 (i-)","M0",2695,7.37850787132101
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",4275,11.7043121149897
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",358,0.980150581793292
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1039,2.84462696783025
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",162,0.4435318275154
+"female","White","hispanic or latino",0,"Stage II","T2","N1mi","MX",789,2.16016427104723
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","M0",1847,5.05681040383299
+"female","White","not hispanic or latino",1,"Stage IV","T2","N2a","M1",825,2.25872689938398
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1198,3.27994524298426
+"female","White","not hispanic or latino",1,"Unspecified","T4d","N2a","MX",2965,8.11772758384668
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",381,1.04312114989733
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1a","M0",3011,8.24366872005476
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",410,1.12251882272416
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1b","N0 (i+)","M0",1535,4.20260095824778
+"female","White","not reported",0,"Stage I","T1b","NX","M0",747,2.04517453798768
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","MX",1301,3.56194387405886
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",447,1.22381930184805
+"female","Other","not reported",0,"Stage I","T1c","N0","M0",1157,3.16769336071184
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1112,3.0444900752909
+"female","Black or African American","not hispanic or latino",0,"Stage III","T1b","N3a","MX",1673,4.58042436687201
+"female","Other","not reported",0,"Stage II","T3","N0","M0",0,0
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",1953,5.34702258726899
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3506,9.59890485968515
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",865,2.36824093086927
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1308,3.58110882956879
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",624,1.70841889117043
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",3256,8.91444216290212
+"female","Other","not reported",0,"Stage X","T2","NX","M0",304,0.832306639288159
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","M0",1474,4.03559206023272
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",375,1.02669404517454
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",576,1.57700205338809
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",661,1.80971937029432
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","M0",812,2.22313483915127
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1174,3.21423682409309
+"female","Other","not hispanic or latino",0,"Stage III","T3","N3","M0",375,1.02669404517454
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",2282,6.24777549623546
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",288,0.788501026694045
+"female","White","not reported",0,"Stage II","T1c","N1a","M0",554,1.51676933607118
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",2255,6.17385352498289
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1308,3.58110882956879
+"female","White","not reported",0,"Stage II","T2","N1a","M0",1148,3.14305270362765
+"female","White","not reported",0,"Stage II","T2","N0 (i-)","M0",2246,6.1492128678987
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1234,3.37850787132101
+"female","White","not reported",0,"Stage I","T1","N0 (i-)","M0",2385,6.52977412731006
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",118,0.323066392881588
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1034,2.83093771389459
+"female","White","not hispanic or latino",1,"Stage II","T2","N1mi","M0",792,2.16837782340862
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",755,2.06707734428474
+"female","Other","not hispanic or latino",0,"Stage III","T2","N2","M0",380,1.0403832991102
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",186,0.509240246406571
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2513,6.88021902806297
+"female","White","not hispanic or latino",1,"Stage X","T2","NX","MX",0,0
+"female","Black or African American","not reported",0,"Stage II","T1c","N1","MX",1219,3.33744010951403
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",358,0.980150581793292
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1b","N0","MX",440,1.20465434633812
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",0,0
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1167,3.19507186858316
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1285,3.51813826146475
+"female","Black or African American","not hispanic or latino",1,"Stage II","T1c","N1b","M0",3472,9.50581793292266
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","MX",614,1.68104038329911
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2381,6.51882272416153
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",336,0.919917864476386
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2a","M0",3204,8.77207392197125
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",612,1.67556468172485
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",231,0.632443531827515
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","MX",577,1.57973990417522
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",214,0.58590006844627
+"female","White","not hispanic or latino",0,"Stage III","T3","N1mi","M0",1206,3.30184804928131
+"female","White","hispanic or latino",0,"Stage I","T1c","N0","M0",504,1.37987679671458
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",350,0.958247775496235
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","M0",2140,5.8590006844627
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1162,3.1813826146475
+"female","White","hispanic or latino",0,"Stage II","T2","N0","MX",533,1.45927446954141
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",707,1.9356605065024
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1mi","M0",1800,4.92813141683778
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1887,5.16632443531828
+"female","White","not hispanic or latino",1,"Stage III","T4b","N1a","M0",1642,4.49555099247091
+"female","White","not hispanic or latino",0,"Stage I","T1","N0 (i-)","M0",2442,6.68583162217659
+"female","White","not hispanic or latino",0,"Stage III","T4b","N0","M0",373,1.02121834360027
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1001,2.74058863791923
+"female","White","not hispanic or latino",0,"Stage III","T4b","N1b","M0",7126,19.5099247091034
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",1712,4.68720054757016
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1043,2.85557837097878
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",5909,16.1779603011636
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","M0",666,1.82340862422998
+"female","White","hispanic or latino",0,"Stage II","T3","N0","MX",1035,2.83367556468172
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","MX",554,1.51676933607118
+"female","White","not hispanic or latino",1,"Stage IV","T4","N1a","M1",735,2.01232032854209
+"female","Other","not hispanic or latino",0,"Stage I","T1c","N0","M0",394,1.07871321013005
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i+)","M0",622,1.70294318959617
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",218,0.596851471594798
+"female","White","not reported",0,"Stage II","T2","N1a","M0",1876,5.13620807665982
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1009,2.76249144421629
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",5749,15.7399041752225
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0 (i+)","M0",1448,3.96440793976728
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0","M0",1688,4.62149212867899
+"female","Other","not reported",0,"Stage II","T1","N1","M0",1972,5.3990417522245
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1321,3.61670088980151
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0","MX",385,1.05407255304586
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",437,1.19644079397673
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","M0",522,1.42915811088296
+"female","Other","not hispanic or latino",0,"Stage III","T2","N2","M0",411,1.12525667351129
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",49,0.134154688569473
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","MX",588,1.60985626283368
+"female","White","not reported",0,"Stage II","T1c","N1a","M0",622,1.70294318959617
+"female","White","hispanic or latino",0,"Stage II","T2","N1","M0",4080,11.170431211499
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",196,0.536618754277892
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i+)","M0",1662,4.55030800821355
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",300,0.82135523613963
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",200,0.54757015742642
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",3286,8.99657768651609
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",2770,7.58384668035592
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1728,4.73100616016427
+"female","White","not hispanic or latino",1,"Unspecified","T2","N2","M1",2316,6.34086242299795
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",433,1.1854893908282
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",322,0.881587953456537
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",526,1.44010951403149
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","MX",1780,4.87337440109514
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","MX",488,1.33607118412047
+"female","White","not reported",0,"Stage II","T3","N0 (i-)","M0",943,2.58179329226557
+"female","White","not hispanic or latino",1,"Stage II","T3","N0 (i-)","M0",4267,11.6824093086927
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1620,4.435318275154
+"female","Other","not reported",0,"Stage II","T2","N1","M0",273,0.747433264887064
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",906,2.48049281314168
+"female","White","not hispanic or latino",1,"Stage IV","T4b","N2","M1",612,1.67556468172485
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",3307,9.05407255304586
+"female","Other","not reported",0,"Stage II","T2","N0","M0",457,1.25119780971937
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","MX",664,1.81793292265572
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","M0",425,1.16358658453114
+"female","Black or African American","not reported",1,"Stage III","T2","N3c","M0",548,1.50034223134839
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i+)","M0",714,1.95482546201232
+"female","White","not hispanic or latino",0,"Stage III","T3","N2","M0",5156,14.1163586584531
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",405,1.1088295687885
+"female","Other","not reported",0,"Stage II","T2","N1a","MX",64,0.175222450376454
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",509,1.39356605065024
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N1mi","M0",931,2.54893908281999
+"female","Other","not hispanic or latino",0,"Stage II","T1","N1","M0",1,0.0027378507871321
+"female","Other","not hispanic or latino",0,"Stage II","T1c","N1a","M0",748,2.04791238877481
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1148,3.14305270362765
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","MX",472,1.29226557152635
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1248,3.41683778234086
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",9,0.0246406570841889
+"female","Other","not reported",0,"Stage II","T2","N0","M0",304,0.832306639288159
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",629,1.72210814510609
+"female","White","not hispanic or latino",1,"Stage IV","T4b","N3a","M1",2298,6.29158110882957
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",1742,4.76933607118412
+"female","White","not hispanic or latino",1,"Stage III","T2","N2a","MX",172,0.470910335386721
+"female","White","not hispanic or latino",1,"Stage III","T3","N2a","M0",1339,3.66598220396988
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",742,2.03148528405202
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1mi","MX",511,1.3990417522245
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","M0",160,0.438056125941136
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",84,0.229979466119097
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",552,1.51129363449692
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",997,2.7296372347707
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1mi","MX",1604,4.39151266255989
+"female","White","not reported",0,"Stage I","T1b","N0 (i-)","M0",1569,4.29568788501027
+"female","White","not reported",0,"Stage II","T2","N1a","M0",1363,3.73169062286105
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1644,4.50102669404517
+"female","White","not reported",1,"Stage II","T2","N0","M0",2854,7.81382614647502
+"female","White","not hispanic or latino",0,"Stage III","T3","N3a","MX",364,0.996577686516085
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",612,1.67556468172485
+"female","White","not hispanic or latino",1,"Stage I","T1c","NX","M0",577,1.57973990417522
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",519,1.42094455852156
+"female","White","not hispanic or latino",0,"Stage I","T1b","N0","M0",172,0.470910335386721
+"female","White","not hispanic or latino",0,"Stage III","T2","N2a","M0",1683,4.60780287474333
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",70,0.191649555099247
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",532,1.45653661875428
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1925,5.27036276522929
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",931,2.54893908281999
+"female","Black or African American","not hispanic or latino",0,"Stage II","T1c","N1a","M0",2155,5.90006844626968
+"female","White","not reported",0,"Stage II","T2","N1a","M0",660,1.80698151950719
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",5739,15.7125256673511
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",762,2.08624229979466
+"female","Other","not reported",0,"Unspecified","T4b","N3a","M0",1217,3.33196440793977
+"female","Other","not reported",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0","M0",518,1.41820670773443
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",545,1.492128678987
+"female","Other","not reported",0,"Stage I","T1c","N0","M0",501,1.37166324435318
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1156,3.16495550992471
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",3247,8.88980150581793
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",376,1.02943189596167
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","MX",588,1.60985626283368
+"female","Black or African American","not hispanic or latino",0,"Stage III","T2","N2a","M0",215,0.588637919233402
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N1a","M0",532,1.45653661875428
+"female","White","hispanic or latino",1,"Stage III","T4b","N0","M0",69,0.188911704312115
+"female","White","not hispanic or latino",1,"Stage II","T2","N0","M0",1699,4.65160848733744
+"female","White","hispanic or latino",0,"Stage II","T2","N1a","MX",1051,2.87748117727584
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",313,0.856947296372348
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",694,1.90006844626968
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",1288,3.52635181382615
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1b","N0","MX",1220,3.34017796030116
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1692,4.63244353182752
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","M0",715,1.95756331279945
+"female","White","not hispanic or latino",0,"Stage III","T1","N2","M0",3430,9.39082819986311
+"female","Other","not reported",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",1,"Stage III","T1c","N2a","M0",911,2.49418206707734
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",508,1.39082819986311
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",644,1.76317590691307
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",470,1.28678986995209
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",865,2.36824093086927
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",392,1.07323750855578
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",1347,3.68788501026694
+"female","Other","not hispanic or latino",0,"Stage III","T3","N2","M0",408,1.1170431211499
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","M0",366,1.00205338809035
+"female","Other","not reported",0,"Stage II","T2","N1","M0",365,0.999315537303217
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",358,0.980150581793292
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2","M0",1449,3.96714579055441
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",2535,6.94045174537988
+"female","White","not hispanic or latino",1,"Stage III","T2","N2","M0",1038,2.84188911704312
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",2124,5.81519507186858
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1688,4.62149212867899
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",1759,4.81587953456537
+"female","White","not hispanic or latino",0,"Stage II","T1","N1a","M0",724,1.98220396988364
+"female","White","not hispanic or latino",0,"Stage III","T4b","N1a","M0",448,1.22655715263518
+"female","White","not hispanic or latino",1,"Stage II","T2","N1","M0",2221,6.0807665982204
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",10,0.027378507871321
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N1a","M0",1064,2.91307323750856
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","MX",34,0.0930869267624914
+"female","White","not reported",0,"Stage II","T2","N1","MX",585,1.60164271047228
+"female","Other","not reported",0,"Stage II","T2","N0","M0",709,1.94113620807666
+"female","Other","not reported",0,"Stage III","T4b","N1a","M0",1492,4.08487337440109
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",620,1.6974674880219
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",2311,6.32717316906229
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",867,2.37371663244353
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","M0",2767,7.57563312799452
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",11,0.0301163586584531
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",596,1.63175906913073
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1","M0",1528,4.18343600273785
+"female","White","not hispanic or latino",0,"Stage III","T3","N3","M0",1001,2.74058863791923
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","MX",496,1.35797399041752
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","M0",24,0.0657084188911704
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",595,1.6290212183436
+"female","White","not reported",0,"Stage II","T2","N1","M0",1988,5.44284736481862
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",5062,13.8590006844627
+"female","White","not hispanic or latino",0,"Stage III","T2","N3","M0",1246,3.4113620807666
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",90,0.246406570841889
+"female","White","not hispanic or latino",1,"Stage II","T1c","N1a","M0",2712,7.42505133470226
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",1611,4.41067761806982
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",1563,4.27926078028747
+"female","White","not hispanic or latino",1,"Stage II","T2","N1mi","M0",782,2.1409993155373
+"female","White","hispanic or latino",0,"Stage II","T2","N0 (i-)","MX",672,1.83983572895277
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1203,3.29363449691992
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","cM0 (i+)",525,1.43737166324435
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",795,2.17659137577002
+"female","White","not reported",0,"Stage II","T2","N1","MX",698,1.91101984941821
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1mi","MX",1611,4.41067761806982
+"female","White","not reported",0,"Stage II","T2","N0 (i-)","M0",170,0.465434633812457
+"female","Other","hispanic or latino",0,"Stage II","T1b","N1a","MX",1208,3.30732375085558
+"female","Other","not reported",0,"Stage III","T3","N1a","M0",975,2.6694045174538
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1","M0",266,0.728268309377139
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",2161,5.91649555099247
+"female","White","not hispanic or latino",0,"Stage III","T3","N3","MX",792,2.16837782340862
+"female","Other","not reported",0,"Stage X","T4b","N3a","MX",304,0.832306639288159
+"female","Black or African American","not hispanic or latino",0,"Stage III","T4b","NX","M0",394,1.07871321013005
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1140,3.1211498973306
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","MX",477,1.30595482546201
+"female","White","not hispanic or latino",1,"Stage III","T3","N1a","MX",244,0.668035592060233
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1","M0",1291,3.53456536618754
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","NX","M0",289,0.791238877481177
+"female","Black or African American","not hispanic or latino",1,"Stage II","T2","N0 (i-)","M0",754,2.0643394934976
+"female","White","not hispanic or latino",0,"Stage III","T2","N3a","MX",565,1.54688569472964
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",10,0.027378507871321
+"female","White","not hispanic or latino",0,"Stage III","T3","N1","M0",2991,8.18891170431212
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",1026,2.80903490759754
+"female","White","not hispanic or latino",0,"Stage II","T3","N0","MX",446,1.22108145106092
+"female","Black or African American","not hispanic or latino",0,"Stage III","T3","N3a","MX",641,1.75496235455168
+"female","White","not reported",0,"Stage I","T1c","N0 (i-)","M0",745,2.03969883641342
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",658,1.80150581793292
+"female","White","not hispanic or latino",1,"Stage II","T2","N1b","M0",3669,10.0451745379877
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",785,2.1492128678987
+"female","White","hispanic or latino",0,"Stage II","T2","N1a","M0",575,1.57426420260096
+"female","White","not hispanic or latino",1,"Stage III","T1","N2","M0",524,1.43463381245722
+"female","White","not hispanic or latino",1,"Stage III","T4b","N1a","M0",81,0.2217659137577
+"female","White","not hispanic or latino",1,"Stage III","T4b","N2","M0",1,0.0027378507871321
+"female","White","hispanic or latino",0,"Stage II","T2","N1a","M0",562,1.53867214236824
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1a","M0",2240,6.13278576317591
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",447,1.22381930184805
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",1523,4.16974674880219
+"female","White","not hispanic or latino",0,"Stage III","T3","N2a","M0",1047,2.86652977412731
+"female","Black or African American","not hispanic or latino",1,"Stage X","T2","N1b","MX",558,1.52772073921971
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","MX",1043,2.85557837097878
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",726,1.98767967145791
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",448,1.22655715263518
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1266,3.46611909650924
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1417,3.87953456536619
+"female","Other","not hispanic or latino",0,"Stage II","T3","N0","M0",439,1.20191649555099
+"female","Black or African American","not hispanic or latino",1,"Stage III","T2","N3","M0",515,1.40999315537303
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",1007,2.75701574264203
+"female","Other","not hispanic or latino",0,"Stage II","T2","N0","M0",383,1.04859685147159
+"female","White","not hispanic or latino",1,"Stage I","T1c","N0","M0",1481,4.05475701574264
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","MX",451,1.23477070499658
+"female","White","not reported",0,"Stage II","T2","N0 (i-)","M0",423,1.15811088295688
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1","M0",860,2.35455167693361
+"female","White","hispanic or latino",0,"Stage III","T2","N3b","MX",1210,3.31279945242984
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",3088,8.45448323066393
+"female","White","not reported",0,"Stage II","T2","N0 (i+)","M0",1121,3.06913073237509
+"female","White","not hispanic or latino",0,"Stage II","T1c","N1a","M0",1980,5.42094455852156
+"female","Other","not reported",0,"Stage II","T2","N0","M0",1004,2.74880219028063
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1","N0 (i-)","M0",3709,10.154688569473
+"female","White","hispanic or latino",0,"Stage II","T1c","N1a","M0",320,0.876112251882272
+"female","Other","not reported",0,"Stage II","T2","N1a","M0",547,1.49760438056126
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",918,2.51334702258727
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",675,1.84804928131417
+"female","Black or African American","not hispanic or latino",0,"Stage II","T3","N0 (i-)","MX",187,0.511978097193703
+"female","White","hispanic or latino",0,"Stage III","T3","N3a","MX",788,2.1574264202601
+"female","White","not hispanic or latino",1,"Stage III","T3","N1b","M0",3461,9.4757015742642
+"female","Other","not reported",0,"Stage II","T2","N0","M0",0,0
+"female","White","not hispanic or latino",0,"Stage III","T2","N2","M0",10,0.027378507871321
+"female","Other","not reported",0,"Stage III","T4d","N3a","M0",1308,3.58110882956879
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","MX",694,1.90006844626968
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","MX",2255,6.17385352498289
+"female","White","not hispanic or latino",1,"Stage III","T3","N1","M0",2207,6.04243668720055
+"female","White","not hispanic or latino",1,"Stage III","T3","N1b","M0",1927,5.27583846680356
+"female","White","not hispanic or latino",1,"Stage II","T2b","N1","M0",1142,3.12662559890486
+"female","White","hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",2989,8.18343600273785
+"female","White","not hispanic or latino",1,"Stage III","T3","N3a","MX",2240,6.13278576317591
+"female","White","not hispanic or latino",0,"Stage II","T2","N1mi","M0",551,1.50855578370979
+"female","White","not hispanic or latino",0,"Stage I","T1","N0","M0",2629,7.19780971937029
+"female","White","not hispanic or latino",0,"Stage II","T2","N0","M0",611,1.67282683093771
+"female","White","not hispanic or latino",0,"Stage II","T2","N1a","M0",1141,3.12388774811773
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","MX",428,1.17180013689254
+"female","Other","hispanic or latino",0,"Stage II","T2","N1","M0",1051,2.87748117727584
+"female","White","not hispanic or latino",0,"Stage III","T1c","N2a","MX",467,1.27857631759069
+"female","Other","not reported",0,"Stage III","T2","N2a","M0",943,2.58179329226557
+"female","White","not hispanic or latino",0,"Stage II","T2","N1","M0",1120,3.06639288158795
+"female","Other","not reported",0,"Stage II","T1c","N1a","M0",396,1.08418891170431
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N1","M0",2306,6.31348391512663
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0","M0",2483,6.79808350444901
+"female","White","not hispanic or latino",1,"Stage III","T3","N3","M0",17,0.0465434633812457
+"female","White","not hispanic or latino",0,"Stage III","T3","N1a","M0",1359,3.72073921971253
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",217,0.594113620807666
+"female","White","not reported",0,"Stage III","T2","N2a","M0",78,0.213552361396304
+"female","Black or African American","not hispanic or latino",0,"Stage II","T2","N0","M0",572,1.56605065023956
+"female","White","not hispanic or latino",0,"Unspecified","T2","N0","M0",584,1.59890485968515
+"female","White","not reported",0,"Stage III","T3","N2a","M0",414,1.13347022587269
+"female","White","not hispanic or latino",0,"Stage II","T3","N0 (i-)","M0",2164,5.92470910335387
+"female","White","not hispanic or latino",0,"Stage I","T1c","N0 (i-)","M0",2813,7.7015742642026
+"female","Black or African American","not hispanic or latino",0,"Stage IV","T4","N1a","M1",5,0.0136892539356605
+"female","Black or African American","not hispanic or latino",0,"Stage I","T1c","N0","M0",1532,4.19438740588638
+"female","White","not hispanic or latino",0,"Stage II","T2","N0 (i-)","M0",375,1.02669404517454
+"female","Other","not hispanic or latino",0,"Stage II","T2","N1","M0",381,1.04312114989733
