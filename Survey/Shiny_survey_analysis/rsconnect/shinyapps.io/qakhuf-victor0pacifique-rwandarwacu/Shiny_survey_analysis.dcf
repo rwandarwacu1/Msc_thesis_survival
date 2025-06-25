@@ -5,7 +5,7 @@ account: qakhuf-victor0pacifique-rwandarwacu
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14946476
-bundleId: 10468580
+bundleId: 10519783
 url: https://qakhuf-victor0pacifique-rwandarwacu.shinyapps.io/Shiny_survey_analysis/
 version: 1
 asMultiple: FALSE

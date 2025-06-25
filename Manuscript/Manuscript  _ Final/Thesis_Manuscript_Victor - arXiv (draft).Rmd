@@ -48,7 +48,7 @@ Effective visualisation of survival data is key for both clinician interpretatio
  
 Overall, the pre-learning (baseline) interpretation accuracy was 50% [37.5-62.5], and it was higher for the Kaplan-Meier plot than the Mean Residual Life (MRL) plot at 56.2% [37.5-71.9] and 43.8% [28.1-62.5], respectively. Following the learning section, the overall accuracy improved significantly to 81.2% [68.8 - 92.2] (p = 0.002). The most significant improvement was observed for the MRL plot (+37.5 percentage points, p = 0.010), which achieved a post-learning accuracy of 81.2%, similar to that of KM. Kaplan–Meier plots were the most preferred for both ease of understanding by clinicians (59%) and patient communication (53%). There was a noticeable improvement in interpretation among participants with lower self-rated knowledge, especially for MRL visualisation. Although KM is popular in medical literature, MRL plots can be rapidly understood by clinicians with minimal instruction. These findings echo the integration of MRL visualisations into clinical dashboards and medical education to enhance  survival data communication. There is a need for large-scale study in a controlled setting to validate these findings.
 
-**Availability**: Code available at [https://github.com/rwandarwacu1/Msc_thesis_survival](https://github.com/rwandarwacu1/Msc_thesis_survival) 
+**Availability**: Code available at [https://github.com/rwandarwacu1/Msc_thesis_survival/tree/Victor](https://github.com/rwandarwacu1/Msc_thesis_survival/tree/Victor) 
 
 
 **Keywords:** Survival analysis, mean residual life, medical data visualisation, Kaplan–Meier, time-to-event
@@ -861,7 +861,7 @@ rpart.plot(tree_model, type = 4, extra = 104,
 
 ## Clinicians ranking preferences 
 
-Participants were also asked to rank four visualisation types based on their perceived usefulness for clinical interpretation and for communicating the clinical outcome to patients. Figure \ref{fig10}  displays these preferences using a heat map. For clinical use, the Kaplan–Meier plot was the most preferred, selected as the top choice by 59% of respondents (Table \ref{tab:outcomes}). The MRL plot was only the top choice for 6% of respondents. Regarding patient communication, KM was still the most preferred option, with 53% of participants selecting it as the most helpful format for explaining clinical outcomes to patients. The preference for MRL plots has also increased slightly to 9% (Table \ref{tab:outcomes}). The interactive shiny dashboard is accessible through can be accessed on shiny dashboard  https://qakhuf-victor0pacifique-rwandarwacu.shinyapps.io/Shiny_survey_analysis/ 
+Participants were also asked to rank four visualisation types based on their perceived usefulness for clinical interpretation and for communicating the clinical outcome to patients. Figure \ref{fig10}  displays these preferences using a heat map. For clinical use, the Kaplan–Meier plot was the most preferred, selected as the top choice by 59% of respondents (Table \ref{tab:outcomes}). The MRL plot was only the top choice for 6% of respondents. Regarding patient communication, KM was still the most preferred option, with 53% of participants selecting it as the most helpful format for explaining clinical outcomes to patients. The preference for MRL plots has also increased slightly to 9% (Table \ref{tab:outcomes}). The interactive shiny dashboard is accessible through *https://qakhuf-victor0pacifique-rwandarwacu.shinyapps.io/Shiny_survey_analysis/*
 
 
 

@@ -13,7 +13,7 @@ survey_data <- read_csv("survey_data_shiny.csv")
 
 # Prepare long-format data for plotting
 correctness_long <- survey_data %>%
-  select(ends_with("code"),knowledge_rate) %>%
+  select(pre_km_code,pre_mrl_code,post_km_code,post_mrl_code,knowledge_rate) %>%
   mutate(id = row_number()) %>%
   pivot_longer(
     cols = -c(id,knowledge_rate),
@@ -29,9 +29,7 @@ correctness_long <- survey_data %>%
     ),
     plot = case_when(
       str_detect(plot_full, "km") ~ "Kaplan Meier(KM)",
-      str_detect(plot_full, "survdiff") ~ "Difference in Survival",
-      str_detect(plot_full, "mrl") ~ "Mean Residual Life(MRL)",
-      str_detect(plot_full, "mr_ldiff") ~ "Difference in MRL"
+      str_detect(plot_full, "mrl") ~ "Mean Residual Life(MRL)"
     ),
     correctness = factor(correctness, levels = c("INCORRECT", "CORRECT")))%>%
       mutate(
