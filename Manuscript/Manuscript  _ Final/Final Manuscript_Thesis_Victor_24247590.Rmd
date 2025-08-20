@@ -645,11 +645,6 @@ overall_summary_table %>%
 ```{r tab3 , tab.cap="Summary of Key Outcomes (with 95%  CIs))\\label{tab:outcomes}" ,results='asis' }
 
 
-if (FALSE) {# Load data
-survey_data <- read_xlsx("Survey_coded_export20250521.xlsx") %>%
-  clean_names()}
-
-# Bootstrap helper functions
 
 # Bootstrap for accuracy (mean proportion correct)
 boot_mean <- function(data, indices) {
